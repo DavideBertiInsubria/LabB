@@ -4,7 +4,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class ClientImpl extends UnicastRemoteObject implements ClientInterface {
+
+
+    protected ClientImpl () throws RemoteException {
+    }
 }

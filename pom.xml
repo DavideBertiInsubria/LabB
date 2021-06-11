@@ -35,6 +35,9 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
+                <configuration>
+                    <mainClass>hi</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

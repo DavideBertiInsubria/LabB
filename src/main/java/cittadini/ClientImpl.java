@@ -1,7 +1,5 @@
 package cittadini;
-
 import common.CentroVaccinale;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 

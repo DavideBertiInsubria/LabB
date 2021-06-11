@@ -4,4 +4,5 @@ module LabB {
     requires java.rmi;
     opens cittadini to javafx.fxml;
     exports cittadini;
+    exports common;
 }

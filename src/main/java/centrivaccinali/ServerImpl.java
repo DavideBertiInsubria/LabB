@@ -13,7 +13,10 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
-    private Database DBconnetion;
+    //private Database DBconnetion;
+
+    protected ServerImpl() throws RemoteException {
+    }
 
     @Override
     public void registraCittadino (Cittadino c){

@@ -1,5 +1,10 @@
 package centrivaccinali;
-import common.*;
+
+import common.CentroVaccinale;
+import common.Cittadino;
+import common.TipologiaCentro;
+import common.Vaccinato;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

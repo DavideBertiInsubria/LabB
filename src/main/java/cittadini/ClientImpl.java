@@ -1,16 +1,24 @@
 package cittadini;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import java.util.Objects;
 
-public class ClientImpl extends UnicastRemoteObject implements ClientInterface {
+public class ClientImpl extends Application implements ClientInterface {
 
-
-    protected ClientImpl () throws RemoteException {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(Objects.requireNonNull (getClass ().getResource ("/Home.fxml")));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }

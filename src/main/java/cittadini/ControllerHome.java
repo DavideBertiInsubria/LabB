@@ -32,19 +32,49 @@ public class ControllerHome {
             thisWindow.close();
 
             // APERTURA NUOVA SCHERMATA
-            Stage schermataRegistrazione = new Stage();
+            Stage schermata = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/RegistrazioneCittadini.fxml"));
             Parent root = loader.load();
-            schermataRegistrazione.setTitle("Registrazione");
-            schermataRegistrazione.setScene(new Scene(root));
-            schermataRegistrazione.show();
+            schermata.setTitle("Registrazione");
+            schermata.setScene(new Scene(root));
+            schermata.show();
         } catch (IOException ignored){}
     }
 
-    public void clickSegnalazione(ActionEvent event){
+    public void clickSegnalazioni(ActionEvent event){
+        if (User==null){
+            clickLogin(event);
+        } else {
+            try {
+                // CHIUSURA
+                Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisWindow.close();
+
+                // APERTURA NUOVA SCHERMATA
+                Stage schermata = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/SegnalazioniCittadini.fxml"));
+                Parent root = loader.load();
+                schermata.setTitle("Segnalazioni eventi avversi");
+                schermata.setScene(new Scene(root));
+                schermata.show();
+            } catch (IOException ignored){}
+        }
     }
 
     public void clickLogin(ActionEvent event){
+        try {
+            // CHIUSURA
+            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisWindow.close();
+
+            // APERTURA NUOVA SCHERMATA
+            Stage schermata = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginCittadini.fxml"));
+            Parent root = loader.load();
+            schermata.setTitle("Login");
+            schermata.setScene(new Scene(root));
+            schermata.show();
+        } catch (IOException ignored){}
     }
 
     public void clickLogout(ActionEvent event){
@@ -54,16 +84,16 @@ public class ControllerHome {
             thisWindow.close();
 
             // APERTURA NUOVA SCHERMATA
-            Stage schermataRegistrazione = new Stage();
+            Stage schermata = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
             Parent root = loader.load();
                 // ... SET DATI
             ControllerHome cc = loader.getController();
             cc.setUser(null);
 
-            schermataRegistrazione.setTitle("Vaccinazione cittadini");
-            schermataRegistrazione.setScene(new Scene(root));
-            schermataRegistrazione.show();
+            schermata.setTitle("Vaccinazione cittadini");
+            schermata.setScene(new Scene(root));
+            schermata.show();
         } catch (IOException ignored){}
     }
 

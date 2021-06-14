@@ -10,8 +10,8 @@ public class ClientGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Home.fxml"));
-        primaryStage.setTitle("Hello World");
+        Parent root = FXMLLoader.load(getClass().getResource("/HomeCittadini.fxml"));
+        primaryStage.setTitle("Vaccinazione cittadini");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

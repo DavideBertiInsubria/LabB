@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlCentro">
+   <children>
+      <Button layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#back" text="Indietro" />
+      <Button layoutX="323.0" layoutY="339.0" mnemonicParsing="false" text="Conferma e invia" />
+      <Label layoutX="78.0" layoutY="58.0" text="Nome:" />
+      <TextField fx:id="txtNome" layoutX="226.0" layoutY="54.0" onAction="#registraCentroVaccinale" prefHeight="25.0" prefWidth="300.0" />
+      <Label layoutX="78.0" layoutY="112.0" text="Indirizzo:" />
+      <TextField fx:id="txtIndirizzoNome" layoutX="300.0" layoutY="108.0" prefHeight="25.0" prefWidth="225.0" promptText="nome" />
+      <TextField fx:id="txtIndirizzoNumero" layoutX="300.0" layoutY="136.0" prefHeight="25.0" prefWidth="225.0" promptText="numero civico" />
+      <TextField fx:id="txtIndirizzoComune" layoutX="300.0" layoutY="164.0" prefHeight="25.0" prefWidth="225.0" promptText="comune" />
+      <TextField fx:id="txtIndirizzoProvincia" layoutX="300.0" layoutY="192.0" prefHeight="25.0" prefWidth="225.0" promptText="provincia" />
+      <TextField fx:id="txtIndirizzoCap" layoutX="300.0" layoutY="220.0" prefHeight="25.0" prefWidth="225.0" promptText="CAP" />
+      <Label layoutX="78.0" layoutY="279.0" text="Tipologia:" />
+      <RadioButton fx:id="btnAziendale" layoutX="228.0" layoutY="279.0" mnemonicParsing="false" selected="true" text="aziendale">
+         <toggleGroup>
+            <ToggleGroup fx:id="grpTipologia" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="btnHub" layoutX="355.0" layoutY="279.0" mnemonicParsing="false" text="hub" toggleGroup="$grpTipologia" />
+      <RadioButton fx:id="btnOspedaliero" layoutX="442.0" layoutY="279.0" mnemonicParsing="false" text="ospedaliero" toggleGroup="$grpTipologia" />
+      <RadioButton fx:id="btnVia" layoutX="226.0" layoutY="112.0" mnemonicParsing="false" selected="true" text="via">
+         <toggleGroup>
+            <ToggleGroup fx:id="grpIndirizzo" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="btnViale" layoutX="226.0" layoutY="140.0" mnemonicParsing="false" text="viale" toggleGroup="$grpIndirizzo" />
+      <RadioButton fx:id="btnPiazza" layoutX="228.0" layoutY="168.0" mnemonicParsing="false" text="piazza" toggleGroup="$grpIndirizzo" />
+   </children>
+</AnchorPane>

@@ -1,5 +1,6 @@
 package server;
 
+import DBManagement.*;
 import common.ClientInterface;
 import common.CentroVaccinale;
 import common.Cittadino;
@@ -11,12 +12,14 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
-    //private Database DBconnetion;
 
-    protected ServerImpl() throws RemoteException {
+    private DBVaccinazioniManagement Database;
+    protected ServerImpl() throws RemoteException, SQLException {
+        Database = new DBVaccinazioniManagement ();
     }
 
     public void registraCittadino (Cittadino c, ClientInterface utente){
@@ -124,18 +127,21 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+
+    @Override
     public void login (String email, String password) throws RemoteException {
+
 
     }
 
-    private void exec(){
+    private void exec() throws  RemoteException {
         try {
             ServerImpl serverR= new ServerImpl ();
             Registry registro = LocateRegistry.createRegistry (1099);
             registro.rebind ("Vaccino", serverR);
 
         } catch (
-                IOException e) {
+                IOException | SQLException e ) {
             e.printStackTrace ();
         }
     }

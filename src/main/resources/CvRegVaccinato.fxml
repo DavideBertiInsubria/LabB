@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="77.0" layoutY="114.0" text="Label" />
-      <Label layoutX="77.0" layoutY="151.0" text="Label" />
-      <Label layoutX="77.0" layoutY="183.0" text="Label" />
-      <Label layoutX="77.0" layoutY="214.0" text="Label" />
-      <Label layoutX="77.0" layoutY="250.0" text="Label" />
-      <Label layoutX="77.0" layoutY="281.0" text="Label" />
-      <Label layoutX="77.0" layoutY="311.0" text="Label" />
-      <TextField layoutX="181.0" layoutY="110.0" />
-      <TextField layoutX="181.0" layoutY="147.0" />
-      <TextField layoutX="181.0" layoutY="179.0" />
-      <TextField layoutX="181.0" layoutY="210.0" />
-      <TextField layoutX="181.0" layoutY="238.0" />
-      <ChoiceBox layoutX="181.0" layoutY="269.0" prefWidth="150.0" />
-      <TextField layoutX="181.0" layoutY="307.0" />
-      <Button layoutX="91.0" layoutY="349.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="412.0" layoutY="349.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="78.0" layoutY="54.0" prefHeight="17.0" prefWidth="149.0" text="Centro vaccinale:" />
+      <Label layoutX="77.0" layoutY="89.0" text="Nome:" />
+      <Label layoutX="77.0" layoutY="124.0" text="Cognome:" />
+      <Label layoutX="77.0" layoutY="159.0" text="Codice fiscale:" />
+      <Label layoutX="77.0" layoutY="194.0" text="Data di somministrazione:" />
+      <Label layoutX="78.0" layoutY="226.0" text="Vaccino:" />
+      <Label layoutX="79.0" layoutY="295.0" text="ID di vaccinazione:" />
+      <TextField fx:id="txtCentroVaccinale" layoutX="257.0" layoutY="50.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il nome del centro vaccinale" />
+      <TextField fx:id="txtNomeVaccinato" layoutX="258.0" layoutY="85.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio nome" />
+      <TextField fx:id="txtCognomeVaccinato" layoutX="258.0" layoutY="120.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio cognome" />
+      <TextField fx:id="txtCfVaccinato" layoutX="257.0" layoutY="155.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio codice fiscale" />
+      <TextField fx:id="txtIdVaccinato" layoutX="257.0" layoutY="291.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio ID di vaccinazione" />
+      <Button layoutX="198.0" layoutY="353.0" mnemonicParsing="false" text="Indietro" />
+      <Button layoutX="343.0" layoutY="353.0" mnemonicParsing="false" text="Conferma e invia" />
+      <DatePicker fx:id="selectDate" layoutX="258.0" layoutY="190.0" prefHeight="25.0" prefWidth="275.0" promptText="Selezionare la data di somministrazione" />
+      <RadioButton fx:id="btnPfizer" layoutX="377.0" layoutY="260.0" mnemonicParsing="false" text="Pfizer">
+         <toggleGroup>
+            <ToggleGroup fx:id="grpVaccino" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="btnAstraZeneca" layoutX="257.0" layoutY="226.0" mnemonicParsing="false" selected="true" text="AstraZeneca" toggleGroup="$grpVaccino" />
+      <RadioButton fx:id="btnModerna" layoutX="258.0" layoutY="260.0" mnemonicParsing="false" text="Moderna" toggleGroup="$grpVaccino" />
+      <RadioButton fx:id="btnJohnsonJohnson" layoutX="377.0" layoutY="226.0" mnemonicParsing="false" text="Johnson &amp; Johnson" toggleGroup="$grpVaccino" />
    </children>
 </AnchorPane>

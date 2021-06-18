@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlCentro">
    <children>
-      <Button layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#back" text="Indietro" />
+      <Button layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#backFromCentroVaccinale" text="Indietro" />
       <Button layoutX="323.0" layoutY="339.0" mnemonicParsing="false" text="Conferma e invia" />
       <Label layoutX="78.0" layoutY="58.0" text="Nome:" />
       <TextField fx:id="txtNome" layoutX="226.0" layoutY="54.0" onAction="#registraCentroVaccinale" prefHeight="25.0" prefWidth="300.0" />

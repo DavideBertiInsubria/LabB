@@ -1,4 +1,4 @@
-package cittadini;
+package common;
 
 import common.CentroVaccinale;
 

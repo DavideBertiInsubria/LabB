@@ -1,6 +1,6 @@
-package centrivaccinali;
+package server;
 
-import cittadini.ClientInterface;
+import common.ClientInterface;
 import common.CentroVaccinale;
 import common.Cittadino;
 import common.TipologiaCentro;

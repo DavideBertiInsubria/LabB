@@ -16,4 +16,5 @@ public interface ServerInterface extends Remote {
     void registraCentroVaccinale(CentroVaccinale CV,ClientInterface operatore) throws RemoteException;
     void cercaCentroVaccinale(String nome, String comune, TipologiaCentro tipo, ClientInterface utente) throws RemoteException;
     void visualizzaInfoCentroVaccinale(CentroVaccinale CV, ClientInterface utente)  throws RemoteException;
+    void login(String email, String password) throws RemoteException;
 }

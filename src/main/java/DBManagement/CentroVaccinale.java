@@ -1,4 +1,4 @@
-
+package DBManagement;
 public class CentroVaccinale {
 	private String nome,indirizzo,tipologia;
 	

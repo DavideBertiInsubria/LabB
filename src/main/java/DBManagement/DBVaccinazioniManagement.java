@@ -1,3 +1,4 @@
+package DBManagement;
 import java.sql.SQLException;
 
 public class DBVaccinazioniManagement extends DBManager{

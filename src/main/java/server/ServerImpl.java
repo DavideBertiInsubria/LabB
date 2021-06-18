@@ -124,6 +124,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    public void login (String email, String password) throws RemoteException {
+
+    }
+
     private void exec(){
         try {
             ServerImpl serverR= new ServerImpl ();

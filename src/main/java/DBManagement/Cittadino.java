@@ -1,4 +1,4 @@
-
+package DBManagement;
 public class Cittadino {
 	
 	private String nome;

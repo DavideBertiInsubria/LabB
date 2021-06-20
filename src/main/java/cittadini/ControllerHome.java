@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class ControllerHome {
@@ -26,19 +27,24 @@ public class ControllerHome {
     }
 
     public void clickRegistrazione(ActionEvent event)  {
-        try {
-            // CHIUSURA
-            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            thisWindow.close();
+        if (User!=null){
+            JOptionPane.showMessageDialog(null, "Per registrare un nuovo utente devi prima effettuare il logout.");
+        } else {
+            try {
+                // CHIUSURA
+                Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisWindow.close();
 
-            // APERTURA NUOVA SCHERMATA
-            Stage schermata = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/RegistrazioneCittadini.fxml"));
-            Parent root = loader.load();
-            schermata.setTitle("Registrazione");
-            schermata.setScene(new Scene(root));
-            schermata.show();
-        } catch (IOException ignored){}
+                // APERTURA NUOVA SCHERMATA
+                Stage schermata = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/RegistrazioneCittadini.fxml"));
+                Parent root = loader.load();
+                schermata.setTitle("Registrazione");
+                schermata.setScene(new Scene(root));
+                schermata.show();
+            } catch (IOException ignored) {
+            }
+        }
     }
 
     public void clickSegnalazioni(ActionEvent event){

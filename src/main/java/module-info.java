@@ -3,6 +3,7 @@ module LabB {
     requires javafx.fxml;
     requires java.sql;
     requires java.rmi;
+    requires java.desktop;
     opens centrivaccinali to javafx.fxml;
     opens cittadini to javafx.fxml;
     opens common to javafx.fxml;

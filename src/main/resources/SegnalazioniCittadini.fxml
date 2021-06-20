@@ -113,8 +113,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnIndietro" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickIndietro" prefWidth="150.0" style="-fx-background-color: white;" text="Indietro" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="btnInvia" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: white;" text="Invia" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="btnIndietro" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickIndietro" prefWidth="150.0" text="Indietro" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="btnInvia" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="Invia" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </GridPane>
    </children>

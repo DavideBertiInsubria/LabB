@@ -129,9 +129,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
 
     @Override
-    public void login (String email, String password) throws RemoteException {
+    public Cittadino login (String userID, String password) throws RemoteException {
 
-
+        return null; // null se non è stato trovato
     }
 
     private void exec() throws  RemoteException {

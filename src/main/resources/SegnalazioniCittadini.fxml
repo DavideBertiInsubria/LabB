@@ -25,7 +25,8 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="381.0" minWidth="10.0" prefWidth="330.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
@@ -36,72 +37,83 @@
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </VBox.margin>
          <children>
-            <Label fx:id="lbMalDiTesta" text="Mal di testa:" textFill="WHITE">
+            <Label fx:id="lbMalDiTesta" text="Mal di testa:" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbFebbre" text="Febbre:" textFill="WHITE" GridPane.rowIndex="1">
+            <Label fx:id="lbFebbre" text="Febbre:" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbDoloriMuscArtic" text="Dolori muscolari e articolari:" textFill="WHITE" GridPane.rowIndex="2">
+            <Label fx:id="lbDoloriMuscArtic" text="Dolori muscolari e articolari:" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbLinfo" text="Linfoadenopatia:" textFill="WHITE" GridPane.rowIndex="3">
+            <Label fx:id="lbLinfo" text="Linfoadenopatia:" textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbTachi" text="Tachicardia:" textFill="WHITE" GridPane.rowIndex="4">
+            <Label fx:id="lbTachi" text="Tachicardia:" textFill="WHITE" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbCrisi" text="Crisi ipertensiva:" textFill="WHITE" GridPane.rowIndex="5">
+            <Label fx:id="lbCrisi" text="Crisi ipertensiva:" textFill="WHITE" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboMalDiTesta" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboFebbre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboDoloriMuscArtic" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="comboLinfo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="comboTachi" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox fx:id="comboCrisi" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextArea fx:id="textMalDiTesta" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+            <ComboBox fx:id="comboMalDiTesta" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboFebbre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboDoloriMuscArtic" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboLinfo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboTachi" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboCrisi" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextArea fx:id="textMalDiTesta" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textFebbre" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <TextArea fx:id="textFebbre" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textDoloriMuscArtic" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <TextArea fx:id="textDoloriMuscArtic" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textLinfo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <TextArea fx:id="textLinfo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textTachi" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TextArea fx:id="textTachi" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textCrisi" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <TextArea fx:id="textCrisi" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
+            <Label fx:id="lbNote" alignment="CENTER" text="Note:" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets bottom="5.0" />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
+            </Label>
          </children>
       </GridPane>
       <GridPane>

@@ -54,7 +54,7 @@ public class ControllerLogin {
         }
 
         // COLLEGAMENTO AL SERVER
-        Registry registro = LocateRegistry.getRegistry("", 1099);
+        Registry registro = LocateRegistry.getRegistry("*", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
         ServerInterface server = (ServerInterface) registro.lookup("Vaccino");
 
         // CONTROLLO ESISTENZA UTENTE

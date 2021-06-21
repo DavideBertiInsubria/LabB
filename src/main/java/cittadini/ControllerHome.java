@@ -60,6 +60,8 @@ public class ControllerHome {
                 Stage schermata = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/SegnalazioniCittadini.fxml"));
                 Parent root = loader.load();
+                ControllerSegnalazioni cc = loader.getController();
+                cc.setUser(User);
                 schermata.setTitle("Segnalazioni eventi avversi");
                 schermata.setScene(new Scene(root));
                 schermata.show();

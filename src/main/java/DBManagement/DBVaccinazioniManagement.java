@@ -9,7 +9,7 @@ import common.TipologiaCentro;
 public class DBVaccinazioniManagement extends DBManager{
 
 	public DBVaccinazioniManagement() throws SQLException {
-		super("jdbc:postgresql://localhost/test","postgres","test");
+		super("jdbc:postgresql://localhost/dblabb","postgres","test");
 	}
 	
 	
@@ -59,13 +59,13 @@ public class DBVaccinazioniManagement extends DBManager{
 			comune="%"+comune+"%";
 		
 		if(tipologia.equals(""))
-			tipologia="%";
+			tipologia="";
+		else
+			tipologia="AND Tipologia ='"+tipologia+"'";
 			
-		ResultSet centri;
+		ResultSet centri = null;
 		
-		centri = query("SELECT Nome,Indirizzo,Tipologia FROM CentriVaccinali WHERE Nome LIKE '"+nome+"' "+
-				 "AND Indirizzo LIKE '"+comune+"' "+
-				 "AND Tipologia LIKE '"+tipologia+"'");
+		centri = query("SELECT Nome,Indirizzo,Tipologia FROM CentriVaccinali WHERE Nome LIKE '"+nome+"' AND Indirizzo LIKE '"+comune+"' "+tipologia);
 		
 		return centri;
 		

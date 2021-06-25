@@ -3,22 +3,24 @@ package common;
 import java.io.Serializable;
 
 public class CentroVaccinale implements Serializable {
-    private String nome, Indirizzo;
+    private String nome, indirizzo;
     private TipologiaCentro tipologia;
 
-    public String getNome () {
-        return nome;
-    }
+    public CentroVaccinale(String nome,String indirizzo,TipologiaCentro tipologia) {
+		this.nome = nome;
+		this.indirizzo = indirizzo;
+		this.tipologia = tipologia;
+	}
 
-    public void setNome (String nome) {
-        this.nome = nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getIndirizzo () {
-        return Indirizzo;
-    }
+	public String getIndirizzo() {
+		return indirizzo;
+	}
 
-    public void setIndirizzo (String indirizzo) {
-        Indirizzo = indirizzo;
-    }
+	public TipologiaCentro getTipologia() {
+		return tipologia;
+	}
 }

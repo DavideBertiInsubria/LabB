@@ -22,6 +22,14 @@ public class DBManager {
 		conn = DriverManager.getConnection(url, user, pwd);
 	}
 	
+	public static int ResultSetSize(ResultSet r) throws SQLException {
+		int size=0;
+		r.last();
+		size = r.getRow();
+		r.first();
+		return size;
+	}
+	
 	public ResultSet query(String q)  throws SQLException{
 		if(conn != null) {
 			Statement stmt = conn.createStatement();

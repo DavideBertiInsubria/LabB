@@ -1,5 +1,10 @@
 package DBManagement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.CentroVaccinale;
+import common.TipologiaCentro;
 
 public class DBVaccinazioniManagement extends DBManager{
 
@@ -11,7 +16,7 @@ public class DBVaccinazioniManagement extends DBManager{
 	public void registraCentroVaccinale(CentroVaccinale centro) throws SQLException {
 		String nome = centro.getNome();
 		String indirizzo = centro.getIndirizzo();
-		String tipologia = centro.getTipologia();
+		TipologiaCentro tipologia = centro.getTipologia();
 		query("INSERT INTO CentriVaccinali(Nome,Indirizzo,Tipologia)"
 				+ "VALUES("+nome+","+indirizzo+","+tipologia+")");
 	}
@@ -32,14 +37,39 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 	}
 	
-	/*public void cercaCentroVaccinale(String nome,String comune,String tipologia) throws SQLException {
+	public boolean loginCittadino(Cittadino cittadino) throws SQLException {
+		String email = cittadino.getEmail();
+		String pwd = cittadino.getPassword();
 		
-		query("SELECT Nome,Indirizzo,Tipologia FROM CentriVaccinali"+
-		"WHERE Nome='"+nome+"' "+
-				"OR Cognome LIKE '%"+comune+"%' "+
-				"OR tipologia='"+tipologia+"'");
+		ResultSet l = query("SELECT CF FROM CittadiniRegistrati WHERE Email='"+email+"' AND Password='"+pwd+"'");
+		
+		if(DBManager.ResultSetSize(l) > 0)
+			return true;
+		return false;
 	}
-	*/
+	
+	public ResultSet cercaCentroVaccinale(String nome,String comune,String tipologia) throws SQLException {
+		
+		if(nome.equals(""))
+			nome="%";
+		
+		if(comune.equals(""))
+			comune="%";
+		else
+			comune="%"+comune+"%";
+		
+		if(tipologia.equals(""))
+			tipologia="%";
+			
+		ResultSet centri;
+		
+		centri = query("SELECT Nome,Indirizzo,Tipologia FROM CentriVaccinali WHERE Nome LIKE '"+nome+"' "+
+				 "AND Indirizzo LIKE '"+comune+"' "+
+				 "AND Tipologia LIKE '"+tipologia+"'");
+		
+		return centri;
+		
+	}
 	
 	private void creaVaccinatiCentroVaccinale(String nome_centro) throws SQLException {
 		

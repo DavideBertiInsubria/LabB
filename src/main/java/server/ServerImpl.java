@@ -103,8 +103,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 remoteException.printStackTrace();
             }
         }
-        return;
-
     }
 
     public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
@@ -120,7 +118,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     @Override
     public Cittadino login (String userID, String password) throws RemoteException {
-
+        Database.loginCittadino (userID,password);
         return null; // null se non è stato trovato
     }
 

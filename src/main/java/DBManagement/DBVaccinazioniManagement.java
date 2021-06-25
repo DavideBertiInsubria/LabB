@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import common.CentroVaccinale;
 import common.TipologiaCentro;
+import common.Cittadino;
 
 public class DBVaccinazioniManagement extends DBManager{
 
@@ -24,7 +25,7 @@ public class DBVaccinazioniManagement extends DBManager{
 
 	public void registraCittadino(Cittadino cittadino) throws SQLException {
 		
-		String nome = cittadino.getNome();
+		String nome = cittadino.getNome ();
 		String cognome = cittadino.getCognome();
 		String email = cittadino.getEmail();
 		String pwd = cittadino.getPassword();

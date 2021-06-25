@@ -1,11 +1,7 @@
 package server;
 
 import DBManagement.*;
-import common.ClientInterface;
-import common.CentroVaccinale;
-import common.Cittadino;
-import common.TipologiaCentro;
-import common.Vaccinato;
+import common.*;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -22,8 +18,12 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         Database = new DBVaccinazioniManagement ();
     }
 
-    public void registraCittadino (Cittadino c, ClientInterface utente){
-        //QUERY PER LA REGISTRAZIONE DEL CITTADINO
+    public synchronized void registraCittadino (Cittadino c, ClientInterface utente){
+        try {
+            Database.registraCittadino (c);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace ();
+        }
         boolean successfull = false;
         if(successfull){
             try {
@@ -47,7 +47,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public void registraVaccinato (Vaccinato v, ClientInterface utente) {
+    public synchronized void registraVaccinato (Vaccinato v, ClientInterface utente) {
         //query per la registrazione del vaccinato
         boolean successfull = false;
         if(successfull){
@@ -74,8 +74,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public void registraCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
-        //Query per la registrazione del centro vaccinale
+    public synchronized void registraCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
+
         boolean successfull = false;
         if(successfull){
             try {
@@ -117,7 +117,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     }
 
-    public void visualizzaInfoCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
+    public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
         //Query per le informazione del centro
         String info = null;
         try {

@@ -3,7 +3,7 @@ package common;
 import java.util.Date;
 
 public class Vaccinato {
-    private String nomeCentro,nome,cognome,CF,vaccino,IDVaccino;
+    private String IDCentro,nome,cognome,CF,vaccino,IDVaccino;
     Date DataSV;
 
     public String getIDVaccino () {
@@ -46,11 +46,12 @@ public class Vaccinato {
         this.nome = nome;
     }
 
-    public String getNomeCentro () {
-        return nomeCentro;
+    public String getIDCentro () {
+        return IDCentro;
     }
 
-    public void setNomeCentro (String nomeCentro) {
-        this.nomeCentro = nomeCentro;
+    public void setIDCentro (String IDCentro) {
+        this.IDCentro = IDCentro;
     }
+
 }

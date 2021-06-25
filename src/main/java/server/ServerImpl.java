@@ -76,28 +76,18 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public synchronized void registraCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
 
-        boolean successfull = false;
-        if(successfull){
+        try {
+            Database.registraCentroVaccinale (CV);
+            utente.msg("Registrazione effettuata");
+        } catch (SQLException | RemoteException e) {
+            e.printStackTrace ();
             try {
-                utente.msg("Registrazione effettuata");
-                return;
-            } catch (RemoteException e) {
-                try {
-                    utente.msg("Qualcosa è andato storto");
-                    return;
-                } catch (RemoteException remoteException) {
-                    remoteException.printStackTrace();
-                }
+                utente.msg("Qualcosa è andato storto");
+            } catch (RemoteException remoteException) {
+                remoteException.printStackTrace ();
             }
         }
-        else{
-            try {
-                utente.msg("La registrazione non è andata a buon fine riprovare");
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-            return;
-        }
+
     }
 
     public void cercaCentroVaccinale (String nome, String comune, TipologiaCentro tipo, ClientInterface utente) {

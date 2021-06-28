@@ -41,7 +41,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <padding>
             <Insets left="30.0" right="30.0" />
@@ -72,7 +71,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="lbIDCentroVacc" text="ID Centro Vaccinale:" textFill="WHITE" GridPane.rowIndex="8">
+            <Label fx:id="lbIDVacc" text="ID Vaccinazione:" textFill="WHITE" GridPane.rowIndex="7">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -82,7 +81,7 @@
             <TextField fx:id="textCF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="textEmail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="textUserID" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="textIDCentroVacc" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="textIDVacc" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label fx:id="lbRPax" text="Ripeti password:" textFill="WHITE" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="12.0" />

@@ -2,7 +2,6 @@ package cittadini;
 
 import common.Cittadino;
 import common.ClientImpl;
-import common.ClientInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,19 +12,18 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import server.ServerInterface;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-
+import java.util.regex.Pattern;
 
 public class ControllerRegistrazione {
 
     @FXML
-    TextField textNome, textCognome, textEmail, textUserID, textIDCentroVacc, textCF;
+    TextField textNome, textCognome, textEmail, textUserID, textIDVacc, textCF;
     @FXML
     PasswordField textPax, textRPax;
 
@@ -45,11 +43,18 @@ public class ControllerRegistrazione {
                 Parent root = loader.load();
 
                     // ...CREAZIONE CITTADINO DI PROVA e SET
-                Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textEmail.getText(), textPax.getText(), textIDCentroVacc.getText(), null);
+                Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textEmail.getText(), textPax.getText(), textIDVacc.getText(), null);
 
                     // ...COLLEGAMENTO AL SERVER
                 Registry registro = LocateRegistry.getRegistry("*", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
-                ServerInterface server = (ServerInterface) registro.lookup("Vaccino");
+                ServerInterface server = null;
+                try {
+                    server = (ServerInterface) registro.lookup("Vaccino");
+                } catch (NotBoundException e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+                    System.exit(0);
+                }
                 ClientImpl obj = new ClientImpl();
                 ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
                 server.registraCittadino(cittadinoOK, stub);
@@ -60,14 +65,18 @@ public class ControllerRegistrazione {
                 schermata.setTitle("Vaccinazione cittadini");
                 schermata.setScene(new Scene(root));
                 schermata.show();
-            } catch (IOException | NotBoundException ignored){}
+            } catch (IOException  ignored){}
         }
 
     }
 
     private boolean checkCompilazione() {
-        if (textNome.getText().equals("") || textCognome.getText().equals("") || textEmail.getText().equals("") || textUserID.getText().equals("") || textPax.getText().equals("") || textRPax.getText().equals("") || textIDCentroVacc.getText().equals("") || textCF.getText().equals("") ) {
+        if (textNome.getText().equals("") || textCognome.getText().equals("") || textEmail.getText().equals("") || textUserID.getText().equals("") || textPax.getText().equals("") || textRPax.getText().equals("") || textIDVacc.getText().equals("") || textCF.getText().equals("") ) {
             JOptionPane.showMessageDialog(null, "Compilare tutti i campi.");
+            return false;
+        }
+        if ( !checkEmail(textEmail.getText()) ){
+            JOptionPane.showMessageDialog(null, "L'indirizzo email inserito non e' valido.");
             return false;
         }
         if ( !checkValidPassword(textPax.getText()) ){
@@ -80,6 +89,19 @@ public class ControllerRegistrazione {
         }
         return true;
     }
+
+
+    private boolean checkEmail(String email) {
+        String emailFormat = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+        Pattern pat = Pattern.compile(emailFormat);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+
 
     private boolean checkValidPassword(String password) {
         boolean number=false, upper=false, special=false;

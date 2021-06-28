@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import javax.swing.*;
 import java.io.IOException;
 
@@ -22,8 +21,24 @@ public class ControllerHome {
 
     private static Cittadino User;
 
-
     public void clickCerca(ActionEvent event){
+        try {
+            // CHIUSURA
+            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisWindow.close();
+
+            // APERTURA NUOVA SCHERMATA
+            Stage schermata = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CercaCittadini.fxml"));
+            Parent root = loader.load();
+            // ... SET DATI
+            ControllerCerca cc = loader.getController();
+            cc.setUser(User);
+
+            schermata.setTitle("Cerca centro vaccinale");
+            schermata.setScene(new Scene(root));
+            schermata.show();
+        } catch (IOException ignored){}
     }
 
     public void clickRegistrazione(ActionEvent event)  {

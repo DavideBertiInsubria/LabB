@@ -24,7 +24,7 @@
       <TextField fx:id="txtIdVaccinato" layoutX="257.0" layoutY="291.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio ID di vaccinazione" />
       <Button layoutX="198.0" layoutY="353.0" mnemonicParsing="false" text="Indietro" />
       <Button layoutX="343.0" layoutY="353.0" mnemonicParsing="false" text="Conferma e invia" />
-      <DatePicker fx:id="selectDate" layoutX="258.0" layoutY="190.0" prefHeight="25.0" prefWidth="275.0" promptText="Selezionare la data di somministrazione" />
+      <DatePicker fx:id="dataSomministrazione" layoutX="258.0" layoutY="190.0" prefHeight="25.0" prefWidth="275.0" promptText="Selezionare la data di somministrazione" />
       <RadioButton fx:id="btnPfizer" layoutX="377.0" layoutY="260.0" mnemonicParsing="false" text="Pfizer">
          <toggleGroup>
             <ToggleGroup fx:id="grpVaccino" />

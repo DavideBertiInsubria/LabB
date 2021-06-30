@@ -2,7 +2,6 @@ package server;
 
 import DBManagement.*;
 import common.*;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -12,8 +11,8 @@ import java.sql.SQLException;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
-
     private DBVaccinazioniManagement Database;
+
     protected ServerImpl() throws RemoteException, SQLException {
         Database = new DBVaccinazioniManagement ();
     }

@@ -41,7 +41,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="btnCerca" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: ae0101; -fx-border-color: white;" text="CERCA" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="btnCerca" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickCerca" style="-fx-background-color: ae0101; -fx-border-color: white;" text="CERCA" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -87,7 +87,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnVisualizza" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Visualizza" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="btnVisualizza" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickVisualizza" text="Visualizza" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlVaccinato">
    <children>
       <Label layoutX="78.0" layoutY="54.0" prefHeight="17.0" prefWidth="149.0" text="Centro vaccinale:" />
       <Label layoutX="77.0" layoutY="89.0" text="Nome:" />
@@ -17,14 +17,14 @@
       <Label layoutX="77.0" layoutY="194.0" text="Data di somministrazione:" />
       <Label layoutX="78.0" layoutY="226.0" text="Vaccino:" />
       <Label layoutX="79.0" layoutY="295.0" text="ID di vaccinazione:" />
-      <TextField fx:id="txtCentroVaccinale" layoutX="257.0" layoutY="50.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il nome del centro vaccinale" />
-      <TextField fx:id="txtNomeVaccinato" layoutX="258.0" layoutY="85.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio nome" />
-      <TextField fx:id="txtCognomeVaccinato" layoutX="258.0" layoutY="120.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio cognome" />
-      <TextField fx:id="txtCfVaccinato" layoutX="257.0" layoutY="155.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio codice fiscale" />
-      <TextField fx:id="txtIdVaccinato" layoutX="257.0" layoutY="291.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio ID di vaccinazione" />
-      <Button layoutX="198.0" layoutY="353.0" mnemonicParsing="false" text="Indietro" />
-      <Button layoutX="343.0" layoutY="353.0" mnemonicParsing="false" text="Conferma e invia" />
-      <DatePicker fx:id="dataSomministrazione" layoutX="258.0" layoutY="190.0" prefHeight="25.0" prefWidth="275.0" promptText="Selezionare la data di somministrazione" />
+      <TextField fx:id="txtBld" layoutX="257.0" layoutY="50.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il nome del centro vaccinale" />
+      <TextField fx:id="txtFn" layoutX="258.0" layoutY="85.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio nome" />
+      <TextField fx:id="txtLn" layoutX="258.0" layoutY="120.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio cognome" />
+      <TextField fx:id="txtSsn" layoutX="257.0" layoutY="155.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio codice fiscale" />
+      <TextField fx:id="txtIdn" layoutX="257.0" layoutY="291.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio ID di vaccinazione" />
+      <Button layoutX="198.0" layoutY="353.0" mnemonicParsing="false" onAction="#backFromCittadinoVaccinato" text="Indietro" />
+      <Button layoutX="343.0" layoutY="353.0" mnemonicParsing="false" onAction="#confirm" text="Conferma e invia" />
+      <DatePicker fx:id="date" layoutX="258.0" layoutY="190.0" prefHeight="25.0" prefWidth="275.0" promptText="Selezionare la data di somministrazione" />
       <RadioButton fx:id="btnPfizer" layoutX="377.0" layoutY="260.0" mnemonicParsing="false" text="Pfizer">
          <toggleGroup>
             <ToggleGroup fx:id="grpVaccino" />

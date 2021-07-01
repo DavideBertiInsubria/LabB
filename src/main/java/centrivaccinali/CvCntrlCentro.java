@@ -24,8 +24,6 @@ public class CvCntrlCentro {
     @FXML
     private RadioButton btnVia, btnViale, btnPiazza, btnAziendale, btnHub, btnOspedaliero;
 
-
-
     public void backFromCentroVaccinale(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
         Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -80,10 +78,10 @@ public class CvCntrlCentro {
                 JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
-            // CHIUSURA VECCHIA FINESTRA
+            // CHIUSURA DELLA VECCHIA FINESTRA
             Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             oldStage.close();
-            // APERTURA NUOVA FINESTRA
+            // APERTURA DELLA NUOVA FINESTRA
             new CvHomePage();
         }
     }

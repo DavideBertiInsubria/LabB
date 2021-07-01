@@ -1,10 +1,23 @@
 package common;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Vaccinato {
     private String IDCentro,nome,cognome,CF,vaccino,IDVaccino;
-    Date DataSV;
+    private LocalDate data;
+    private Date DataSV;
+
+    public Vaccinato(String IDCentro, String nome, String cognome, String CF, String vaccino, String IDVaccino, LocalDate data) {
+        this.IDCentro = IDCentro;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.CF = CF;
+        this.vaccino = vaccino;
+        this.IDVaccino = IDVaccino;
+        this.data = data;
+    }
+
 
     public String getIDVaccino () {
         return IDVaccino;

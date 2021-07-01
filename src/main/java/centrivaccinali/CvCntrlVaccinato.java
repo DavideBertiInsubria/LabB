@@ -1,78 +1,88 @@
 package centrivaccinali;
 
+import common.ClientImpl;
+import common.ClientInterface;
+import common.Vaccinato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import server.ServerInterface;
 
 import javax.swing.*;
-import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 
-public class CvCntrlVaccinato implements Initializable {
+public class CvCntrlVaccinato {
     @FXML
-    private DatePicker dataSomministrazione;
+    private DatePicker date;
     @FXML
     private RadioButton btnAstraZeneca, btnJohnsonJohnson, btnModerna, btnPfizer;
     @FXML
-    private TextField txtCentroVaccinale, txtNomeVaccinato, txtCognomeVaccinato, txtCfVaccinato, txtIdVaccinato;
+    private TextField txtBld, txtFn, txtLn, txtSsn, txtIdn;
 
-
-
-    public void backFromVaccinato(ActionEvent event) {
+    public void backFromCittadinoVaccinato(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
         Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         oldStage.close();
         // APERTURA DELLA NUOVA FINESTRA
         new CvHomePage();
     }
-    public void registraVaccinato(ActionEvent event) {
-        if(controllaCampi()) {
-            String campo1 = txtCentroVaccinale.getText();
-            String campo2 = txtNomeVaccinato.getText();
-            String campo3 = txtCognomeVaccinato.getText();
-            String campo4 = txtCfVaccinato.getText();
-            LocalDate date = dataSomministrazione.getValue();
-            String myDate = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            String campo5 = null;
+    public void confirm(ActionEvent event) {
+        if(check()) {
+            // NOME DEL CENTRO VACCINALE
+            String cvName = txtBld.getText().trim().replaceAll("\\s+", " ");
+            // NOME DEL VACCINATO
+            String vxFn = txtFn.getText().trim().replaceAll("\\s+", " ");
+            // COGNOME DEL VACCINATO
+            String vxLn = txtLn.getText().trim().replaceAll("\\s+", " ");
+            // CODICE FISCALE DEL VACCINATO
+            String vxSsn = txtSsn.getText().trim().replaceAll("\\s+", " ");
+            // DATA DI SOMMINISTRAZIONE
+            LocalDate ddMMyyyy = date.getValue();
+            // MARCA DI VACCINO
+            String type = null;
             if(btnAstraZeneca.isSelected()) {
-                campo5 = btnAstraZeneca.getText();
+                type = btnAstraZeneca.getText();
             } else if(btnJohnsonJohnson.isSelected()) {
-                campo5 = btnJohnsonJohnson.getText();
+                type = btnJohnsonJohnson.getText();
             } else if(btnModerna.isSelected()) {
-                campo5 = btnModerna.getText();
+                type = btnModerna.getText();
             } else if(btnPfizer.isSelected()) {
-                campo5 = btnPfizer.getText();
+                type = btnPfizer.getText();
             }
-            String campo6 = txtIdVaccinato.getText();
-
-            String vacc = campo1+campo2+campo3+campo4+date.toString()+campo5+campo6;
-            System.out.println(vacc);
+            // NUMERO UNIVOCO DI IDENTIFICAZIONE
+            String vxIdn = txtIdn.getText();
+            // COSTRUZIONE VACCINATO
+            Vaccinato vax = new Vaccinato(cvName, vxFn, vxLn, vxSsn, type, vxIdn, ddMMyyyy);
+            // COLLEGAMENTO A SERVER
+            try {
+                Registry reg = LocateRegistry.getRegistry("*", 1099);
+                ServerInterface server = (ServerInterface) reg.lookup("Vaccino");
+                ClientInterface client = new ClientImpl();
+                server.registraVaccinato(vax, client);
+            } catch (RemoteException | NotBoundException e) {
+                JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
+            }
+            // CHIUSURA DELLA VECCHIA FINESTRA
+            Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            oldStage.close();
+            // APERTURA DELLA NUOVA FINESTRA
+            new CvHomePage();
         }
-
     }
-    private boolean controllaCampi() {
-        if(txtCentroVaccinale.getText().equals("")||txtNomeVaccinato.getText().equals("")||txtCognomeVaccinato.getText().equals("")||txtCfVaccinato.getText().equals("")||txtIdVaccinato.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Compilare tutti i campi.");
+    private boolean check() {
+        if(txtBld.getText().isBlank() || txtFn.getText().isBlank() || txtLn.getText().isBlank() || txtSsn.getText().isBlank() || date.getValue() == null || txtIdn.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Tutti i campi devono essere compilati.", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
-    }
-    public void getDate(ActionEvent e) {
-        LocalDate myDate = dataSomministrazione.getValue();
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        dataSomministrazione.setValue(LocalDate.parse(formatter.format(LocalDate.now())));
-        //dataSomministrazione.setValue(LocalDate.parse());
     }
 }

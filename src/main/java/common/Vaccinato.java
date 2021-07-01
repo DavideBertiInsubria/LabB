@@ -8,6 +8,7 @@ public class Vaccinato {
     private LocalDate data;
     private Date DataSV;
 
+    /*
     public Vaccinato(String IDCentro, String nome, String cognome, String CF, String vaccino, String IDVaccino, LocalDate data) {
         this.IDCentro = IDCentro;
         this.nome = nome;
@@ -17,6 +18,7 @@ public class Vaccinato {
         this.IDVaccino = IDVaccino;
         this.data = data;
     }
+    */
 
 
     public String getIDVaccino () {

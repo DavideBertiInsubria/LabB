@@ -7,8 +7,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
@@ -60,9 +62,32 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, TipologiaCentro tipo, ClientInterface utente) {
-        //Query di ricerca
-        ArrayList CV = null;//= risultato della query
-        return CV;
+        ArrayList<CentroVaccinale> CV = new ArrayList<CentroVaccinale>();
+        String tipologia;
+        if(tipo.equals (null)){
+            tipologia="";
+        }else{
+            tipologia=tipo.toString ();
+        }
+        ResultSet centri=null;
+        try {
+            centri= Database.cercaCentroVaccinale (nome,comune,tipologia);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace ();
+        }
+        int i=0;
+        try {
+            while(centri.next()){
+                while (i <= 2) {
+                    CV.add(new CentroVaccinale (centri.getString(0), centri.getString (1), TipologiaCentro.getTipo(centri.getString (2))));
+                }
+
+            }
+            return CV;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace ();
+        }
+        return null;
     }
 
     public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {

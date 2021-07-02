@@ -6,6 +6,8 @@ public class CentroVaccinale implements Serializable {
     private String nome, indirizzo;
     private TipologiaCentro tipologia;
 
+    public CentroVaccinale(){ }
+
     public CentroVaccinale(String nome,String indirizzo,TipologiaCentro tipologia) {
 		this.nome = nome;
 		this.indirizzo = indirizzo;

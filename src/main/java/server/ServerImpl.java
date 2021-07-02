@@ -8,10 +8,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
-    private DBVaccinazioniManagement Database;
+    private final DBVaccinazioniManagement Database;
 
     protected ServerImpl() throws RemoteException, SQLException {
         Database = new DBVaccinazioniManagement ();
@@ -20,55 +21,24 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public synchronized void registraCittadino (Cittadino c, ClientInterface utente){
         try {
             Database.registraCittadino (c);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace ();
-        }
-        boolean successfull = false;
-        if(successfull){
-            try {
-                utente.msg("Registrazione effettuata");
-            } catch (RemoteException e) {
-                try {
-                    utente.msg("Qualcosa è andato storto");
-                } catch (RemoteException remoteException) {
-                    remoteException.printStackTrace();
-                }
-            }
-        }
-        else{
+            utente.msg("La registrazione è andata a buon fine");
+        } catch (SQLException | RemoteException e) {
+            e.printStackTrace ();
             try {
                 utente.msg("La registrazione non è andata a buon fine riprovare");
-            } catch (RemoteException e) {
-                e.printStackTrace();
+            } catch (RemoteException ee) {
+                ee.printStackTrace ();
             }
         }
-        return;
     }
 
     @Override
     public synchronized void registraVaccinato (Vaccinato v, ClientInterface utente) {
         //query per la registrazione del vaccinato
-        boolean successfull = false;
-        if(successfull){
-            try {
-                utente.msg("Registrazione effettuata");
-                return;
-            } catch (RemoteException e) {
-                try {
-                    utente.msg("Qualcosa è andato storto");
-                    return;
-                } catch (RemoteException remoteException) {
-                    remoteException.printStackTrace();
-                }
-            }
-        }
-        else{
-            try {
-                utente.msg("La registrazione non è andata a buon fine riprovare");
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-            return;
+        try {
+            utente.msg("La registrazione non è andata a buon fine riprovare");
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 
@@ -89,19 +59,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     }
 
-    public void cercaCentroVaccinale (String nome, String comune, TipologiaCentro tipo, ClientInterface utente) {
+    public ArrayList cercaCentroVaccinale (String nome, String comune, TipologiaCentro tipo, ClientInterface utente) {
         //Query di ricerca
-        CentroVaccinale[] CV = null;//= risultato della query
-        try {
-            utente.ritornaCentri(CV);
-        }catch (RemoteException e)
-        {
-            try {
-               utente.msg("Qualcosa è andato storto");
-            } catch (RemoteException remoteException) {
-                remoteException.printStackTrace();
-            }
-        }
+        ArrayList CV = null;//= risultato della query
+        return CV;
     }
 
     public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
@@ -132,6 +93,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             e.printStackTrace ();
         }
     }
+
     public static void main(String args[])throws Exception {//Main per inizializzare il server
 
         ServerImpl server = new ServerImpl ();

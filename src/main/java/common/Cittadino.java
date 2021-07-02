@@ -1,6 +1,8 @@
 package common;
 
-public class Cittadino extends Vaccinato{
+import java.io.Serializable;
+
+public class Cittadino extends Vaccinato implements Serializable {
     private String email, password, userID;
 
     public Cittadino(String cf,String nome,String cognome, String email,String pwd,String idvaccinazione,String idcentro) {

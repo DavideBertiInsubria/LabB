@@ -12,13 +12,4 @@ public class ClientImpl extends UnicastRemoteObject implements ClientInterface {
         return messaggio;
     }
 
-    @Override
-    public CentroVaccinale ritornaCentro(CentroVaccinale CV) throws RemoteException {
-        return CV;
-    }
-
-    @Override
-    public CentroVaccinale[] ritornaCentri(CentroVaccinale[] CV) throws RemoteException {
-        return CV;
-    }
 }

@@ -105,7 +105,7 @@ public class ControllerCerca {
         }
         ClientImpl obj = new ClientImpl();
         ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
-        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale("", "", null, stub);
+        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale("", "", "", stub);
         for (int i=0; i<listaCentriVaccinaliVisualizzati.size(); i++){
             listCentriVacc.getItems().add( listaCentriVaccinaliVisualizzati.get(i).getNome() + " - " + listaCentriVaccinaliVisualizzati.get(i).getIndirizzo() );
         }
@@ -115,8 +115,39 @@ public class ControllerCerca {
         azzeraFiltro();
     }
 
-    public void clickCerca(ActionEvent event) {
+    public void clickCerca(ActionEvent event) throws RemoteException {
 
+        String Nome, Comune, Tipo;
+        //RIELABORAZIONE DATI
+        if (textNome.getText() == null)
+            Nome = "";
+        else
+            Nome = textNome.getText();
+        if (textNome.getText() == null)
+            Comune = "";
+        else
+            Comune = textComune.getText();
+        if (comboTipo.getValue().equals("Qualsiasi"))
+            Tipo = "";
+        else
+            Tipo = comboTipo.getValue();
+
+        // ...COLLEGAMENTO AL SERVER
+        Registry registro = LocateRegistry.getRegistry("*", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
+        ServerInterface server = null;
+        try {
+            server = (ServerInterface) registro.lookup("Vaccino");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            System.exit(0);
+        }
+        ClientImpl obj = new ClientImpl();
+        ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
+        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale(Nome, Comune, Tipo, stub);
+        for (int i=0; i<listaCentriVaccinaliVisualizzati.size(); i++){
+            listCentriVacc.getItems().add( listaCentriVaccinaliVisualizzati.get(i).getNome() + " - " + listaCentriVaccinaliVisualizzati.get(i).getIndirizzo() );
+        }
     }
 
     public void clickVisualizza(ActionEvent event) {

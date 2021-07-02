@@ -59,7 +59,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     }
 
-    public ArrayList cercaCentroVaccinale (String nome, String comune, TipologiaCentro tipo, ClientInterface utente) {
+    public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, TipologiaCentro tipo, ClientInterface utente) {
         //Query di ricerca
         ArrayList CV = null;//= risultato della query
         return CV;

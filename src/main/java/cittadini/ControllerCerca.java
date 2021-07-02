@@ -2,6 +2,7 @@ package cittadini;
 
 import common.CentroVaccinale;
 import common.Cittadino;
+import common.ClientImpl;
 import common.TipologiaCentro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,15 +14,22 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import server.ServerInterface;
+
 import javax.swing.*;
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ControllerCerca {
 
     private Cittadino User;
-    private List<CentroVaccinale> listaCentriVaccinaliVisualizzati = new ArrayList<>();
+    private ArrayList<CentroVaccinale> listaCentriVaccinaliVisualizzati = new ArrayList<CentroVaccinale>();
     @FXML
     TextField textNome, textComune;
     @FXML
@@ -30,13 +38,15 @@ public class ControllerCerca {
     ComboBox<String> comboTipo;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws RemoteException {
         comboTipo.getItems().addAll("Qualsiasi","Ospedaliero","Aziendale","Hub");
         comboTipo.setValue("Qualsiasi");
         azzeraFiltro();
     }
 
-    private void azzeraFiltro() {
+    private void azzeraFiltro() throws RemoteException {
+
+        /* TEST MANUALE
         // CARICO TUTTI I CENTRI
         listCentriVacc.getItems().clear();
         CentroVaccinale prova1 = new CentroVaccinale("CentroVaccinaleDiPaolo", "Via Qualcosa, 78", TipologiaCentro.AZIENDALE);
@@ -78,9 +88,30 @@ public class ControllerCerca {
                 prova11.getNome()+ " - " + prova11.getIndirizzo(),
                 prova12.getNome()+ " - " + prova12.getIndirizzo(),
                 prova13.getNome()+ " - " + prova13.getIndirizzo() );
+        */
+
+
+        // SERVER
+
+        // ...COLLEGAMENTO AL SERVER
+        Registry registro = LocateRegistry.getRegistry("*", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
+        ServerInterface server = null;
+        try {
+            server = (ServerInterface) registro.lookup("Vaccino");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            System.exit(0);
+        }
+        ClientImpl obj = new ClientImpl();
+        ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
+        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale("", "", null, stub);
+        for (int i=0; i<listaCentriVaccinaliVisualizzati.size(); i++){
+            listCentriVacc.getItems().add( listaCentriVaccinaliVisualizzati.get(i).getNome() + " - " + listaCentriVaccinaliVisualizzati.get(i).getIndirizzo() );
+        }
     }
 
-    public void clickAzzeraFiltro(ActionEvent event) {
+    public void clickAzzeraFiltro(ActionEvent event) throws RemoteException {
         azzeraFiltro();
     }
 
@@ -132,5 +163,7 @@ public class ControllerCerca {
             schermata.show();
         } catch (IOException ignored){}
     }
+
+}
 
 }

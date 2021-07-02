@@ -38,15 +38,15 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 	}
 	
-	public boolean loginCittadino(Cittadino cittadino) throws SQLException {
+	public ResultSet loginCittadino(Cittadino cittadino) throws SQLException {
 		String email = cittadino.getEmail();
 		String pwd = cittadino.getPassword();
 		
-		ResultSet l = query("SELECT CF FROM CittadiniRegistrati WHERE Email='"+email+"' AND Password='"+pwd+"'");
+		ResultSet l = query("SELECT * FROM CittadiniRegistrati WHERE Email='"+email+"' AND Password='"+pwd+"'");
 		
 		if(DBManager.ResultSetSize(l) > 0)
-			return true;
-		return false;
+			return l;
+		return null;
 	}
 	
 	public ResultSet cercaCentroVaccinale(String nome,String comune,String tipologia) throws SQLException {

@@ -61,21 +61,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     }
 
-    public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, TipologiaCentro tipo, ClientInterface utente) {
+    public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, String tipo, ClientInterface utente) {
         ArrayList<CentroVaccinale> CV = new ArrayList<CentroVaccinale>();
-        String tipologia;
-        if(tipo.equals (null)){
-            tipologia="";
-        }else{
-            tipologia=tipo.toString ();
-        }
         ResultSet centri=null;
         try {
-            centri= Database.cercaCentroVaccinale (nome,comune,tipologia);
+            centri= Database.cercaCentroVaccinale (nome,comune,tipo);
         } catch (SQLException throwables) {
             throwables.printStackTrace ();
         }
-        int i=0;
         try {
             while(centri != null && centri.next ()){
                 if (!centri.next()) break;

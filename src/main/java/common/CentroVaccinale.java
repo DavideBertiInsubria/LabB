@@ -3,12 +3,11 @@ package common;
 import java.io.Serializable;
 
 public class CentroVaccinale implements Serializable {
-    private String nome, indirizzo;
-    private TipologiaCentro tipologia;
+    private String nome, indirizzo, tipologia;
 
     public CentroVaccinale(){ }
 
-    public CentroVaccinale(String nome,String indirizzo,TipologiaCentro tipologia) {
+    public CentroVaccinale(String nome,String indirizzo,String tipologia) {
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.tipologia = tipologia;
@@ -22,7 +21,7 @@ public class CentroVaccinale implements Serializable {
 		return indirizzo;
 	}
 
-	public TipologiaCentro getTipologia() {
+	public String getTipologia() {
 		return tipologia;
 	}
 }

@@ -17,7 +17,7 @@ public class DBVaccinazioniManagement extends DBManager{
 	public void registraCentroVaccinale(CentroVaccinale centro) throws SQLException {
 		String nome = centro.getNome();
 		String indirizzo = centro.getIndirizzo();
-		TipologiaCentro tipologia = centro.getTipologia();
+		String tipologia = centro.getTipologia();
 		query("INSERT INTO CentriVaccinali(Nome,Indirizzo,Tipologia)"
 				+ "VALUES("+nome+","+indirizzo+","+tipologia+")");
 	}

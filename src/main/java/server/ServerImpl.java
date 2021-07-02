@@ -80,8 +80,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             while(centri.next()){
                 while (i <= 2) {
                     CV.add(new CentroVaccinale (centri.getString(0), centri.getString (1), TipologiaCentro.getTipo(centri.getString (2))));
+                    i++;
                 }
-
             }
             return CV;
         } catch (SQLException throwables) {

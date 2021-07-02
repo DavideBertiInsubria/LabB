@@ -94,7 +94,7 @@ public class ControllerCerca {
         // SERVER
 
         // ...COLLEGAMENTO AL SERVER
-        Registry registro = LocateRegistry.getRegistry("*", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
+        Registry registro = LocateRegistry.getRegistry("localhost", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
         ServerInterface server = null;
         try {
             server = (ServerInterface) registro.lookup("Vaccino");

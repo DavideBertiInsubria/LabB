@@ -67,7 +67,7 @@ public class CvCntrlCentro {
             // COSTRUZIONE INDIRIZZO
             String addr = field1 + " " + field2 + " " + field3 + ", " + field4 + " (" + field5 + "), " + field6;
             // COSTRUZIONE CENTRO VACCINALE
-            CentroVaccinale cv = new CentroVaccinale(name, addr, type);
+            CentroVaccinale cv = new CentroVaccinale(name, addr, type.toString());
             // COLLEGAMENTO A SERVER
             try {
                 Registry reg = LocateRegistry.getRegistry("*", 1099);

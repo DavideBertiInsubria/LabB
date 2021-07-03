@@ -13,6 +13,9 @@ public class CentroVaccinale implements Serializable {
 		this.tipologia = tipologia;
 	}
 
+	public CentroVaccinale (String name, String addr, TipologiaCentro type) {
+	}
+
 	public String getNome() {
 		return nome;
 	}

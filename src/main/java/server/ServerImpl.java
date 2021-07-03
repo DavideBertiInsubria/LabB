@@ -10,7 +10,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
@@ -21,13 +20,16 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     public synchronized void registraCittadino (Cittadino c, ClientInterface utente){
+        System.out.println ("Registrazione cittadino");
         try {
             Database.registraCittadino (c);
             utente.msg("La registrazione è andata a buon fine");
+            System.out.println ("La registrazione è andata a buon fine");
         } catch (SQLException | RemoteException e) {
             e.printStackTrace ();
             try {
                 utente.msg("La registrazione non è andata a buon fine riprovare");
+                System.out.println("La registrazione non è andata a buon fine riprovare");
             } catch (RemoteException ee) {
                 ee.printStackTrace ();
             }
@@ -46,14 +48,16 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     @Override
     public synchronized void registraCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
-
+        System.out.println("Registrazione centro vaccinale");
         try {
             Database.registraCentroVaccinale (CV);
             utente.msg("Registrazione effettuata");
+            System.out.println("Registrazione effettuata");
         } catch (SQLException | RemoteException e) {
             e.printStackTrace ();
             try {
                 utente.msg("Qualcosa è andato storto");
+                System.out.println("Qualcosa è andato storto");
             } catch (RemoteException remoteException) {
                 remoteException.printStackTrace ();
             }
@@ -62,6 +66,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, String tipo, ClientInterface utente) {
+        System.out.println ("Cerca centro vaccinale");
         ArrayList<CentroVaccinale> CV = new ArrayList<CentroVaccinale>();
         ResultSet centri=null;
         try {
@@ -74,6 +79,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 if (!centri.next()) break;
                 CV.add(new CentroVaccinale (centri.getString(0), centri.getString (1), centri.getString (2)));
             }
+            System.out.println ("Ritorno centri vaccinale");
             return CV;
         } catch (SQLException throwables) {
             throwables.printStackTrace ();
@@ -100,9 +106,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     private void exec() throws  RemoteException {
         try {
+
             ServerImpl serverR= new ServerImpl ();
             Registry registro = LocateRegistry.createRegistry (1099);
             registro.rebind ("Vaccino", serverR);
+            System.out.println("Server Acceso");
 
         } catch (
                 IOException | SQLException e ) {

@@ -53,6 +53,8 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 		if(nome.equals(""))
 			nome="%";
+		else
+			nome="%"+nome+"%";
 		
 		if(comune.equals(""))
 			comune="%";
@@ -60,13 +62,13 @@ public class DBVaccinazioniManagement extends DBManager{
 			comune="%"+comune+"%";
 		
 		if(tipologia.equals(""))
-			tipologia="";
+			tipologia=";";
 		else
-			tipologia="AND Tipologia ='"+tipologia+"'";
+			tipologia=" AND Tipologia ='"+tipologia+"'";
 			
 		ResultSet centri = null;
 		
-		String s = "SELECT Nome,Indirizzo,Tipologia FROM CentriVaccinali WHERE Nome LIKE '"+nome+"' AND Indirizzo LIKE '"+comune+"' "+tipologia;
+		String s = "SELECT Nome,Indirizzo,Tipologia FROM CentriVaccinali WHERE Nome LIKE '"+nome+"' AND Indirizzo LIKE '"+comune+"'"+tipologia;
 		centri = query(s);
 		return centri;
 		

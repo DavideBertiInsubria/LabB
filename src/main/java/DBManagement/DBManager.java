@@ -26,11 +26,13 @@ public class DBManager {
 		int size=0;
 		r.last();
 		size = r.getRow();
+		r.first();
 		return size;
 	}
 	
 	public ResultSet query(String q)  throws SQLException{
 		if(conn != null) {
+			System.out.println(q);
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs = stmt.executeQuery(q);
 			return rs;

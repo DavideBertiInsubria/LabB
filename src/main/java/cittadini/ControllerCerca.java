@@ -104,10 +104,12 @@ public class ControllerCerca {
             System.exit(0);
         }
         ClientImpl obj = new ClientImpl();
-        ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
-        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale("", "", "", stub);
+       // ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
+        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale("", "", "", obj);
+        if(listaCentriVaccinaliVisualizzati != null) {
         for (int i=0; i<listaCentriVaccinaliVisualizzati.size(); i++){
             listCentriVacc.getItems().add( listaCentriVaccinaliVisualizzati.get(i).getNome() + " - " + listaCentriVaccinaliVisualizzati.get(i).getIndirizzo() );
+        }
         }
     }
 
@@ -133,7 +135,7 @@ public class ControllerCerca {
             Tipo = comboTipo.getValue();
 
         // ...COLLEGAMENTO AL SERVER
-        Registry registro = LocateRegistry.getRegistry("*", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
+        Registry registro = LocateRegistry.getRegistry("127.0.0.1", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
         ServerInterface server = null;
         try {
             server = (ServerInterface) registro.lookup("Vaccino");
@@ -143,8 +145,8 @@ public class ControllerCerca {
             System.exit(0);
         }
         ClientImpl obj = new ClientImpl();
-        ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
-        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale(Nome, Comune, Tipo, stub);
+       // ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
+        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale(Nome, Comune, Tipo, obj);
         for (int i=0; i<listaCentriVaccinaliVisualizzati.size(); i++){
             listCentriVacc.getItems().add( listaCentriVaccinaliVisualizzati.get(i).getNome() + " - " + listaCentriVaccinaliVisualizzati.get(i).getIndirizzo() );
         }

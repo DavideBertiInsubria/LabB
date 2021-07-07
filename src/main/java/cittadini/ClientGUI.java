@@ -10,6 +10,7 @@ public class ClientGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // AVVIO APPLICAZIONE CITTADINI
         Parent root = FXMLLoader.load(getClass().getResource("/HomeCittadini.fxml"));
         primaryStage.setTitle("Vaccinazione cittadini");
         primaryStage.setScene(new Scene(root));

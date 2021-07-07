@@ -38,8 +38,7 @@ public class ControllerHome {
             schermata.setTitle("Cerca centro vaccinale");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){            JOptionPane.showMessageDialog(null, ignored);
-        }
+        } catch (IOException ignored){ }
     }
 
     public void clickRegistrazione(ActionEvent event)  {

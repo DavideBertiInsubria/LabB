@@ -15,6 +15,7 @@ import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -22,12 +23,29 @@ import java.util.regex.Pattern;
 
 public class ControllerRegistrazione {
 
+    private ServerInterface server;
+    private Cittadino User;
+
     @FXML
     TextField textNome, textCognome, textEmail, textUserID, textIDVacc, textCF;
     @FXML
     PasswordField textPax, textRPax;
 
-    public void clickProva(ActionEvent event)  {
+    @FXML
+    public void initialize() throws RemoteException {
+        // ...COLLEGAMENTO AL SERVER
+        Registry registro = LocateRegistry.getRegistry("localhost", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
+        server = null;
+        try {
+            server = (ServerInterface) registro.lookup("Vaccino");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            System.exit(0);
+        }
+    }
+
+    public void clickRegistrati(ActionEvent event)  {
 
         // CHECK COMPILAZIONE
         if (checkCompilazione()) {
@@ -44,24 +62,14 @@ public class ControllerRegistrazione {
 
                     // ...CREAZIONE CITTADINO DI PROVA e SET
                 Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textEmail.getText(), textPax.getText(), textIDVacc.getText(), null);
-
-                    // ...COLLEGAMENTO AL SERVER
-                Registry registro = LocateRegistry.getRegistry("*", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
-                ServerInterface server = null;
-                try {
-                    server = (ServerInterface) registro.lookup("Vaccino");
-                } catch (NotBoundException e) {
-                    e.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
-                    System.exit(0);
-                }
                 ClientImpl obj = new ClientImpl();
                 ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
                 server.registraCittadino(cittadinoOK, stub);
+                User = cittadinoOK;
 
                     // ...APERTURA HOME
                 ControllerHome cc = loader.getController();
-                cc.setUser(cittadinoOK);
+                cc.setUser(User);
                 schermata.setTitle("Vaccinazione cittadini");
                 schermata.setScene(new Scene(root));
                 schermata.show();
@@ -90,7 +98,6 @@ public class ControllerRegistrazione {
         return true;
     }
 
-
     private boolean checkEmail(String email) {
         String emailFormat = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                 "[a-zA-Z0-9_+&*-]+)*@" +
@@ -101,7 +108,6 @@ public class ControllerRegistrazione {
             return false;
         return pat.matcher(email).matches();
     }
-
 
     private boolean checkValidPassword(String password) {
         boolean number=false, upper=false, special=false;

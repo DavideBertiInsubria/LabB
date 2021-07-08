@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import common.CentroVaccinale;
 import common.TipologiaCentro;
+import common.Vaccino;
 import common.Cittadino;
 
 public class DBVaccinazioniManagement extends DBManager{
@@ -19,7 +20,7 @@ public class DBVaccinazioniManagement extends DBManager{
 		String indirizzo = centro.getIndirizzo();
 		String tipologia = centro.getTipologia();
 		query("INSERT INTO CentriVaccinali(Nome,Indirizzo,Tipologia)"
-				+ "VALUES("+nome+","+indirizzo+","+tipologia+")");
+				+ "VALUES('"+nome+"','"+indirizzo+"','"+tipologia+"')");
 	}
 	
 
@@ -34,8 +35,25 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 
 		query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,CF,IDCentro)"
-				+ "VALUES("+nome+","+cognome+","+email+","+pwd+","+cf+","+idcentro+")");
+				+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+cf+"',"+idcentro+")");
 		
+	}
+	
+	public void registraVaccinato(Cittadino cittadino,String datasomm,Vaccino vaccino, int idvaccinazione) throws SQLException {
+		
+		String nome = cittadino.getNome ();
+		String cognome = cittadino.getCognome();
+		String email = cittadino.getEmail();
+		String pwd = cittadino.getPassword();
+		String cf = cittadino.getCF();
+		String idcentro = cittadino.getIDCentro();
+		
+		ResultSet nomi = query("SELECT Nome FROM CentriVaccinale WHERE IDCentro="+idcentro);
+		String nomecentro = nomi.getString(1);
+		
+		query("INSERT INTO"+
+				"Vaccinati(IDCentro,NomeCentro,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato,IDVaccinazione)"+
+				"VALUES("+idcentro+",'"+nomecentro+"','"+nome+"','"+cognome+"','"+cf+"',"+datasomm+","+vaccino+","+idvaccinazione+")");
 	}
 	
 	public ResultSet loginCittadino(Cittadino cittadino) throws SQLException {
@@ -74,18 +92,4 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 	}
 	
-	private void creaVaccinatiCentroVaccinale(String nome_centro) throws SQLException {
-		
-		query("CREATE TABLE "+nome_centro+
-				"(IDVaccinazione serial primary key not null,"+
-				"IDCentro int not null,"+
-				"NomeCentro varchar(30) not null,"+
-				"Nome varchar(30) not null,"+
-				"Cognome varchar(30) not null,"+
-				"CF char(16) not null,"+
-				"DataSomministrazione date not null,"+
-				"Vaccino VaccinoSomministrato not null,"+
-				"foreign key (IDCentro) references CentriVaccinali(IDCentro));"
-				);
-	}
 }

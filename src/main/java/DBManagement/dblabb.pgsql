@@ -44,6 +44,20 @@ CREATE TYPE public.tipologiacentro AS ENUM (
 ALTER TYPE public.tipologiacentro OWNER TO postgres;
 
 --
+-- Name: vaccino; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.vaccino AS ENUM (
+    'Pfizer',
+    'AstraZeneca',
+    'Moderna',
+    'JJ'
+);
+
+
+ALTER TYPE public.vaccino OWNER TO postgres;
+
+--
 -- Name: vaccinosomministrato; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -107,7 +121,7 @@ CREATE TABLE public.cittadiniregistrati (
     cognome character varying(30) NOT NULL,
     email character varying(30) NOT NULL,
     password character(64) NOT NULL,
-    idvaccinazione integer,
+    idvaccinazione integer NOT NULL,
     cf character(16) NOT NULL,
     idcentro integer NOT NULL
 );
@@ -138,6 +152,24 @@ ALTER SEQUENCE public.cittadiniregistrati_idutente_seq OWNED BY public.cittadini
 
 
 --
+-- Name: vaccinati; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.vaccinati (
+    idcentro integer NOT NULL,
+    nomecentro character varying(30) NOT NULL,
+    nome character varying(30) NOT NULL,
+    cognome character varying(30) NOT NULL,
+    cf character(16) NOT NULL,
+    datasomministrazione date NOT NULL,
+    vaccinosomministrrato public.vaccino,
+    idvaccinazione integer NOT NULL
+);
+
+
+ALTER TABLE public.vaccinati OWNER TO postgres;
+
+--
 -- Name: centrivaccinali idcentro; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -156,6 +188,8 @@ ALTER TABLE ONLY public.cittadiniregistrati ALTER COLUMN idutente SET DEFAULT ne
 --
 
 COPY public.centrivaccinali (idcentro, nome, indirizzo, tipologia) FROM stdin;
+1	PippoCentro	via via via	ospedaliero
+2	Secondo centro	corso cavour 154	hub
 \.
 
 
@@ -168,10 +202,18 @@ COPY public.cittadiniregistrati (idutente, nome, cognome, email, password, idvac
 
 
 --
+-- Data for Name: vaccinati; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.vaccinati (idcentro, nomecentro, nome, cognome, cf, datasomministrazione, vaccinosomministrrato, idvaccinazione) FROM stdin;
+\.
+
+
+--
 -- Name: centrivaccinali_idcentro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.centrivaccinali_idcentro_seq', 1, false);
+SELECT pg_catalog.setval('public.centrivaccinali_idcentro_seq', 2, true);
 
 
 --
@@ -190,6 +232,14 @@ ALTER TABLE ONLY public.centrivaccinali
 
 
 --
+-- Name: cittadiniregistrati cittadiniregistrati_idvaccinazione_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cittadiniregistrati
+    ADD CONSTRAINT cittadiniregistrati_idvaccinazione_key UNIQUE (idvaccinazione);
+
+
+--
 -- Name: cittadiniregistrati cittadiniregistrati_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -198,11 +248,27 @@ ALTER TABLE ONLY public.cittadiniregistrati
 
 
 --
+-- Name: vaccinati vaccinati_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.vaccinati
+    ADD CONSTRAINT vaccinati_pkey PRIMARY KEY (idvaccinazione);
+
+
+--
 -- Name: cittadiniregistrati cittadiniregistrati_idcentro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.cittadiniregistrati
     ADD CONSTRAINT cittadiniregistrati_idcentro_fkey FOREIGN KEY (idcentro) REFERENCES public.centrivaccinali(idcentro);
+
+
+--
+-- Name: cittadiniregistrati cittadiniregistrati_idvaccinazione_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cittadiniregistrati
+    ADD CONSTRAINT cittadiniregistrati_idvaccinazione_fkey FOREIGN KEY (idvaccinazione) REFERENCES public.vaccinati(idvaccinazione);
 
 
 --

@@ -31,7 +31,7 @@ public class ControllerCerca {
     ComboBox<String> comboTipo;
 
     @FXML
-    public void initialize() throws RemoteException {
+    public void initialize() {
         comboTipo.getItems().addAll("Qualsiasi","Ospedaliero","Aziendale","Hub");
         comboTipo.setValue("Qualsiasi");
     }

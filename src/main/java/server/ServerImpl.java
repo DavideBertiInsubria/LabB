@@ -101,8 +101,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     @Override
     public Cittadino login (String userID, String password) throws RemoteException {
-        //Database.loginCittadino (userID,password);
-        return null; // null se non è stato trovato
+        ResultSet cittadini = null;
+        try {
+            cittadini=Database.loginCittadino (userID,password);
+            return new Cittadino (cittadini.getString ("cf"),cittadini.getString ("nome"),cittadini.getString ("cognome"),cittadini.getString ("nick"),cittadini.getString ("email"),cittadini.getString ("password"),cittadini.getString ("idvaccinazione"),cittadini.getString ("idcentro"));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace ();
+            return null;
+        }
     }
 
     private void exec() throws  RemoteException {

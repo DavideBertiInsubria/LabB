@@ -123,7 +123,8 @@ CREATE TABLE public.cittadiniregistrati (
     password character(64) NOT NULL,
     idvaccinazione integer NOT NULL,
     cf character(16) NOT NULL,
-    idcentro integer NOT NULL
+    idcentro integer NOT NULL,
+    nick character varying(20) NOT NULL
 );
 
 
@@ -197,7 +198,7 @@ COPY public.centrivaccinali (idcentro, nome, indirizzo, tipologia) FROM stdin;
 -- Data for Name: cittadiniregistrati; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.cittadiniregistrati (idutente, nome, cognome, email, password, idvaccinazione, cf, idcentro) FROM stdin;
+COPY public.cittadiniregistrati (idutente, nome, cognome, email, password, idvaccinazione, cf, idcentro, nick) FROM stdin;
 \.
 
 

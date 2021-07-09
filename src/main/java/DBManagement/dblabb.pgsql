@@ -162,7 +162,7 @@ CREATE TABLE public.vaccinati (
     cognome character varying(30) NOT NULL,
     cf character(16) NOT NULL,
     datasomministrazione date NOT NULL,
-    vaccinosomministrrato public.vaccino,
+    vaccinosomministrato public.vaccino,
     idvaccinazione integer NOT NULL
 );
 
@@ -205,7 +205,7 @@ COPY public.cittadiniregistrati (idutente, nome, cognome, email, password, idvac
 -- Data for Name: vaccinati; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.vaccinati (idcentro, nomecentro, nome, cognome, cf, datasomministrazione, vaccinosomministrrato, idvaccinazione) FROM stdin;
+COPY public.vaccinati (idcentro, nomecentro, nome, cognome, cf, datasomministrazione, vaccinosomministrato, idvaccinazione) FROM stdin;
 \.
 
 

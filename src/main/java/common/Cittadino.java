@@ -7,14 +7,14 @@ public class Cittadino extends Vaccinato implements Serializable {
 
     public Cittadino(String cf,String nome,String cognome, String userID, String email,String pwd,String idvaccinazione,String idcentro) {
         super();
-        this.setNome (nome);
-        this.setCognome (cognome);
+        super.setNome (nome);
+        super.setCognome (cognome);
         this.userID=userID;
         this.email = email;
         this.password = pwd;
-        this.setIDVaccino (idvaccinazione);
-        this.setCF (cf);
-        this.setIDCentro (idcentro);
+        super.setIDVaccino (idvaccinazione);
+        super.setCF (cf);
+        super.setIDCentro (idcentro);
     }
 
 

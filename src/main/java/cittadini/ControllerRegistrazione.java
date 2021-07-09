@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.regex.Pattern;
 
@@ -27,11 +28,21 @@ public class ControllerRegistrazione {
     @FXML
     PasswordField textPax, textRPax;
 
-    public void clickRegistrati(ActionEvent event)  {
+    public void clickRegistrati(ActionEvent event) throws RemoteException {
 
         // CHECK COMPILAZIONE
         if (checkCompilazione()) {
             // SE TUTTO E' COMPILATO CORRETTAMENTE
+            System.out.println("\n\n TUTTO COMPILATO CORRETTAMENTE\nESECUZIONE METODO DEL SERVER...\n\n");
+
+            // CONTROLLO USERID
+            //...
+
+            // ...CREAZIONE CITTADINO DI PROVA e SET
+            Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(),textUserID.getText(), textEmail.getText(), textPax.getText(), textIDVacc.getText(), null);
+            server.registraCittadino(cittadinoOK);
+            User = cittadinoOK;
+
             try {
                 // CHIUSURA
                 Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -41,13 +52,6 @@ public class ControllerRegistrazione {
                 Stage schermata = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
                 Parent root = loader.load();
-
-                // CONTROLLO USERID
-
-                    // ...CREAZIONE CITTADINO DI PROVA e SET
-                Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(),textUserID.getText(), textEmail.getText(), textPax.getText(), textIDVacc.getText(), null);
-                server.registraCittadino(cittadinoOK);
-                User = cittadinoOK;
 
                     // ...APERTURA HOME
                 ControllerHome cc = loader.getController();

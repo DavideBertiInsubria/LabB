@@ -14,10 +14,6 @@ import javafx.stage.Stage;
 import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.regex.Pattern;
 
@@ -30,20 +26,6 @@ public class ControllerRegistrazione {
     TextField textNome, textCognome, textEmail, textUserID, textIDVacc, textCF;
     @FXML
     PasswordField textPax, textRPax;
-
-    @FXML
-    public void initialize() throws RemoteException {
-        // ...COLLEGAMENTO AL SERVER
-        Registry registro = LocateRegistry.getRegistry("localhost", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
-        server = null;
-        try {
-            server = (ServerInterface) registro.lookup("Vaccino");
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
-            System.exit(0);
-        }
-    }
 
     public void clickRegistrati(ActionEvent event)  {
 
@@ -61,7 +43,7 @@ public class ControllerRegistrazione {
                 Parent root = loader.load();
 
                     // ...CREAZIONE CITTADINO DI PROVA e SET
-                Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textEmail.getText(), textPax.getText(), textIDVacc.getText(), null);
+                Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(),textUserID.getText(), textEmail.getText(), textPax.getText(), textIDVacc.getText(), null);
                 ClientImpl obj = new ClientImpl();
                 ClientImpl stub = (ClientImpl) UnicastRemoteObject.exportObject(obj, 3939);
                 server.registraCittadino(cittadinoOK, stub);
@@ -69,7 +51,7 @@ public class ControllerRegistrazione {
 
                     // ...APERTURA HOME
                 ControllerHome cc = loader.getController();
-                cc.setUser(User);
+                cc.setDati(User, server);
                 schermata.setTitle("Vaccinazione cittadini");
                 schermata.setScene(new Scene(root));
                 schermata.show();
@@ -133,10 +115,15 @@ public class ControllerRegistrazione {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
             Parent root = loader.load();
             ControllerHome cc = loader.getController();
-            cc.setUser(null);
+            cc.setDati(null, server);
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
             schermata.show();
         } catch (IOException ignored){}
     }
+
+    public void setDati(ServerInterface s) {
+        server = s;
+    }
+
 }

@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class ControllerHome {
     Label lbTitle, lbUser;
 
     private static Cittadino User;
+    private ServerInterface server;
 
     public void clickCerca(ActionEvent event){
         try {
@@ -33,7 +35,7 @@ public class ControllerHome {
             Parent root = loader.load();
             // ... SET DATI
             ControllerCerca cc = loader.getController();
-            cc.setUser(User);
+            cc.setDati(User, server);
 
             schermata.setTitle("Cerca centro vaccinale");
             schermata.setScene(new Scene(root));
@@ -54,6 +56,9 @@ public class ControllerHome {
                 Stage schermata = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/RegistrazioneCittadini.fxml"));
                 Parent root = loader.load();
+                // ... SET DATI
+                ControllerRegistrazione cc = loader.getController();
+                cc.setDati(server);
                 schermata.setTitle("Registrazione");
                 schermata.setScene(new Scene(root));
                 schermata.show();
@@ -75,8 +80,9 @@ public class ControllerHome {
                 Stage schermata = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/SegnalazioniCittadini.fxml"));
                 Parent root = loader.load();
+                // ... SET DATI
                 ControllerSegnalazioni cc = loader.getController();
-                cc.setUser(User);
+                cc.setDati(User, server);
                 schermata.setTitle("Segnalazioni eventi avversi");
                 schermata.setScene(new Scene(root));
                 schermata.show();
@@ -94,6 +100,9 @@ public class ControllerHome {
             Stage schermata = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginCittadini.fxml"));
             Parent root = loader.load();
+            // ... SET DATI
+            ControllerLogin cc = loader.getController();
+            cc.setDati(server);
             schermata.setTitle("Login");
             schermata.setScene(new Scene(root));
             schermata.show();
@@ -112,7 +121,7 @@ public class ControllerHome {
             Parent root = loader.load();
                 // ... SET DATI
             ControllerHome cc = loader.getController();
-            cc.setUser(null);
+            cc.setDati(null, server);
 
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
@@ -120,7 +129,8 @@ public class ControllerHome {
         } catch (IOException ignored){}
     }
 
-    public void setUser(Cittadino user){
+    public void setDati(Cittadino user, ServerInterface s){
+        server = s;
         User = user;
         if (user == null){
             lbUser.setVisible(false);

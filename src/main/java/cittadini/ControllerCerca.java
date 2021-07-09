@@ -43,7 +43,6 @@ public class ControllerCerca {
         comboTipo.getItems().addAll("Qualsiasi","Ospedaliero","Aziendale","Hub");
         comboTipo.setValue("Qualsiasi");
         azzeraFiltro();
-
     }
 
     private void azzeraFiltro() throws RemoteException {
@@ -102,25 +101,16 @@ public class ControllerCerca {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/VisualizzaCittadini.fxml"));
             Parent root = loader.load();
             ControllerVisualizza cc = loader.getController();
-            cc.setDati(listaCentriVaccinaliVisualizzati.get(listCentriVacc.getSelectionModel().getSelectedIndex()), User);  // PASSO IL CENTRO VACCINALE SELEZIONATO
+            cc.setDati(listaCentriVaccinaliVisualizzati.get(listCentriVacc.getSelectionModel().getSelectedIndex()), User, server);  // PASSO IL CENTRO VACCINALE SELEZIONATO
             schermata.setTitle("Visualizza centro vaccinale");
             schermata.setScene(new Scene(root));
             schermata.show();
         } catch (IOException ignored){ }
     }
 
-    public void setUser(Cittadino user) throws RemoteException {
+    public void setDati(Cittadino user, ServerInterface s) throws RemoteException {
+        server = s;
         User = user;
-        // ...COLLEGAMENTO AL SERVER
-        Registry registro = LocateRegistry.getRegistry("localhost", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
-        server = null;
-        try {
-            server = (ServerInterface) registro.lookup("Vaccino");
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
-            System.exit(0);
-        }
     }
 
     public void clickIndietro(ActionEvent event)  {
@@ -134,7 +124,7 @@ public class ControllerCerca {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
             Parent root = loader.load();
             ControllerHome cc = loader.getController();
-            cc.setUser(User);
+            cc.setDati(User, server);
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
             schermata.show();

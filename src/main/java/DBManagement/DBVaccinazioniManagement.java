@@ -56,11 +56,9 @@ public class DBVaccinazioniManagement extends DBManager{
 				"VALUES("+idcentro+",'"+nomecentro+"','"+nome+"','"+cognome+"','"+cf+"',"+datasomm+","+vaccino+","+idvaccinazione+")");
 	}
 	
-	public ResultSet loginCittadino(Cittadino cittadino) throws SQLException {
-		String email = cittadino.getEmail();
-		String pwd = cittadino.getPassword();
-		
-		ResultSet l = query("SELECT * FROM CittadiniRegistrati WHERE Email='"+email+"' AND Password='"+pwd+"'");
+	public ResultSet loginCittadino(String nick,String pwd) throws SQLException {
+
+		ResultSet l = query("SELECT * FROM CittadiniRegistrati WHERE nick='"+nick+"' AND Password='"+pwd+"'");
 		
 		if(DBManager.ResultSetSize(l) == 1)
 			return l;

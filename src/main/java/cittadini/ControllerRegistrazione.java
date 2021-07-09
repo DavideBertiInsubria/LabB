@@ -42,6 +42,8 @@ public class ControllerRegistrazione {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
                 Parent root = loader.load();
 
+                // CONTROLLO USERID
+
                     // ...CREAZIONE CITTADINO DI PROVA e SET
                 Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(),textUserID.getText(), textEmail.getText(), textPax.getText(), textIDVacc.getText(), null);
                 ClientImpl obj = new ClientImpl();

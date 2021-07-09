@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public interface ServerInterface extends Remote {
 
-    void registraCittadino(Cittadino c, ClientInterface utente) throws RemoteException;
+    void registraCittadino(Cittadino c) throws RemoteException;
     void registraVaccinato(Vaccinato v, ClientInterface operatore) throws RemoteException;
     void registraCentroVaccinale(CentroVaccinale CV,ClientInterface operatore) throws RemoteException;
     ArrayList<CentroVaccinale> cercaCentroVaccinale(String nome, String comune, String tipo) throws RemoteException;

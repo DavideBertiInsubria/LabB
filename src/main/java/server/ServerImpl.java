@@ -19,20 +19,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         Database = new DBVaccinazioniManagement ();
     }
 
-    public synchronized void registraCittadino (Cittadino c, ClientInterface utente){
+    public synchronized void registraCittadino (Cittadino c){
         System.out.println ("Registrazione cittadino");
         try {
             Database.registraCittadino (c);
-            utente.msg("La registrazione è andata a buon fine");
             System.out.println ("La registrazione è andata a buon fine");
-        } catch (SQLException | RemoteException e) {
+        } catch (SQLException e) {
             e.printStackTrace ();
-            try {
-                utente.msg("La registrazione non è andata a buon fine riprovare");
-                System.out.println("La registrazione non è andata a buon fine riprovare");
-            } catch (RemoteException ee) {
-                ee.printStackTrace ();
-            }
+            System.out.println("La registrazione non è andata a buon fine riprovare");
         }
     }
 

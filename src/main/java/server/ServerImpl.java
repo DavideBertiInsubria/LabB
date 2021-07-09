@@ -65,7 +65,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     }
 
-    public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, String tipo, ClientInterface utente) {
+    public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, String tipo) {
         System.out.println ("Cerca centro vaccinale");
         ArrayList<CentroVaccinale> CV = new ArrayList<CentroVaccinale>();
         ResultSet centri=null;

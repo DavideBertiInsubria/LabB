@@ -62,7 +62,7 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 		ResultSet l = query("SELECT * FROM CittadiniRegistrati WHERE Email='"+email+"' AND Password='"+pwd+"'");
 		
-		if(DBManager.ResultSetSize(l) > 0)
+		if(DBManager.ResultSetSize(l) == 1)
 			return l;
 		return null;
 	}

@@ -44,16 +44,6 @@ public class ControllerCerca {
         comboTipo.setValue("Qualsiasi");
         azzeraFiltro();
 
-        // ...COLLEGAMENTO AL SERVER
-        Registry registro = LocateRegistry.getRegistry("localhost", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
-        server = null;
-        try {
-            server = (ServerInterface) registro.lookup("Vaccino");
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
-            System.exit(0);
-        }
     }
 
     private void azzeraFiltro() throws RemoteException {
@@ -119,8 +109,18 @@ public class ControllerCerca {
         } catch (IOException ignored){ }
     }
 
-    public void setUser(Cittadino user) {
+    public void setUser(Cittadino user) throws RemoteException {
         User = user;
+        // ...COLLEGAMENTO AL SERVER
+        Registry registro = LocateRegistry.getRegistry("localhost", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
+        server = null;
+        try {
+            server = (ServerInterface) registro.lookup("Vaccino");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            System.exit(0);
+        }
     }
 
     public void clickIndietro(ActionEvent event)  {

@@ -19,22 +19,21 @@ public class DBVaccinazioniManagement extends DBManager{
 		String nome = centro.getNome();
 		String indirizzo = centro.getIndirizzo();
 		String tipologia = centro.getTipologia();
-		query("INSERT INTO CentriVaccinali(Nome,Indirizzo,Tipologia)"
+		query("INSERT INTO CentriVaccinali(Nome,Indirizzo,Tipologia) "
 				+ "VALUES('"+nome+"','"+indirizzo+"','"+tipologia+"')");
 	}
 	
 
 	public void registraCittadino(Cittadino cittadino) throws SQLException {
 		
-		String nome = cittadino.getNome ();
+		String nome = cittadino.getNome();
 		String cognome = cittadino.getCognome();
 		String email = cittadino.getEmail();
 		String pwd = cittadino.getPassword();
 		String cf = cittadino.getCF();
 		String idcentro = cittadino.getIDCentro();
 		
-
-		query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,CF,IDCentro)"
+		query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,CF,IDCentro) "
 				+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+cf+"',"+idcentro+")");
 		
 	}
@@ -43,16 +42,14 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 		String nome = cittadino.getNome ();
 		String cognome = cittadino.getCognome();
-		String email = cittadino.getEmail();
-		String pwd = cittadino.getPassword();
 		String cf = cittadino.getCF();
 		String idcentro = cittadino.getIDCentro();
 		
 		ResultSet nomi = query("SELECT Nome FROM CentriVaccinale WHERE IDCentro="+idcentro);
 		String nomecentro = nomi.getString(1);
 		
-		query("INSERT INTO"+
-				"Vaccinati(IDCentro,NomeCentro,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato,IDVaccinazione)"+
+		query("INSERT INTO "+
+				"Vaccinati(IDCentro,NomeCentro,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato,IDVaccinazione) "+
 				"VALUES("+idcentro+",'"+nomecentro+"','"+nome+"','"+cognome+"','"+cf+"',"+datasomm+","+vaccino+","+idvaccinazione+")");
 	}
 	

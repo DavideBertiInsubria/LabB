@@ -61,7 +61,8 @@ public class CvCntrlVaccinato {
             String vxIdn = txtIdn.getText();
             // COSTRUZIONE VACCINATO
             // Vaccinato vax = new Vaccinato(cvName, vxFn, vxLn, vxSsn, type, vxIdn, ddMMyyyy);
-            Vaccinato vax = new Vaccinato();
+            Vaccinato vax;
+			vax = new Vaccinato();
             // COLLEGAMENTO A SERVER
             try {
                 Registry reg = LocateRegistry.getRegistry("*", 1099);

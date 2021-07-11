@@ -1,36 +1,21 @@
 package common;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 
 public class Cittadino extends Vaccinato implements Serializable {
     private String email, password, userID;
 
     public Cittadino(String cf,String nome,String cognome, String userID, String email,String pwd,String idvaccinazione,String idcentro) {
-        super();
-        super.setNome (nome);
-        super.setCognome (cognome);
+       
+        super.setIDCentro(idcentro);
+        super.setNome(nome);
+        super.setCognome(cognome);
+        super.setCF(cf);
         this.userID=userID;
         this.email = email;
         this.password = pwd;
-        super.setIDVaccino (idvaccinazione);
-        super.setCF (cf);
-        super.setIDCentro (idcentro);
-    }
-
-
-    public Cittadino(){
-     super();
-    }
-
-    public String getCF() {
-        return super.getCF ();
-    }
-    public String getNome() {
-        return super.getNome ();
-    }
-
-    public String getCognome() {
-        return super.getCognome ();
+       
     }
 
     public String getEmail() {
@@ -40,12 +25,5 @@ public class Cittadino extends Vaccinato implements Serializable {
     public String getPassword() {
         return password;
     }
-
-    public String getIDVaccinazione() {
-        return super.getIDVaccino ();
-    }
-
-    public String getIDCentro() {
-        return super.getIDCentro ();
-    }
+    
 }

@@ -58,11 +58,11 @@ public class CvCntrlCentro {
             // TIPOLOGIA del centro vaccinale
             TipologiaCentro type = null;
             if(btnAziendale.isSelected()) {
-                type = TipologiaCentro.AZIENDALE;
+                type = TipologiaCentro.aziendale;
             } else if(btnHub.isSelected()) {
-                type = TipologiaCentro.HUB;
+                type = TipologiaCentro.hub;
             } else if(btnOspedaliero.isSelected()) {
-                type = TipologiaCentro.OSPEDALIERO;
+                type = TipologiaCentro.ospedaliero;
             }
             // COSTRUZIONE INDIRIZZO
             String addr = field1 + " " + field2 + " " + field3 + ", " + field4 + " (" + field5 + "), " + field6;

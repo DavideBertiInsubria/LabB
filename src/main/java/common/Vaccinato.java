@@ -1,9 +1,10 @@
 package common;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Vaccinato {
+public class Vaccinato implements Serializable {
     private String IDCentro,nome,cognome,CF,vaccino,IDVaccino;
     private LocalDate data;
     private Date DataSV;

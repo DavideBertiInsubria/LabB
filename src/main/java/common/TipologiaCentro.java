@@ -1,6 +1,8 @@
 package common;
 
-public enum TipologiaCentro {
+import java.io.Serializable;
+
+public enum TipologiaCentro implements Serializable {
     ospedaliero,hub,aziendale;
 
     public static TipologiaCentro getTipo (String n){

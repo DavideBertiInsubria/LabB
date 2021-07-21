@@ -46,7 +46,7 @@ public class DBTester extends DBVaccinazioniManagement{
 			nome = cognomi[randInt.nextInt(cognomi.length)]; 
 		String prov = sigle_province[randInt.nextInt(sigle_province.length)];
 		
-		String indirizzo = ql[randInt.nextInt(ql.length)]+" "+nome+" "+civ+" "+comune+" "+prov+" "+cap;
+		String indirizzo = ql[randInt.nextInt(ql.length)]+" "+nome+";"+civ+";"+comune+";"+prov+";"+cap;
 		
 		TipologiaCentro[] tipologia = TipologiaCentro.values();
 		TipologiaCentro t = tipologia[randInt.nextInt(tipologia.length)];

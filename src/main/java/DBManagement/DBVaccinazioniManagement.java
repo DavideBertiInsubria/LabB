@@ -32,9 +32,11 @@ public class DBVaccinazioniManagement extends DBManager{
 		String pwd = cittadino.getPassword();
 		String cf = cittadino.getCF();
 		String idcentro = cittadino.getIDCentro();
+		String idvacc = cittadino.getIDVaccino();
+		String userId = cittadino.getUserID();
 		
-		query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,CF,IDCentro) "
-				+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+cf+"',"+idcentro+")");
+		query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,IDVaccinazione,CF,IDCentro,Nick) "
+				+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+idvacc+"','"+cf+"','"+5+"','"+userId+"')");
 		
 	}
 	
@@ -72,7 +74,7 @@ public class DBVaccinazioniManagement extends DBManager{
 		if(comune.equals(""))
 			comune="%";
 		else
-			comune="%"+comune+"%";
+			comune="%;%;%"+comune+"%;%;%";
 		
 		if(tipologia.equals(""))
 			tipologia=";";

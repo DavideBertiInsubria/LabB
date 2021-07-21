@@ -71,7 +71,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         if(centri != null) {
 	        try {
 	            while(centri.next()){
-	                CV.add(new CentroVaccinale (centri.getString(1), centri.getString (2), centri.getString (3)));
+	                CV.add(new CentroVaccinale (centri.getString(1), centri.getString (2).replace(";"," "), centri.getString (3)));
 	            }
 	            System.out.println ("Ritorno centri vaccinale");
 	            return CV;

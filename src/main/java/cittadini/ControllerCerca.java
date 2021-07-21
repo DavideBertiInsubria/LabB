@@ -32,8 +32,8 @@ public class ControllerCerca {
 
     @FXML
     public void initialize() {
-        comboTipo.getItems().addAll("Qualsiasi","Ospedaliero","Aziendale","Hub");
-        comboTipo.setValue("Qualsiasi");
+        comboTipo.getItems().addAll("qualsiasi","ospedaliero","aziendale","hub");
+        comboTipo.setValue("qualsiasi");
     }
 
     private void azzeraFiltro() throws RemoteException {
@@ -64,7 +64,7 @@ public class ControllerCerca {
             Comune = "";
         else
             Comune = textComune.getText();
-        if (comboTipo.getValue().equals("Qualsiasi"))
+        if (comboTipo.getValue().equals("qualsiasi"))
             Tipo = "";
         else
             Tipo = comboTipo.getValue();

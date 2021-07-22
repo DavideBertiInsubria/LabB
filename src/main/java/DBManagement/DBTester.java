@@ -1,10 +1,13 @@
 package DBManagement;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
 import common.CentroVaccinale;
+import common.Cittadino;
 import common.TipologiaCentro;
+import common.Vaccino;
 
 public class DBTester extends DBVaccinazioniManagement{
 
@@ -12,14 +15,13 @@ public class DBTester extends DBVaccinazioniManagement{
 	private String[] cognomi = {"ranucci","de florio","d'agapito","urbini","Serra","lopez","bassano","linzi","cicconi","Romano","de cataldo","severi","lelli","delgado","canichella","infante","farazi","luzietti","sorrentino","lucani","sorbalo","bellettini","Fiore","Agostini","casali","de stefano","mohammed","battelli","dallago","Farina","marchesini","tarozzi","romano","Marchi","Martini","Piccolo","harasymiuk","laurenti","Lorusso","gigante","scipioni","barruga","panchetti","Ricciardi","wirth","Barone","bencivenga","labella","trasforini","tufano","guida","balice","graffiedi","bassolino","nini","valvano","caccamo","salamone ","caligiuri","policarpo","rainesi","salvini","taurone","jagmin","Giuliani","jianu","tarani","marata","Marino","De Rosa","mirante","nuti","alpi","Rinaldi","vandenbulcke","Guerra","coluccia","antosh","ciarla","","planta","Basile","de freitas sousa tavares","Ferrara","gutjahr","Rossetti","parini","tronconi","mane","fiadone ","Bruno","niane","lazar","Fumagalli","Ferretti","albanese","moschetti","carpi marasco","guaman","lanzoni","donati","zivkovic","kovacs","Neri","piga","Castelli","cecchetti","eichenberger","fossaroli","settembrini","sgrigna","satta","zapalski","de simone","sposato","attendoli","milenov","martellini ","tarnogrodzki","santana moscato","Riva","bianchi","fico","laita","Antonelli","Piras","Moretti","Silvestri","grossi pavia","sorgentone","Costantini","esposito","alam","Pellegrini","mauro","bonomo","russo","tranquilli","caporilli","minuz","dotti","tosolini","arlati","Pinna","rosati","castaldi","sipio","spoletini","Morelli","vitor","Martino","monsorno","minestrini ","rossi","gentili","mollica","mucci","zavalloni","vassura","montuori","Santoro","fiumi","pascale","blasi","Meloni","pracucci","Monaco","Calabrese","odigwe","moiano","dorascenzi","cerchierini","gentilini","filippi","anklin","pulsoni","pal ionut","andruccioli","patruno","corrado","cannizzaro","Arena","bragioto","galotti","renzulli","Albanese","galli","alfano","ricci","Pellegrino","Benedetti","Sanna","coulier","urzo","curcio","Longo","fiordigigli","filippelli","bellino","castagna","paglia","focaccia","vaccaro","bushulli","Ferrero","rosato","Grasso","rocchi","chesti","spalletta","domenicali","Marini","zavoli","wicher","colonna","zanellati","marchi","oliva","bentivegna","fusini","bartolucci","caniglia ","siapian","andronico","Ruggiero","vinciguerra","mattioni","cospito","paul","charaf","Franco","giuliani","Rizzo","siracusa","riboloni","Montanari","comini","lattanzi","Coppola","di santo","mariani","Valentini","marocchini","magalotti","capone ","lucarini","el hallaf","di mario","baldinotti","zak","Valente","harroud","patwary","cardinetti","benhadda","gubinelli","campana","totaro ","lippi","stefanovich","Greco","iuliano","abu","burla","veneziani","bennada epse herichi","polidori","baragliu","robbio","capelli","lena","di lena","zolnowski","fontanella","ghazi","Bellini","gatti","wilmer","Ferri","Grimaldi","Marra","muratori","pierucci ","coluccio","cipollone","bonn","karim","rotella","bagnaia","Palumbo","nizzi","colli","haji","caraballo","ciervo","poni","tiglio","di benimeo","acunzo","campanella","renzoni","Baldi","De Simone","cichon","Donati","costa","soldati","emumwen","scardone","kellmann","pelo","latini","grebenea","williams","sementilli","delgadillo vargas","Battaglia","borkowska","sala","massa","Conte","gealapu","Giorgi","tomassi","palatano","parravani","porta","paradisi","Esposito","croce","diacetti","Proietti","Di Stefano","coccia","Pozzi","toader","caldironi","popescu","fratini","moukrim","wenz","rizzelli","cheikh talibouya","martys","monsone ","mane'","ferrarese","liberto ","Orlando","pia","ciarlariello","di sipio","popovici","Santini","rudel","diamantini","guillen crespo","bento da silva","di carlo","boschi","resende azevedo","iacoangeli","scarale","salvemini","pereira de castro","d'achille","cusin","medda","Pagano","piersanti","el haqaoui","tioni","carullo","disabato","bassani","raqabi","teodorani","cauteruccio","zaccaria","bonventre","gagliardi","pisacane","Volpe","cenciarelli","tisba","caligari","malagigi","tabane","fraticelli","ducci","errichetti","Fusco","Gentile","scotti","di pasquale","la sorda","manchia","avello","crognale","nurul","giorgetti","buongrazio","sebastiani","mahu","minnella","maldini","de filippis","lunerti","Aiello","pompili","Mele","trombino","de la cruz","blasi ","lanconelli","Rizzi","cavaterra","Villa","Bianco","avendato","fortini","bernacci","di ruzza","polyzopoulos","deiana","di menna","apa","fassbender","bonsignore","mathlouthi","pezzuco","casella","Grassi","Gallo","castagnoli","bardi","piccoli","zanella","Lombardi","Testa","iachini","iatalese","Brambilla","strazzanti","napoli","aguila","bertini","crepaldi","vannozzi","huaman lopez","balta","michilli","Napolitano","bellinzoni","Cirillo","stefoni","Monti","porcu","giannetti","quartarone","rosata","passitto","el kaaba  armit","ahmed el ghandor","Ferrante","bruni","filagna","orlandi","piani","borrelli","bernardi","masetti","rifilato","Mariani","carucci","hijjoui","zenina","luzzi","hossain","basile","santucci","Perrone","sbreni","zeolla","ricciolino","mussinelli","zandoli","zurzolo","mezzogori","hajji","guzman soriano","Bianchi","vella","Sala","tambini","piacentini","Amato","zolea","iacobelli","usami","simonetti","de domenico ","colongi","d'alessandro","soro","kamal","petritoli","Bruni","palma ","seri","Zanetti","Gatti","fontana","Fabbri","pasquini","speziale","cerilli","ceraldi","armaroli","Russo","filipek","guidi","fazi","pello'","assal","Galli","rucci","leonetti","zamberlan","emili","quadalti noferini","adorno","azzarri","Ferro","clementucci","De Santis","mangano","pozzi","buccolieri","saccone","Romeo","jaschke ","Leone","de matteo","cozzolino","zinnamosca","minelli","Ceccarelli","romani bergonzo","de bacco","abbondanza","Barbieri","lacerenza","sanges","Pastore","Martinelli","Ferraro","fabiani","borghini","turci","finiti","botnariu","mena","Sartori","di renna","cutillo","costantini","accadia","bartolini","sassi","chiricozzi","ranfi","mincuzzi","vidanalage","Pace","bugli","del aguila rosario","Caputo","brizi","tazzari","Olivieri","Milani","d'emilia","Ruggeri","rebeccato","metozzi","pascucci","jebrane","bellaneve","castaldo","wozniak","paduano","serban","ercolani","bazhanova","toso","panichi","ruggieri","placidi ","capanna","boes","manzi","gromala","Rossi","antonelli","casadei","sanna","pongetti","Marchetti","carina","valbonesi","bevilacqua","simoni","bello","Lombardo","ianne","Mancini","montevecchi","vincenzi","d'amore","veneziano","milutinovic","Gargiulo","apreda","cataldi","lecca","fasano","cecere","Palmieri","meucci","villa","lazazzera","Pepe","ferrari","Ricci","giurgola","romagnoli ","sartori","callegarini","piro","barone","barsanti","conte","Poli","gori","martino","De Angelis","grande","panza","tulli","steffenoni","berardi","gnani","d'ambrosio","amato","giorgio","Catalano","baiano","giura","gindre","lucchi","de santis","contiu","donnhauser","angelicchio","capitani","zepponi","gamberini","forcina ","di maio","morselli","Villani","kosek","el falaki","boncompagni","Vitali","covato","potalivo ","fiuzzi","chaibi","Garofalo","zuccherelli","verastegui pereyra","Costa","valdinosi","colombo ","brunetti","di tuoro ","pasolini","pinna","errahmani","dolciotti","di paolo","balloni","sarpieri","Cavallo","naci","zanelli","biondini","carrara","baronti","Piazza","boubaker","Fontana","Guidi","taifi","bagnato","narducci","ermeti","Mazza","morsiani","freschi ","ghini","Cattaneo","angiuli","conflitti","Messina","zito","nicastro","papaleo","mamone","Giordano","Conti","mercantini","cellini","bazzocchi","quadrini","olivelli","pucciotti","clesceri","pacini","zaratti","vanni","von oppen","forcina","ossati","donatini","cangini","stazzone","Moro","fadda","fontanilla","de sterlich","pierucci","di marco","lucchesini","cagnotti","Carbone","Ferrari","donatantonio","ciampaglia","hushchyna","celotti","ortu","corrias","mugione","Parisi","maroncelli","Caruso","borgat-wohlbang","Colombo","sestito","d'amora","terracciano","pelliccia","succi","mascali zeo","marano","fabbrizi","baldari","Bernardi","la bella","Sorrentino","wally","torraca","d'amico","sasvari","kazi","paolini","ceccaroni","frasca","wozniczka","zecchini","colle","haryadi","Vitale","De Luca","gasmi","ahamed","lesniewska","dottavio ","tiranno","palazzari","sassetti"};
 	private String[] sigle_province = {"AG","AL","AN","AO","AR","AP","AT","AV","BA","BT","BL","BN","BG","BI","BO","BZ","BS","BR","CA","CL","CB","CI","CE","CT","CZ","CH","CO","CS","CR","KR","CN","EN","FM","FE","FI","FG","FC","FR","GE","GO","GR","IM","IS","SP","AQ","LT","LE","LC","LI","LO","LU","MC","MN","MS","MT","ME","MI","MO","MB","NA","NO","NU","OT","OR","PD","PA","PR","PV","PG","PU","PE","PC","PI","PT","PN","PZ","PO","RG","RA","RC","RE","RI","RN","RM","RO","SA","VS","SS","SV","SI","SR","SO","TA","TE","TR","TO","OG","TP","TN","TV","TS","UD","VA","VE","VB","VC","VR","VV","VI","VT"};
 	private String[] province = {"Agrigento","Alessandria","Ancona","Aosta","Arezzo","Ascoli Piceno","Asti","Avellino","Bari","Barletta-Andria-Trani","Belluno","Benevento","Bergamo","Biella","Bologna","Bolzano","Brescia","Brindisi","Cagliari","Caltanissetta","Campobasso","Carbonia-Iglesias","Caserta","Catania","Catanzaro","Chieti","Como","Cosenza","Cremona","Crotone","Cuneo","Enna","Fermo","Ferrara","Firenze","Foggia","Forlì-Cesena","Frosinone","Genova","Gorizia","Grosseto","Imperia","Isernia","La Spezia","L'Aquila","Latina","Lecce","Lecco","Livorno","Lodi","Lucca","Macerata","Mantova","Massa-Carrara","Matera","Messina","Milano","Modena","Monza e della Brianza","Napoli","Novara","Nuoro","Olbia-Tempio","Oristano","Padova","Palermo","Parma","Pavia","Perugia","Pesaro e Urbino","Pescara","Piacenza","Pisa","Pistoia","Pordenone","Potenza","Prato","Ragusa","Ravenna","Reggio Calabria","Reggio Emilia","Rieti","Rimini","Roma","Rovigo","Salerno","Medio Campidano","Sassari","Savona","Siena","Siracusa","Sondrio","Taranto","Teramo","Terni","Torino","Ogliastra","Trapani","Trento","Treviso","Trieste","Udine","Varese","Venezia","Verbano-Cusio-Ossola","Vercelli","Verona","Vibo Valentia","Vicenza","Viterbo"};
-	private Random randInt;
+	private Random randInt = new Random();
 	
 	public DBTester() throws SQLException {
 		super();
 	}
 	
 	public void testRegistraCentroVaccinale(){
-		randInt = new Random();
 		String[] centri = {"Pala","Centro","Campo"};
 		String[] scuole = {"Scuola Elementare","Scuola Media","Scuola Superiore"};
 	
@@ -55,7 +57,39 @@ public class DBTester extends DBVaccinazioniManagement{
 		try {
 			registraCentroVaccinale(C);
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+	}
+	
+	public void testRegistraVaccinato() throws SQLException {
+		
+		ResultSet daticentro = query("SELECT IDCentro,Nome FROM CentriVaccinali");
+		
+		int max = randInt.nextInt(DBManager.ResultSetSize(daticentro));
+		for(int i=0;i<max;i++)
+			daticentro.next();
+		
+		int idcentro = daticentro.getInt(1);
+		String nomecentro = daticentro.getString(2);
+		
+		String nome = nomi[randInt.nextInt(nomi.length)];
+		String cognome = cognomi[randInt.nextInt(cognomi.length)];
+		StringBuilder cf = new StringBuilder();
+		
+		for(int i=0;i<16;i++)
+			cf.append((char)('A'+randInt.nextInt(26)));
+		
+		Vaccino vaccino = Vaccino.values()[randInt.nextInt(Vaccino.values().length)];
+				
+		Cittadino citt = new Cittadino(cf.toString(),nome,cognome,"","","",0,nomecentro);
+		
+		int giorno = randInt.nextInt(28)+1;
+		int mese = randInt.nextInt(12)+1;
+		int anno = randInt.nextInt((2021-2018)+1)+2018;
+		String datasomm = giorno+"-"+mese+"-"+anno;
+		
+		registraVaccinato(citt,datasomm,vaccino);
+		
 	}
 	
 	public static void main(String[] args) {
@@ -68,7 +102,12 @@ public class DBTester extends DBVaccinazioniManagement{
 		}
 		
 		for(int i=0;i<100;i++)
-			tester.testRegistraCentroVaccinale();
+			try {
+				tester.testRegistraVaccinato();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 }

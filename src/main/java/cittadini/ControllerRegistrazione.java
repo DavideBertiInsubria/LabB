@@ -39,7 +39,7 @@ public class ControllerRegistrazione {
             //...
 
             // ...CREAZIONE CITTADINO DI PROVA e SET
-            Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(),textUserID.getText(), textEmail.getText(), textPax.getText(), textIDVacc.getText(), null);
+            Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(),textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()), 0);
             server.registraCittadino(cittadinoOK);
             User = cittadinoOK;
 

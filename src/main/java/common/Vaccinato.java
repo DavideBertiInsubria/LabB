@@ -5,19 +5,20 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Vaccinato implements Serializable {
-    private String IDCentro,nome,cognome,CF,vaccino,IDVaccino;
+    private String nome,cognome,CF,vaccino,NomeCentro;
+    private int IDCentro,IDVaccino;
     private LocalDate data;
     private Date DataSV;
 
 
-    public Vaccinato(String IDCentro, String nome, String cognome, String CF, String vaccino, String IDVaccino, LocalDate data) {
-        this.IDCentro = IDCentro;
+    public Vaccinato(String NomeCentro, String nome, String cognome, String CF, String vaccino, int IDVaccino, LocalDate data) {
         this.nome = nome;
         this.cognome = cognome;
         this.CF = CF;
         this.vaccino = vaccino;
         this.IDVaccino = IDVaccino;
         this.data = data;
+        this.NomeCentro = NomeCentro;
     }
 
     public Vaccinato() {
@@ -25,11 +26,11 @@ public class Vaccinato implements Serializable {
     }
 
 
-    public String getIDVaccino () {
+    public int getIDVaccino () {
         return IDVaccino;
     }
 
-    public void setIDVaccino (String IDVaccino) {
+    public void setIDVaccino (int IDVaccino) {
         this.IDVaccino = IDVaccino;
     }
 
@@ -65,12 +66,16 @@ public class Vaccinato implements Serializable {
         this.nome = nome;
     }
 
-    public String getIDCentro () {
+    public int getIDCentro () {
         return IDCentro;
     }
 
-    public void setIDCentro (String IDCentro) {
+    public void setIDCentro (int IDCentro) {
         this.IDCentro = IDCentro;
+    }
+    
+    public String getNomeCentro() {
+    	return NomeCentro;
     }
 
 }

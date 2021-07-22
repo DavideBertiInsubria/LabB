@@ -58,7 +58,7 @@ public class CvCntrlVaccinato {
                 type = btnPfizer.getText();
             }
             // NUMERO UNIVOCO DI IDENTIFICAZIONE
-            String vxIdn = txtIdn.getText();
+            int vxIdn = Integer.valueOf(txtIdn.getText());
             // COSTRUZIONE VACCINATO
             Vaccinato vax = new Vaccinato(cvName, vxFn, vxLn, vxSsn, type, vxIdn, ddMMyyyy);
             // COLLEGAMENTO A SERVER

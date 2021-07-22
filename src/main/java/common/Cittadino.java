@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 
 public class Cittadino extends Vaccinato implements Serializable {
-    private String email, password, userID,idvaccinazione;
+    private String email, password, userID;
+    private int idvaccinazione;
 
-    public Cittadino(String cf,String nome,String cognome, String userID, String email,String pwd,String idvaccinazione,String idcentro) {
+    public Cittadino(String cf,String nome,String cognome, String userID, String email,String pwd,int idvaccinazione,int idcentro) {
        
         super.setIDCentro(idcentro);
         super.setNome(nome);

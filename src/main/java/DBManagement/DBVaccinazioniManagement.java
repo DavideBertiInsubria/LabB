@@ -7,6 +7,7 @@ import common.CentroVaccinale;
 import common.TipologiaCentro;
 import common.Vaccino;
 import common.Cittadino;
+import common.Segnalazione;
 
 public class DBVaccinazioniManagement extends DBManager{
 
@@ -31,12 +32,20 @@ public class DBVaccinazioniManagement extends DBManager{
 		String email = cittadino.getEmail();
 		String pwd = cittadino.getPassword();
 		String cf = cittadino.getCF();
-		String idcentro = cittadino.getIDCentro();
-		String idvacc = cittadino.getIDVaccino();
 		String userId = cittadino.getUserID();
+		int idcentro;
+		int idvacc;
+		
+		ResultSet ids = query("SELECT IDCentro,IDVaccinazione FROM Vaccinati WHERE CF='"+cf+"'");
+
+		idcentro = ids.getInt(1);
+		idvacc = ids.getInt(2);
+		
+		cittadino.setIDCentro(idcentro);
+		cittadino.setIDVaccino(idvacc);
 		
 		query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,IDVaccinazione,CF,IDCentro,Nick) "
-				+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+idvacc+"','"+cf+"','"+5+"','"+userId+"')");
+				+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+idvacc+"','"+cf+"','"+idcentro+"','"+userId+"')");
 		
 	}
 	
@@ -45,14 +54,38 @@ public class DBVaccinazioniManagement extends DBManager{
 		String nome = cittadino.getNome ();
 		String cognome = cittadino.getCognome();
 		String cf = cittadino.getCF();
-		String idcentro = cittadino.getIDCentro();
+		String nomecentro = cittadino.getNomeCentro();
+		int idcentro;
 		
-		ResultSet nomi = query("SELECT Nome FROM CentriVaccinale WHERE IDCentro="+idcentro);
-		String nomecentro = nomi.getString(1);
+		ResultSet id = query("SELECT IDCentro FROM CentriVaccinale WHERE NomeCentro='"+nomecentro+"'");
 		
-		query("INSERT INTO "+
-				"Vaccinati(IDCentro,NomeCentro,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato,IDVaccinazione) "+
-				"VALUES("+idcentro+",'"+nomecentro+"','"+nome+"','"+cognome+"','"+cf+"',"+datasomm+","+vaccino+","+idvaccinazione+")");
+		if(DBManager.ResultSetSize(id) == 1) {
+			idcentro = id.getInt(1);
+			cittadino.setIDCentro(idcentro);
+			
+			query("INSERT INTO "+
+					"Vaccinati(IDCentro,NomeCentro,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato,IDVaccinazione) "+
+					"VALUES("+idcentro+",'"+nomecentro+"','"+nome+"','"+cognome+"','"+cf+"',"+datasomm+","+vaccino+","+idvaccinazione+")");
+		
+		}
+	}
+	
+	public void registraSegnalazione(Segnalazione segnalazione) throws SQLException {
+		
+		int idvaccinazione = segnalazione.getIDVaccinazione();
+		String evento = segnalazione.getEvento();
+		int severita = segnalazione.getSeverita();
+		String nota = segnalazione.getNota();
+		
+		ResultSet id = query("SELECT IDEvento FROM EventoAvverso WHERE Evento='"+evento+"'");
+		int idevento;
+		
+		if(DBManager.ResultSetSize(id) == 1) {
+			idevento = id.getInt(1);
+			query("INSERT INTO Segnalazione(IDVaccinazione,IDEvento,Severita,Nota)"+
+			"VALUES("+idvaccinazione+","+idevento+","+severita+",'"+nota+"')");
+		}
+		
 	}
 	
 	public ResultSet loginCittadino(String nick,String pwd) throws SQLException {
@@ -88,5 +121,6 @@ public class DBVaccinazioniManagement extends DBManager{
 		return centri;
 		
 	}
+
 	
 }

@@ -47,7 +47,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public synchronized void registraVaccinato (Vaccinato v, ClientInterface utente) {
+    public synchronized void registraVaccinato (Vaccinato v) {
         //query per la registrazione del vaccinato
         try {
             utente.msg("La registrazione non è andata a buon fine riprovare");
@@ -57,7 +57,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public synchronized void registraCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
+    public synchronized void registraCentroVaccinale (CentroVaccinale CV) {
         System.out.println("Registrazione centro vaccinale");
         try {
             Database.registraCentroVaccinale (CV);
@@ -98,7 +98,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return null;
     }
 
-    public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV, ClientInterface utente) {
+    public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV) {
         //Query per le informazione del centro
         String info = null;
         try {

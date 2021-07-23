@@ -6,8 +6,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlCentro">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSKYBLUE;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlCentro">
    <children>
       <Button layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#backFromCentroVaccinale" text="Indietro" />
       <Button layoutX="323.0" layoutY="339.0" mnemonicParsing="false" onAction="#confirm" text="Conferma e invia" />
@@ -34,5 +35,10 @@
       </RadioButton>
       <RadioButton fx:id="btnViale" layoutX="226.0" layoutY="140.0" mnemonicParsing="false" text="viale" toggleGroup="$grpIndirizzo" />
       <RadioButton fx:id="btnPiazza" layoutX="226.0" layoutY="168.0" mnemonicParsing="false" text="piazza" toggleGroup="$grpIndirizzo" />
+      <Label layoutX="218.0" layoutY="14.0" text="CENTRO VACCINALE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

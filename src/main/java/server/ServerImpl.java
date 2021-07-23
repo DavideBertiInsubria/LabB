@@ -113,7 +113,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         ResultSet cittadini = null;
         try {
             cittadini=Database.loginCittadino (userID,password);
-            return new Cittadino (cittadini.getString ("cf"),cittadini.getString ("nome"),cittadini.getString ("cognome"),cittadini.getString ("nick"),cittadini.getString ("email"),cittadini.getString ("password"),cittadini.getInt ("idvaccinazione"),cittadini.getString ("nomecentro"));
+            return new Cittadino (cittadini.getString ("cf"),cittadini.getString ("nome"),cittadini.getString ("cognome"),cittadini.getString ("nick"),cittadini.getString ("email"),cittadini.getString ("password"),cittadini.getInt ("idvaccinazione"),"");
         } catch (SQLException throwables) {
             throwables.printStackTrace ();
             return null;

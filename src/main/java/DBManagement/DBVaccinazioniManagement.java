@@ -12,7 +12,7 @@ import common.Segnalazione;
 public class DBVaccinazioniManagement extends DBManager{
 
 	public DBVaccinazioniManagement() throws SQLException {
-		super("jdbc:postgresql://localhost/dblabb","postgres","test");
+		super("jdbc:postgresql://87.8.75.106/dblabb","postgres","test");
 	}
 	
 	
@@ -38,15 +38,17 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 		ResultSet ids = query("SELECT IDCentro,IDVaccinazione FROM Vaccinati WHERE CF='"+cf+"'");
 
-		idcentro = ids.getInt(1);
-		idvacc = ids.getInt(2);
+		if(DBManager.ResultSetSize(ids) == 1) {
+			idcentro = ids.getInt(1);
+			idvacc = ids.getInt(2);
+			
+			cittadino.setIDCentro(idcentro);
+			cittadino.setIDVaccino(idvacc);
+			
+			query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,IDVaccinazione,CF,IDCentro,Nick) "
+					+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+idvacc+"','"+cf+"','"+idcentro+"','"+userId+"')");
 		
-		cittadino.setIDCentro(idcentro);
-		cittadino.setIDVaccino(idvacc);
-		
-		query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,IDVaccinazione,CF,IDCentro,Nick) "
-				+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+idvacc+"','"+cf+"','"+idcentro+"','"+userId+"')");
-		
+		}
 	}
 	
 	public void registraVaccinato(Cittadino cittadino,String datasomm,Vaccino vaccino) throws SQLException {

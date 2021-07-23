@@ -56,10 +56,11 @@ public class ControllerSegnalazioni {
 
     public void clickInvia(ActionEvent event)  {
         try {
-            // CHIUSURA
+          
+        	// CHIUSURA
             Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
             thisWindow.close();
-
+            
             // INVIO SEGNALAZIONE...
             if (comboMalDiTesta.getValue()>0 && comboMalDiTesta.getValue()<=5) {
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Mal di testa", comboMalDiTesta.getValue(), textMalDiTesta.getText());
@@ -86,7 +87,6 @@ public class ControllerSegnalazioni {
                 server.registraSegnalazione(s);
             }
 
-
             // APERTURA NUOVA SCHERMATA
             Stage schermata = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
@@ -97,7 +97,9 @@ public class ControllerSegnalazioni {
             schermata.setScene(new Scene(root));
             JOptionPane.showMessageDialog(null, "Segnalazione inviata con successo.");
             schermata.show();
-        } catch (IOException ignored){}
+        } catch (IOException ignored){
+        	ignored.printStackTrace();
+        }
     }
 
     public void setDati(Cittadino c, ServerInterface s){

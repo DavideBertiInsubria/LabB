@@ -92,6 +92,39 @@ public class DBTester extends DBVaccinazioniManagement{
 		
 	}
 	
+	public void testRegistraCittadino() throws SQLException {
+		
+		ResultSet vaccinati = query("SELECT Nome,Cognome,CF FROM Vaccinati");
+		
+		int max = randInt.nextInt(DBManager.ResultSetSize(vaccinati));
+		System.out.println(max);
+		for(int i=0;i<max;i++)
+			vaccinati.next();
+		
+		String nome = vaccinati.getString(1);
+		String cognome = vaccinati.getString(2);
+		String cf = vaccinati.getString(3);
+		String email = nome.toLowerCase()+cognome.toLowerCase()+"@gmail.com";
+		
+		StringBuilder pwd = new StringBuilder();
+		
+		for(int i=0;i<randInt.nextInt(64)+8;i++) {
+			pwd.append((char)('a'+randInt.nextInt(26)));
+			pwd.append((char)('A'+randInt.nextInt(26)));
+			pwd.append(String.valueOf(randInt.nextInt(10)));
+		}
+		
+		String userid = nome+"."+cognome+String.valueOf(randInt.nextInt(999));
+		
+		Cittadino citt = new Cittadino(cf,nome,cognome,userid,email,pwd.toString(),0,"");
+		
+		
+		
+		registraCittadino(citt);
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		DBTester tester=null;
 		try {
@@ -103,7 +136,7 @@ public class DBTester extends DBVaccinazioniManagement{
 		
 		for(int i=0;i<100;i++)
 			try {
-				tester.testRegistraVaccinato();
+				tester.testRegistraCittadino();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

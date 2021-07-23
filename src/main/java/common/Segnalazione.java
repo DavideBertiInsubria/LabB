@@ -1,6 +1,8 @@
 package common;
 
-public class Segnalazione {
+import java.io.Serializable;
+
+public class Segnalazione implements Serializable{
 	
 	private int IDVaccinazione;
 	private String Evento;

@@ -72,8 +72,8 @@ public class CvCntrlCentro {
             try {
                 Registry reg = LocateRegistry.getRegistry("*", 1099);
                 ServerInterface server = (ServerInterface) reg.lookup("Vaccino");
-                ClientInterface client = new ClientImpl();
-                server.registraCentroVaccinale(cv, client);
+            //    ClientInterface client = new ClientImpl();
+                server.registraCentroVaccinale(cv);
             } catch (RemoteException | NotBoundException e) {
                 JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);

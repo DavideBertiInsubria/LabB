@@ -7,8 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlVaccinato">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSKYBLUE;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlVaccinato">
    <children>
       <Label layoutX="78.0" layoutY="54.0" prefHeight="17.0" prefWidth="149.0" text="Centro vaccinale:" />
       <Label layoutX="77.0" layoutY="89.0" text="Nome:" />
@@ -33,5 +34,10 @@
       <RadioButton fx:id="btnAstraZeneca" layoutX="257.0" layoutY="226.0" mnemonicParsing="false" selected="true" text="AstraZeneca" toggleGroup="$grpVaccino" />
       <RadioButton fx:id="btnModerna" layoutX="258.0" layoutY="260.0" mnemonicParsing="false" text="Moderna" toggleGroup="$grpVaccino" />
       <RadioButton fx:id="btnJohnsonJohnson" layoutX="377.0" layoutY="226.0" mnemonicParsing="false" text="Johnson &amp; Johnson" toggleGroup="$grpVaccino" />
+      <Label layoutX="252.0" layoutY="14.0" text="VACCINATO">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

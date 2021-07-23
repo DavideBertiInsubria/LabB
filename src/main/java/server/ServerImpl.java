@@ -2,6 +2,8 @@ package server;
 
 import DBManagement.*;
 import common.*;
+import javafx.scene.chart.PieChart;
+
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -23,11 +25,24 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         System.out.println ("Registrazione cittadino");
         try {
             Database.registraCittadino (c);
-            System.out.println ("La registrazione è andata a buon fine");
+            System.out.println ("La registrazione del cittadino è andata a buon fine");
         } catch (SQLException e) {
             e.printStackTrace ();
-            System.out.println("La registrazione non è andata a buon fine riprovare");
+            System.out.println("La registrazione del cittadino non è andata a buon fine riprovare");
         }
+    }
+
+    public synchronized void registraSegnalazione (Segnalazione seg){
+        System.out.println ("Registrazione segnalazione");
+        try {
+            Database.registraSegnalazione (seg);
+            System.out.println ("La registrazione della segnalazione è andata a buon fine");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace ();
+            System.out.println("La registrazione della segnalazione non è andata a buon fine riprovare");
+        }
+
+
     }
 
     @Override

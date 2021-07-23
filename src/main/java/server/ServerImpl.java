@@ -34,6 +34,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     public synchronized void registraSegnalazione (Segnalazione seg){
         System.out.println ("Registrazione segnalazione");
+        if(seg.getNota()==null){
+            seg.setNota("");
+        }
         try {
             Database.registraSegnalazione (seg);
             System.out.println ("La registrazione della segnalazione è andata a buon fine");
@@ -41,8 +44,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             throwables.printStackTrace ();
             System.out.println("La registrazione della segnalazione non è andata a buon fine riprovare");
         }
-
-
     }
 
     @Override
@@ -107,7 +108,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
-
     @Override
     public Cittadino login (String userID, String password) throws RemoteException {
         ResultSet cittadini = null;
@@ -122,7 +122,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     private void exec() throws  RemoteException {
         try {
-
             ServerImpl serverR= new ServerImpl ();
             Registry registro = LocateRegistry.createRegistry (1099);
             registro.rebind ("Vaccino", serverR);

@@ -30,4 +30,8 @@ public class Segnalazione {
 		return Nota;
 	}
 
+	public void setNota(String Nota){
+		this.Nota=Nota;
+	}
+
 }

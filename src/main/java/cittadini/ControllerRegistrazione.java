@@ -1,7 +1,6 @@
 package cittadini;
 
 import common.Cittadino;
-import common.ClientImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,6 @@ import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.regex.Pattern;
 
 public class ControllerRegistrazione {

@@ -1,6 +1,7 @@
 package cittadini;
 
 import common.Cittadino;
+import common.Segnalazione;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +61,30 @@ public class ControllerSegnalazioni {
             thisWindow.close();
 
             // INVIO SEGNALAZIONE...
+            if (comboMalDiTesta.getValue()>0 && comboMalDiTesta.getValue()<=5) {
+                Segnalazione s = new Segnalazione(User.getIDVaccino(), "Mal di testa", comboMalDiTesta.getValue(), textMalDiTesta.getText());
+                server.registraSegnalazione(s);
+            }
+            if (comboFebbre.getValue()>0 && comboFebbre.getValue()<=5) {
+                Segnalazione s = new Segnalazione(User.getIDVaccino(), "Febbre", comboFebbre.getValue(), textFebbre.getText());
+                server.registraSegnalazione(s);
+            }
+            if (comboDoloriMuscArtic.getValue()>0 && comboDoloriMuscArtic.getValue()>=5) {
+                Segnalazione s = new Segnalazione(User.getIDVaccino(), "Dolori muscolari e articolari", comboDoloriMuscArtic.getValue(), textDoloriMuscArtic.getText());
+                server.registraSegnalazione(s);
+            }
+            if (comboLinfo.getValue()>0 && comboLinfo.getValue()<=5) {
+                Segnalazione s = new Segnalazione(User.getIDVaccino(), "Linfoadenopatia", comboLinfo.getValue(), textLinfo.getText());
+                server.registraSegnalazione(s);
+            }
+            if (comboTachi.getValue()>0 && comboTachi.getValue()<=5) {
+                Segnalazione s = new Segnalazione(User.getIDVaccino(), "Tachicardia", comboTachi.getValue(), textTachi.getText());
+                server.registraSegnalazione(s);
+            }
+            if (comboCrisi.getValue()>0 && comboCrisi.getValue()<=5) {
+                Segnalazione s = new Segnalazione(User.getIDVaccino(), "Crisi ipertensiva", comboCrisi.getValue(), textCrisi.getText());
+                server.registraSegnalazione(s);
+            }
 
 
             // APERTURA NUOVA SCHERMATA

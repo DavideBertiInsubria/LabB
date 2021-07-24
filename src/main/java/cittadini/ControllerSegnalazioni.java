@@ -15,7 +15,6 @@ import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
 
-
 public class ControllerSegnalazioni {
 
     private Cittadino User;
@@ -38,9 +37,6 @@ public class ControllerSegnalazioni {
 
     public void clickIndietro(ActionEvent event)  {
         try {
-            // CHIUSURA
-            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            thisWindow.close();
 
             // APERTURA NUOVA SCHERMATA
             Stage schermata = new Stage();
@@ -97,8 +93,8 @@ public class ControllerSegnalazioni {
             schermata.setScene(new Scene(root));
             JOptionPane.showMessageDialog(null, "Segnalazione inviata con successo.");
             schermata.show();
-        } catch (IOException ignored){
-        	ignored.printStackTrace();
+        } catch (IOException e){
+        	e.printStackTrace();
         }
     }
 

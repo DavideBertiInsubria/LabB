@@ -18,11 +18,29 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * La classe <em>ControllerCerca</em> rappresenta il <i>controller</i> della schermata <i>'cerca'</i> dell'applicazione 'cittadini'.
+ */
 public class ControllerCerca {
 
+    /**
+     * <code>User</code> &egrave; il riferimento all'utente loggato, ed è un oggetto di tipo <i>Cittadino</i>.
+     * Se l'utente non è loggato allora <i>User</i> &egrave; uguale a <b>null</b>.
+     * @see Cittadino
+     */
     private Cittadino User;
+    /**
+     * <code>listaCentriVaccinaliVisualizzati</code> &egrave; la lista di oggetti di tipo CentroVaccinali.
+     * Rappresenta la lista di centri vaccinali che vengono visualizzati nella schermata di ricerca.
+     * @see CentroVaccinale
+     */
     private ArrayList<CentroVaccinale> listaCentriVaccinaliVisualizzati = new ArrayList<CentroVaccinale>();
+    /**
+     * <code>server</code> &egrave; il riferimento al server.
+     * @see ServerInterface
+     */
     private ServerInterface server;
+
     @FXML
     TextField textNome, textComune;
     @FXML

@@ -41,6 +41,10 @@ public class ControllerCerca {
      */
     private ServerInterface server;
 
+    /**
+     * <code>.</code> &egrave; il .
+     * @see TextField
+     */
     @FXML
     TextField textNome, textComune;
     @FXML

@@ -2,7 +2,7 @@ package common;
 
 import java.io.Serializable;
 
-public class Segnalazione implements Serializable{
+public class Segnalazione implements Serializable {
 	
 	private int IDVaccinazione;
 	private String Evento;

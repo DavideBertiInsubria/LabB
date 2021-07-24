@@ -49,11 +49,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public synchronized void registraVaccinato (Vaccinato v) {
         //query per la registrazione del vaccinato
-        try {
-            utente.msg("La registrazione non è andata a buon fine riprovare");
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -61,16 +56,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         System.out.println("Registrazione centro vaccinale");
         try {
             Database.registraCentroVaccinale (CV);
-            utente.msg("Registrazione effettuata");
             System.out.println("Registrazione effettuata");
-        } catch (SQLException | RemoteException e) {
+        } catch (SQLException e) {
             e.printStackTrace ();
-            try {
-                utente.msg("Qualcosa è andato storto");
-                System.out.println("Qualcosa è andato storto");
-            } catch (RemoteException remoteException) {
-                remoteException.printStackTrace ();
-            }
         }
 
     }
@@ -101,11 +89,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV) {
         //Query per le informazione del centro
         String info = null;
-        try {
-            utente.msg(info);
-        }catch (RemoteException e){
-            e.printStackTrace();
-        }
+
     }
 
     @Override

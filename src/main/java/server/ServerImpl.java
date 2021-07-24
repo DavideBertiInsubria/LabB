@@ -54,6 +54,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public synchronized void registraCentroVaccinale (CentroVaccinale CV) {
         System.out.println("Registrazione centro vaccinale");
+        //gesu bastardo
         try {
             Database.registraCentroVaccinale (CV);
             System.out.println("Registrazione effettuata");

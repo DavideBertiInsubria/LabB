@@ -29,22 +29,20 @@ public class ControllerCerca {
      * @see Cittadino
      */
     private Cittadino User;
+
     /**
      * <code>listaCentriVaccinaliVisualizzati</code> &egrave; la lista di oggetti di tipo CentroVaccinali.
      * Rappresenta la lista di centri vaccinali che vengono visualizzati nella schermata di ricerca.
      * @see CentroVaccinale
      */
     private ArrayList<CentroVaccinale> listaCentriVaccinaliVisualizzati = new ArrayList<CentroVaccinale>();
+
     /**
      * <code>server</code> &egrave; il riferimento al server.
      * @see ServerInterface
      */
     private ServerInterface server;
 
-    /**
-     * <code>.</code> &egrave; il .
-     * @see TextField
-     */
     @FXML
     TextField textNome, textComune;
     @FXML
@@ -58,6 +56,9 @@ public class ControllerCerca {
         comboTipo.setValue("qualsiasi");
     }
 
+    /**
+     * Il metodo <em>azzeraFiltro</em> si occupa di aggiungere tutti i centri esistenti nella lista di visualizzazione nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini' (e quindi di azzerare i filtri applicati).
+     */
     private void azzeraFiltro() throws RemoteException {
         listCentriVacc.getItems().clear();
         listaCentriVaccinaliVisualizzati.clear();
@@ -68,10 +69,17 @@ public class ControllerCerca {
         }
     }
 
+    /**
+     * Il metodo <em>clickAzzeraFiltro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Azzera filtro</i> nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini'.
+     * Richiama il metodo <i>azzeraFiltro</i>
+     */
     public void clickAzzeraFiltro(ActionEvent event) throws RemoteException {
         azzeraFiltro();
     }
-
+    /**
+     * Il metodo <em>clickCerca</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Cerca</i> nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini'.
+     * Vengono applicati tutti i filtri compilati ed inseriti nei campi di ricerca dell'interfaccia grafica e viene aggiornata la lista <i>listaCentriVaccinaliVisualizzati</i>.
+     */
     public void clickCerca(ActionEvent event) throws RemoteException {
 
         listCentriVacc.getItems().clear();
@@ -97,6 +105,11 @@ public class ControllerCerca {
         }
     }
 
+    /**
+     * Il metodo <em>clickVisualizza</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Visualizza</i> nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini'.
+     * Viene aperta la schermata di visualizzazione delle informazioni del centro vaccinale che è stato selezionato della lista (ControllerVisualizza).
+     * @see ControllerVisualizza
+     */
     public void clickVisualizza(ActionEvent event) {
         if (listCentriVacc.getSelectionModel().getSelectedIndex() == -1 ){
             JOptionPane.showMessageDialog(null, "Selezionare un centro vaccinale dalla lista.");
@@ -119,12 +132,21 @@ public class ControllerCerca {
         } catch (IOException ignored){ }
     }
 
+    /**
+     * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'cerca'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
+     * Come l'utente loggato e il collegamento al server.
+     */
     public void setDati(Cittadino user, ServerInterface s) throws RemoteException {
         server = s;
         User = user;
         azzeraFiltro();
     }
 
+    /**
+     * Il metodo <em>clickIndietro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Indietro</i> nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini'.
+     * Viene riportato alla schermata <i>Home</i> (ControllerHome).
+     * @see ControllerHome
+     */
     public void clickIndietro(ActionEvent event)  {
         try {
             // CHIUSURA

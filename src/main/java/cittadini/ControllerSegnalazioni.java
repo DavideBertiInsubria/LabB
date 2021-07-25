@@ -17,7 +17,17 @@ import java.io.IOException;
 
 public class ControllerSegnalazioni {
 
+    /**
+     * <code>User</code> &egrave; il riferimento all'utente loggato, ed è un oggetto di tipo <i>Cittadino</i>.
+     * Se l'utente non è loggato allora <i>User</i> &egrave; uguale a <b>null</b>.
+     * @see Cittadino
+     */
     private Cittadino User;
+
+    /**
+     * <code>server</code> &egrave; il riferimento al server.
+     * @see ServerInterface
+     */
     private ServerInterface server;
 
     @FXML
@@ -35,6 +45,11 @@ public class ControllerSegnalazioni {
         comboCrisi.getItems().addAll(1,2,3,4,5);
     }
 
+    /**
+     * Il metodo <em>clickIndietro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Indietro</i> nella schermata <i>'Segnalazioni'</i> dell'applicazione 'cittadini'.
+     * Viene riportato alla schermata <i>Home</i> (ControllerHome).
+     * @see ControllerHome
+     */
     public void clickIndietro(ActionEvent event)  {
         try {
 
@@ -50,6 +65,12 @@ public class ControllerSegnalazioni {
         } catch (IOException ignored){}
     }
 
+    /**
+     * Il metodo <em>clickInvia</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Invia</i> nella schermata <i>'Segnalazioni'</i> dell'applicazione 'cittadini'.
+     * Vengono inviate tutte le segnalazioni compilate al server e si viene riportati alla schermata <i>Home</i> con il proprio profilo loggato (ControllerHome).
+     * <b>ATTENZIONE</b>: la segnalazione può essere inviata una sola volta per utente.
+     * @see ControllerHome
+     */
     public void clickInvia(ActionEvent event)  {
         try {
           
@@ -98,6 +119,10 @@ public class ControllerSegnalazioni {
         }
     }
 
+    /**
+     * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'Segnalazioni'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
+     * Come l'utente loggato e il collegamento al server.
+     */
     public void setDati(Cittadino c, ServerInterface s){
         server = s;
         User = c;

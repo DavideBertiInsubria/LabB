@@ -13,14 +13,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
+/** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * La classe <em>ServerImpl</em> viene utilizzata per implementare i metodi resi disponibili ai client tramite l'interfaccia ServerInterface.
+ */
 
+public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
+    /**
+     * <code>Database</code> &egrave; il riferimento al database utilizzato per inserire e reperire i dati ed è un oggetto di tipo <i>DBVaccinazioniManagement</i>.
+     * @see DBManagement.DBVaccinazioniManagement
+     */
     private final DBVaccinazioniManagement Database;
 
+    /**
+     *
+     * @throws RemoteException
+     * @throws SQLException
+     */
     protected ServerImpl() throws RemoteException, SQLException {
         Database = new DBVaccinazioniManagement ();
     }
 
+    /**
+     *
+     * @param c
+     */
     public synchronized void registraCittadino (Cittadino c){
         System.out.println ("Registrazione cittadino");
         try {
@@ -32,6 +48,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     *
+     * @param seg
+     */
     public synchronized void registraSegnalazione (Segnalazione seg){
         System.out.println ("Registrazione segnalazione");
         if(seg.getNota()==null){
@@ -46,11 +66,19 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     *
+     * @param v
+     */
     @Override
     public synchronized void registraVaccinato (Vaccinato v) {
         //query per la registrazione del vaccinato
     }
 
+    /**
+     *
+     * @param CV
+     */
     @Override
     public synchronized void registraCentroVaccinale (CentroVaccinale CV) {
         System.out.println("Registrazione centro vaccinale");
@@ -64,6 +92,13 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     }
 
+    /**
+     *
+     * @param nome
+     * @param comune
+     * @param tipo
+     * @return
+     */
     public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, String tipo) {
         System.out.println ("Cerca centro vaccinale");
         ArrayList<CentroVaccinale> CV = new ArrayList<CentroVaccinale>();
@@ -87,12 +122,23 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return null;
     }
 
+    /**
+     *
+     * @param CV
+     */
     public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV) {
         //Query per le informazione del centro
         String info = null;
 
     }
 
+    /**
+     *
+     * @param userID
+     * @param password
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public Cittadino login (String userID, String password) throws RemoteException {
         ResultSet cittadini = null;
@@ -105,6 +151,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     *
+     * @throws RemoteException
+     */
     private void exec() throws  RemoteException {
         try {
             ServerImpl serverR= new ServerImpl ();
@@ -118,6 +168,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String args[])throws Exception {//Main per inizializzare il server
 
         ServerImpl server = new ServerImpl ();

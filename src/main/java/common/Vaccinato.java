@@ -78,8 +78,8 @@ public class Vaccinato implements Serializable {
     	return NomeCentro;
     }
     
-    public String setNomeCentro(String NomeCentro) {
-    	return this.NomeCentro = NomeCentro;
+    public void setNomeCentro(String NomeCentro) {
+    	this.NomeCentro = NomeCentro;
     }
 
 }

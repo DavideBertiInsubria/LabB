@@ -25,7 +25,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     private final DBVaccinazioniManagement Database;
 
     /**
-     *
+     * Il costruttore <em>ServerImpl</em> serve ad associare al server il suo database.
      * @throws RemoteException
      * @throws SQLException
      */
@@ -72,6 +72,13 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      */
     @Override
     public synchronized void registraVaccinato (Vaccinato v) {
+        System.out.println ("Registrazione Vaccinato");
+       /* try {
+            //Database.registraVaccinato ();
+        }catch (SQLException throwables){
+            throwables.printStackTrace ();
+            System.out.println("La registrazione del vaccinato non è andata a buon fine riprovare");
+        }*/
         //query per la registrazione del vaccinato
     }
 

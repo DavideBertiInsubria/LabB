@@ -34,8 +34,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
-     * @param c
+     *Il metodo <em>registraCittadino</em> serve a registrare i dati di un cittadino sul database.
+     * @param c Riferimento ad un oggetto di tipo <i>Cittadino</i> che contiene le informazioni da aggiungere al database
+     * @see common.Cittadino
      */
     public synchronized void registraCittadino (Cittadino c){
         System.out.println ("Registrazione cittadino");
@@ -49,8 +50,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
-     * @param seg
+     *Il metodo <em>registraCittadino</em> serve a registrare i dati di una segnalazione sul database da parte di un cittadino registrato.
+     * @param seg Riferimento ad un oggetto di tipo <i>Segnalazione</i> che contiene i dati riguardo ad una segnalazione da effettuare.
+     * @see common.Segnalazione
      */
     public synchronized void registraSegnalazione (Segnalazione seg){
         System.out.println ("Registrazione segnalazione");
@@ -67,8 +69,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
-     * @param v
+     *Il metodo <em>registraVaccinato</em> serve a registrare i dati di una persona vaccinata da parte di un operatore sanitario tramite l'apposita applicazione su database.
+     * @param v Riferimento ad un oggetto di tipo <i>Vaccinato</i> che contiene i dati di un vaccinato da inserire nel database.
+     * @see common.Vaccinato
      */
     @Override
     public synchronized void registraVaccinato (Vaccinato v) {
@@ -83,8 +86,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
-     * @param CV
+     *Il metodo <em>registraCentroVaccinale</em> serve a registrare i dati di un nuovo centro vaccinale sul database.
+     * @param CV Riferimento ad un oggetto di tipo CentroVaccinale.
+     * @see common.CentroVaccinale
      */
     @Override
     public synchronized void registraCentroVaccinale (CentroVaccinale CV) {
@@ -100,11 +104,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
-     * @param nome
-     * @param comune
-     * @param tipo
-     * @return
+     *Il metodo cercaCentroVaccinale serve a cercare un centro vaccinale nel database
+     * @param nome Riferimento di tipo String che contiene il nome del centro da ricercare.
+     * @param comune Riferimento di tipo String che contiene il nome del comune del centro da ricercare.
+     * @param tipo Riferimento di tipo String che contiene il nome del tipo del centro da ricercare.
+     * @return Il metodo ritorna un arraylist di centri vaccinali che corrispondono ai parametri inseriti.
      */
     public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, String tipo) {
         System.out.println ("Cerca centro vaccinale");
@@ -130,8 +134,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
-     * @param CV
+     *Il metodo <em>visualizzaInfoCentroVaccinale</em>  serve a visualizzare le informazioni di un centro vaccinale selezionato dall'utente sull'applicazione.
+     * @param CV Riferimento di tipo CentroVaccinale che contiene un oggetto contente i dati del centro da visualizzare.
+     * @see common.CentroVaccinale
      */
     public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV) {
         //Query per le informazione del centro
@@ -140,10 +145,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
-     * @param userID
-     * @param password
-     * @return
+     *Il metodo <em>login</em> serve ad autenticare un cittadino registrato dall'applicazione.
+     * @param userID Riferimento di tipo String che contiene lo userID inserito dall'utente per l'autenticazione.
+     * @param password Riferimento di tipo String che contiene la password inserita dall'utente per l'autenticazione.
+     * @return Il metodo ritorna un oggetto di tipo <i>Cittadino</i> che contiene i dati relativi all'utente autenticato se l'autenticazione &egrave; andata a buon fine altrimenti ritorna <i>NULL</i>.
      * @throws RemoteException
      */
     @Override
@@ -159,7 +164,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
+     *Il metodo <em>exec</em> &egrave; usato per inizializzare il server e renderne disponibili i servizi.
      * @throws RemoteException
      */
     private void exec() throws  RemoteException {
@@ -176,11 +181,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
+     * Il main &egrave; utilizzato per eseguire il server.
      * @param args
      * @throws Exception
      */
-    public static void main(String args[])throws Exception {//Main per inizializzare il server
+    public static void main(String args[])throws Exception {
 
         ServerImpl server = new ServerImpl ();
         server.exec();

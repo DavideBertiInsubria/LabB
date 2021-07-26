@@ -5,14 +5,16 @@ import java.util.ArrayList;
 
 import common.CentroVaccinale;
 import common.TipologiaCentro;
+import common.Vaccinato;
 import common.Vaccino;
 import common.Cittadino;
+import common.ReportEventoAvverso;
 import common.Segnalazione;
 
 public class DBVaccinazioniManagement extends DBManager{
 
 	public DBVaccinazioniManagement() throws SQLException {
-		super("jdbc:postgresql://87.8.75.106/dblabb","postgres","test");
+		super("jdbc:postgresql://localhost/dblabb","postgres","test");
 	}
 	
 	
@@ -51,25 +53,41 @@ public class DBVaccinazioniManagement extends DBManager{
 		}
 	}
 	
-	public void registraVaccinato(Cittadino cittadino,String datasomm,Vaccino vaccino) throws SQLException {
+	public void registraVaccinato(Vaccinato vaccinato,String datasomm,Vaccino vaccino) throws SQLException {
 		
-		String nome = cittadino.getNome ();
-		String cognome = cittadino.getCognome();
-		String cf = cittadino.getCF();
-		String nomecentro = cittadino.getNomeCentro();
+		String nome = vaccinato.getNome ();
+		String cognome = vaccinato.getCognome();
+		String cf = vaccinato.getCF();
+		String nomecentro = vaccinato.getNomeCentro();
 		int idcentro;
 		
 		ResultSet id = query("SELECT IDCentro FROM CentriVaccinali WHERE Nome='"+nomecentro+"'");
 		
 		if(DBManager.ResultSetSize(id) == 1) {
 			idcentro = id.getInt(1);
-			cittadino.setIDCentro(idcentro);
+			vaccinato.setIDCentro(idcentro);
 			
 			query("INSERT INTO "+
 					"Vaccinati(IDCentro,NomeCentro,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato) "+
 					"VALUES("+idcentro+",'"+nomecentro+"','"+nome+"','"+cognome+"','"+cf+"','"+datasomm+"','"+vaccino+"')");
 		
 		}
+	}
+	
+	public ArrayList<ReportEventoAvverso> getReportSegnalazioni(int IDCentro) throws SQLException {
+		ResultSet eventi = query("SELECT IDEvento,Nome FROM EventoAvverso");
+		ArrayList<ReportEventoAvverso> report = new ArrayList<ReportEventoAvverso>(); 
+		if(DBManager.ResultSetSize(eventi) > 0) {
+			do {
+				int idevento = eventi.getInt(1);
+				ResultSet nsegnalazioni = query("SELECT COUNT(*) FROM Segnalazione INNER JOIN Vaccinati USING(IDVaccinazione) "+
+						"WHERE IDCentro="+IDCentro+" AND IDEvento="+idevento);
+				ResultSet media = query("SELECT AVG(Severita) FROM Segnalazione INNER JOIN Vaccinati USING(IDVaccinazione) "+
+						"WHERE IDCentro="+IDCentro+" AND IDEvento="+idevento);
+				report.add(new ReportEventoAvverso(eventi.getString(2),media.getFloat(1),nsegnalazioni.getInt(1)));
+			}while(eventi.next());
+		}
+		return report;
 	}
 	
 	public void registraSegnalazione(Segnalazione segnalazione) throws SQLException {

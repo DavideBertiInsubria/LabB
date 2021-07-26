@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
- *
+ * La classe <em>ServerInterface</em> &egrave; un'interfaccia usata per rendere disponibili i servizi offerti dal server alle applicazioni esterne.
  */
 public interface ServerInterface extends Remote {
     /**

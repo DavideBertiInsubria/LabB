@@ -53,7 +53,7 @@ public interface ServerInterface extends Remote {
      * @param CV
      * @throws RemoteException
      */
-    void visualizzaInfoCentroVaccinale(CentroVaccinale CV)  throws RemoteException;
+    ArrayList<ReportEventoAvverso> visualizzaInfoCentroVaccinale(CentroVaccinale CV)  throws RemoteException;
 
     /**
      *

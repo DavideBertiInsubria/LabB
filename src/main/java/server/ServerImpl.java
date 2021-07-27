@@ -93,11 +93,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public synchronized void registraCentroVaccinale (CentroVaccinale CV) {
         System.out.println("Registrazione centro vaccinale");
-        //gesu bastardo
         try {
             Database.registraCentroVaccinale (CV);
             System.out.println("Registrazione effettuata");
         } catch (SQLException e) {
+            System.out.println("Registrazione fallita");
             e.printStackTrace ();
         }
 
@@ -138,10 +138,16 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      * @param CV Riferimento di tipo CentroVaccinale che contiene un oggetto contente i dati del centro da visualizzare.
      * @see common.CentroVaccinale
      */
-    public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV) {
-        Database.getReportSegnalazioni (CV.getIDcentro ());
-        String info = null;
-
+    public synchronized ArrayList<ReportEventoAvverso> visualizzaInfoCentroVaccinale (CentroVaccinale CV) {
+        System.out.println ("Visualizza info centro vaccinale");
+        try {
+            System.out.println("Operazione effettuata");
+            return Database.getReportSegnalazioni (CV.getIDcentro ());
+        } catch (SQLException throwables) {
+            System.out.println("Operazione fallita");
+            throwables.printStackTrace ();
+        }
+        return null;
     }
 
     /**
@@ -186,7 +192,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      * @throws Exception
      */
     public static void main(String args[])throws Exception {
-
         ServerImpl server = new ServerImpl ();
         server.exec();
     }

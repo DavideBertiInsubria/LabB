@@ -2,6 +2,7 @@ package cittadini;
 
 import common.CentroVaccinale;
 import common.Cittadino;
+import common.ReportEventoAvverso;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import server.ServerInterface;
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  * La classe <em>ControllerVisualizza</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Visualizza'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
@@ -19,7 +22,7 @@ import java.io.IOException;
 public class ControllerVisualizza {
 
     @FXML
-    Label lbNome,lbIndirizzo, lbTipologia, lbSMalDiTesta, lbNMalDiTesta, lbSFebbre, lbNFebbre, lbSDolMusc, lbNDolMusc, lbSLinfo, lbNLinfo, lbSTachi, lbNTachi, lbSCrisi, lbNCrisi;
+    Label lbNome, lbIndirizzo, lbTipologia, lbT1, lbT2, lbT3, lbT4, lbT5, lbT6, lbM1, lbM2, lbM3, lbM4, lbM5, lbM6, lbN1, lbN2, lbN3, lbN4, lbN5, lbN6;
 
     /**
      * <code>CV</code> &egrave; il riferimento al centro vaccinale selezionato per la visualizzazione dei dati, ed è un oggetto di tipo <i>CentroVaccinale</i>.
@@ -40,18 +43,40 @@ public class ControllerVisualizza {
      */
     private ServerInterface server;
 
+    private ArrayList<ReportEventoAvverso> ProspettoEventiAvversi = new ArrayList<>();
+
     /**
      * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'Visualizza'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
      * Come l'utente loggato, il collegamento al server e il centro vaccinale selezionato da visualizzare.
      */
-    public void setDati(CentroVaccinale cv, Cittadino user, ServerInterface s){
+    public void setDati(CentroVaccinale cv, Cittadino user, ServerInterface s) throws RemoteException {
         server = s;
         CV = cv;
         User = user;
         lbNome.setText(CV.getNome());
         lbIndirizzo.setText(CV.getIndirizzo());
         lbTipologia.setText(CV.getTipologia().toString());
-        // SET DELLE SEVERITA'
+        // SET DELLE SEVERITA' MEDIA E N. SEGNALAZIONI
+        ProspettoEventiAvversi.clear();
+        ProspettoEventiAvversi = server.visualizzaInfoCentroVaccinale(CV);
+        lbT1.setText(ProspettoEventiAvversi.get(0).getEvento());
+        lbM1.setText(ProspettoEventiAvversi.get(0).getSeveritaMedia()+"");
+        lbN1.setText(ProspettoEventiAvversi.get(0).getNSegnalazioni()+"");
+        lbT2.setText(ProspettoEventiAvversi.get(1).getEvento());
+        lbM2.setText(ProspettoEventiAvversi.get(1).getSeveritaMedia()+"");
+        lbN2.setText(ProspettoEventiAvversi.get(1).getNSegnalazioni()+"");
+        lbT3.setText(ProspettoEventiAvversi.get(2).getEvento());
+        lbM3.setText(ProspettoEventiAvversi.get(2).getSeveritaMedia()+"");
+        lbN3.setText(ProspettoEventiAvversi.get(2).getNSegnalazioni()+"");
+        lbT4.setText(ProspettoEventiAvversi.get(3).getEvento());
+        lbM4.setText(ProspettoEventiAvversi.get(3).getSeveritaMedia()+"");
+        lbN4.setText(ProspettoEventiAvversi.get(3).getNSegnalazioni()+"");
+        lbT5.setText(ProspettoEventiAvversi.get(4).getEvento());
+        lbM5.setText(ProspettoEventiAvversi.get(4).getSeveritaMedia()+"");
+        lbN5.setText(ProspettoEventiAvversi.get(4).getNSegnalazioni()+"");
+        lbT6.setText(ProspettoEventiAvversi.get(5).getEvento());
+        lbM6.setText(ProspettoEventiAvversi.get(5).getSeveritaMedia()+"");
+        lbN6.setText(ProspettoEventiAvversi.get(5).getNSegnalazioni()+"");
     }
 
     /**

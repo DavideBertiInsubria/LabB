@@ -2,8 +2,6 @@ package server;
 
 import DBManagement.*;
 import common.*;
-import javafx.scene.chart.PieChart;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -50,7 +48,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     *
+     * Il metodo <em>checkSegnalazione</em> serve a controllare se un evento &egrave; già stato segnalato da un cittadino.
      * @param ID
      * @param evento
      * @return

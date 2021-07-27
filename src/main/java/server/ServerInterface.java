@@ -18,14 +18,7 @@ public interface ServerInterface extends Remote {
      */
     void registraCittadino(Cittadino c) throws RemoteException;
 
-    /**
-     *
-     * @param ID
-     * @param evento
-     * @return
-     * @throws RemoteException
-     */
-    boolean checkSegnalazione(int ID, String evento) throws RemoteException, SQLException;
+    boolean checkSegnalazione(int ID, String evento)throws RemoteException, SQLException;
 
     /**
      *

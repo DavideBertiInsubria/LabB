@@ -75,17 +75,19 @@ public class DBVaccinazioniManagement extends DBManager{
 	}
 	
 	public ArrayList<ReportEventoAvverso> getReportSegnalazioni(int IDCentro) throws SQLException {
-		ResultSet eventi = query("SELECT IDEvento,Nome FROM EventoAvverso");
+		ResultSet eventi = query("SELECT IDEvento,Evento FROM EventoAvverso");
 		ArrayList<ReportEventoAvverso> report = new ArrayList<ReportEventoAvverso>(); 
-		if(DBManager.ResultSetSize(eventi) > 0) {
-			do {
-				int idevento = eventi.getInt(1);
-				ResultSet nsegnalazioni = query("SELECT COUNT(*) FROM Segnalazione INNER JOIN Vaccinati USING(IDVaccinazione) "+
-						"WHERE IDCentro="+IDCentro+" AND IDEvento="+idevento);
-				ResultSet media = query("SELECT AVG(Severita) FROM Segnalazione INNER JOIN Vaccinati USING(IDVaccinazione) "+
-						"WHERE IDCentro="+IDCentro+" AND IDEvento="+idevento);
-				report.add(new ReportEventoAvverso(eventi.getString(2),media.getFloat(1),nsegnalazioni.getInt(1)));
-			}while(eventi.next());
+		while(eventi.next()) {
+			int idevento = eventi.getInt(1);
+			String evento = eventi.getString(2);
+			ResultSet nsegnalazioni = query("SELECT COUNT(*) FROM Segnalazione INNER JOIN Vaccinati USING(IDVaccinazione) "+
+					"WHERE IDCentro="+IDCentro+" AND IDEvento="+idevento);
+			nsegnalazioni.next();
+			ResultSet media = query("SELECT AVG(Severita) FROM Segnalazione INNER JOIN Vaccinati USING(IDVaccinazione) "+
+					"WHERE IDCentro="+IDCentro+" AND IDEvento="+idevento);
+			media.next();
+
+			report.add(new ReportEventoAvverso(evento,media.getFloat(1),nsegnalazioni.getInt(1)));
 		}
 		return report;
 	}

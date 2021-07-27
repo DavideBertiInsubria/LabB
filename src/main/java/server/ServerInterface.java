@@ -4,6 +4,7 @@ import common.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +17,15 @@ public interface ServerInterface extends Remote {
      * @throws RemoteException
      */
     void registraCittadino(Cittadino c) throws RemoteException;
+
+    /**
+     *
+     * @param ID
+     * @param evento
+     * @return
+     * @throws RemoteException
+     */
+    boolean checkSegnalazione(int ID, String evento) throws RemoteException, SQLException;
 
     /**
      *

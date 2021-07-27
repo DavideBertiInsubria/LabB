@@ -49,6 +49,16 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     *
+     * @param ID
+     * @param evento
+     * @return
+     */
+    public synchronized boolean checkSegnalazione(int ID, String evento) throws SQLException {
+           return Database.checkSegnalazione (ID,evento);
+    }
+
     /**+
      *Il metodo <em>registraCittadino</em> serve a registrare i dati di una segnalazione sul database da parte di un cittadino registrato.
      * @param seg Riferimento ad un oggetto di tipo <i>Segnalazione</i> che contiene i dati riguardo ad una segnalazione da effettuare.
@@ -159,11 +169,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      */
     @Override
     public Cittadino login (String userID, String password) throws RemoteException {
+        System.out.println ("Login");
         ResultSet cittadini = null;
         try {
             cittadini=Database.loginCittadino (userID,password);
+            System.out.println ("Login effettuato con successo");
             return new Cittadino (cittadini.getString ("cf"),cittadini.getString ("nome"),cittadini.getString ("cognome"),cittadini.getString ("nick"),cittadini.getString ("email"),cittadini.getString ("password"),cittadini.getInt ("idvaccinazione"),"");
         } catch (SQLException throwables) {
+            System.out.println ("Login fallito");
             throwables.printStackTrace ();
             return null;
         }

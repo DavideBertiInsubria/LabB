@@ -92,6 +92,19 @@ public class DBVaccinazioniManagement extends DBManager{
 		return report;
 	}
 	
+	public boolean checkSegnalazione(int IDVaccinazione, String evento) throws SQLException{
+		ResultSet r = query("SELECT IDEvento FROM EventoAvverso WHERE Evento='"+evento+"'");
+		if(r.next()) {
+			ResultSet r2 = query("SELECT IDSegnalazione FROM Segnalazione "+
+								"WHERE IDVaccinazione="+IDVaccinazione+" AND IDEvento="+r.getInt(1));
+			if(!r2.next())
+				return false;
+			else
+				return true;
+		}
+		return false;
+	}
+	
 	public void registraSegnalazione(Segnalazione segnalazione) throws SQLException {
 		
 		int idvaccinazione = segnalazione.getIDVaccinazione();

@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 /** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  * La classe <em>ControllerSegnalazioni</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Segnalazioni'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
@@ -82,7 +84,7 @@ public class ControllerSegnalazioni {
             thisWindow.close();
             
             // INVIO SEGNALAZIONE...
-            if (comboMalDiTesta.getValue()>0 && comboMalDiTesta.getValue()<=5) {
+            if (comboMalDiTesta.getValue()>0 && comboMalDiTesta.getValue()<=5) { // e' stata compilata la severità?
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Mal di testa", comboMalDiTesta.getValue(), textMalDiTesta.getText());
                 server.registraSegnalazione(s);
             }
@@ -129,5 +131,35 @@ public class ControllerSegnalazioni {
     public void setDati(Cittadino c, ServerInterface s){
         server = s;
         User = c;
+        // CHECK SULL'ESISTENZA DI UNA SEGNALAZIONE DI OGNI EVENTO
+        try {
+            if (server.checkSegnalazione(User.getIDVaccino(), "Mal di testa")){
+                comboMalDiTesta.setEditable(false);
+                textMalDiTesta.setEditable(false);
+            }
+            if (server.checkSegnalazione(User.getIDVaccino(), "Febbre")){
+                comboFebbre.setEditable(false);
+                textFebbre.setEditable(false);
+            }
+            if (server.checkSegnalazione(User.getIDVaccino(), "Dolori muscolari e articolari")){
+                comboDoloriMuscArtic.setEditable(false);
+                textDoloriMuscArtic.setEditable(false);
+            }
+            if (server.checkSegnalazione(User.getIDVaccino(), "Linfoadenopatia")){
+                comboLinfo.setEditable(false);
+                textMalDiTesta.setEditable(false);
+            }
+            if (server.checkSegnalazione(User.getIDVaccino(), "Tachicardia")){
+                comboTachi.setEditable(false);
+                textTachi.setEditable(false);
+            }
+            if (server.checkSegnalazione(User.getIDVaccino(), "Crisi ipertensiva")){
+                comboCrisi.setEditable(false);
+                textCrisi.setEditable(false);
+            }
+        } catch (RemoteException | SQLException e) {
+            e.printStackTrace();
+            // IMPLEMENTO MESSAGGIO
+        }
     }
 }

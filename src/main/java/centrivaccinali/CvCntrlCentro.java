@@ -1,8 +1,6 @@
 package centrivaccinali;
 
 import common.CentroVaccinale;
-import common.ClientImpl;
-import common.ClientInterface;
 import common.TipologiaCentro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

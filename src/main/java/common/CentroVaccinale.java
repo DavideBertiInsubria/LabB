@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class CentroVaccinale implements Serializable {
     private String nome, indirizzo, tipologia;
+    private int IDcentro;
 
     public CentroVaccinale(){ }
 
@@ -13,8 +14,14 @@ public class CentroVaccinale implements Serializable {
 		this.tipologia = tipologia;
 	}
 
-	public CentroVaccinale (String name, String addr, TipologiaCentro type) {
+	public CentroVaccinale(int IDcentro,String nome,String indirizzo,String tipologia) {
+    	this.IDcentro=IDcentro;
+		this.nome = nome;
+		this.indirizzo = indirizzo;
+		this.tipologia = tipologia;
 	}
+
+	public int getIDcentro(){return IDcentro; }
 
 	public String getNome() {
 		return nome;

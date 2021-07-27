@@ -2,7 +2,7 @@ package common;
 
 import java.io.Serializable;
 
-public class ReportEventoAvverso implements Serializable{
+public class ReportEventoAvverso implements Serializable {
 		
 	private String Evento;
 	private float severitaMedia;

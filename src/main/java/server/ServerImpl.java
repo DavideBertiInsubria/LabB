@@ -49,7 +49,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
-    /**
+    /**+
      *Il metodo <em>registraCittadino</em> serve a registrare i dati di una segnalazione sul database da parte di un cittadino registrato.
      * @param seg Riferimento ad un oggetto di tipo <i>Segnalazione</i> che contiene i dati riguardo ad una segnalazione da effettuare.
      * @see common.Segnalazione
@@ -122,7 +122,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         if(centri != null) {
 	        try {
 	            while(centri.next()){
-	                CV.add(new CentroVaccinale (centri.getString(1), centri.getString (2).replace(";"," "), centri.getString (3)));
+	                CV.add(new CentroVaccinale (centri.getInt (1),centri.getString(2), centri.getString (3).replace(";"," "), centri.getString (4)));
 	            }
 	            System.out.println ("Ritorno centri vaccinale");
 	            return CV;
@@ -139,7 +139,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      * @see common.CentroVaccinale
      */
     public synchronized void visualizzaInfoCentroVaccinale (CentroVaccinale CV) {
-        //Query per le informazione del centro
+        Database.getReportSegnalazioni (CV.getIDcentro ());
         String info = null;
 
     }

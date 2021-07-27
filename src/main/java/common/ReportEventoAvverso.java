@@ -1,6 +1,8 @@
 package common;
 
-public class ReportEventoAvverso {
+import java.io.Serializable;
+
+public class ReportEventoAvverso implements Serializable{
 		
 	private String Evento;
 	private float severitaMedia;

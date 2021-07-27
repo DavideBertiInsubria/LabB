@@ -136,7 +136,7 @@ public class DBVaccinazioniManagement extends DBManager{
 			
 		ResultSet centri = null;
 		
-		String s = "SELECT Nome,Indirizzo,Tipologia FROM CentriVaccinali WHERE Nome LIKE '"+nome+"' AND Indirizzo LIKE '"+comune+"'"+tipologia;
+		String s = "SELECT IDCentro,Nome,Indirizzo,Tipologia FROM CentriVaccinali WHERE Nome LIKE '"+nome+"' AND Indirizzo LIKE '"+comune+"'"+tipologia;
 		centri = query(s);
 		return centri;
 		

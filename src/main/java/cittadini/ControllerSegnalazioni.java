@@ -147,7 +147,7 @@ public class ControllerSegnalazioni {
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Linfoadenopatia")){
                 comboLinfo.setVisible(false);
-                textMalDiTesta.setVisible(false);
+                textLinfo.setVisible(false);
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Tachicardia")){
                 comboTachi.setVisible(false);

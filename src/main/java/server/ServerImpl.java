@@ -58,7 +58,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
            return Database.checkSegnalazione (ID,evento);
     }
 
-    /**+
+    /**
      * Il metodo <em>registraSegnalazione</em> serve a registrare i dati di una segnalazione sul database da parte di un cittadino registrato.
      * @param seg Riferimento ad un oggetto di tipo <i>Segnalazione</i> che contiene i dati riguardo ad una segnalazione da effettuare.
      * @see common.Segnalazione

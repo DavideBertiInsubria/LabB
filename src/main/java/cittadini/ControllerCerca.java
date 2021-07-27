@@ -19,7 +19,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
- * La classe <em>ControllerCerca</em> rappresenta il <i>controller</i> della schermata <i>'cerca'</i> dell'applicazione 'cittadini'.
+ * La classe <em>ControllerCerca</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Cerca'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
  */
 public class ControllerCerca {
 

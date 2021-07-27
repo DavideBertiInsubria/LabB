@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+/** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * La classe <em>ControllerLogin</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Login'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
+ */
 public class ControllerLogin {
 
     /**

@@ -13,6 +13,9 @@ import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
 
+/** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * La classe <em>ControllerHome</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Home'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
+ */
 public class ControllerHome {
     @FXML
     Button btnCerca,btnRegistrazione, btnSegnalazione, btnLogin, btnLogout;

@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import server.ServerInterface;
 import java.io.IOException;
 
+/** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * La classe <em>ControllerVisualizza</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Visualizza'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
+ */
 public class ControllerVisualizza {
 
     @FXML

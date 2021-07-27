@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  * La classe <em>ServerImpl</em> viene utilizzata per implementare i metodi resi disponibili ai client tramite l'interfaccia ServerInterface.
+ * @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  */
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
@@ -59,7 +59,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**+
-     *Il metodo <em>registraCittadino</em> serve a registrare i dati di una segnalazione sul database da parte di un cittadino registrato.
+     * Il metodo <em>registraSegnalazione</em> serve a registrare i dati di una segnalazione sul database da parte di un cittadino registrato.
      * @param seg Riferimento ad un oggetto di tipo <i>Segnalazione</i> che contiene i dati riguardo ad una segnalazione da effettuare.
      * @see common.Segnalazione
      */

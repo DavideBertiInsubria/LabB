@@ -134,28 +134,28 @@ public class ControllerSegnalazioni {
         // CHECK SULL'ESISTENZA DI UNA SEGNALAZIONE DI OGNI EVENTO
         try {
             if (server.checkSegnalazione(User.getIDVaccino(), "Mal di testa")){
-                comboMalDiTesta.setVisible(false);
-                textMalDiTesta.setVisible(false);
+                comboMalDiTesta.setEditable(false);
+                textMalDiTesta.setEditable(false);
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Febbre")){
-                comboFebbre.setVisible(false);
-                textFebbre.setVisible(false);
+                comboFebbre.setEditable(false);
+                textFebbre.setEditable(false);
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Dolori muscolari e articolari")){
-                comboDoloriMuscArtic.setVisible(false);
-                textDoloriMuscArtic.setVisible(false);
+                comboDoloriMuscArtic.setEditable(false);
+                textDoloriMuscArtic.setEditable(false);
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Linfoadenopatia")){
-                comboLinfo.setVisible(false);
-                textLinfo.setVisible(false);
+                comboLinfo.setEditable(false);
+                textLinfo.setEditable(false);
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Tachicardia")){
-                comboTachi.setVisible(false);
-                textTachi.setVisible(false);
+                comboTachi.setEditable(false);
+                textTachi.setEditable(false);
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Crisi ipertensiva")){
-                comboCrisi.setVisible(false);
-                textCrisi.setVisible(false);
+                comboCrisi.setEditable(false);
+                textCrisi.setEditable(false);
             }
         } catch (RemoteException | SQLException e) {
             e.printStackTrace();

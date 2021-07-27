@@ -11,7 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+/**
+ * @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  * La classe <em>ServerImpl</em> viene utilizzata per implementare i metodi resi disponibili ai client tramite l'interfaccia ServerInterface.
  */
 
@@ -95,7 +96,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     /**
      *Il metodo <em>registraCentroVaccinale</em> serve a registrare i dati di un nuovo centro vaccinale sul database.
-     * @param CV Riferimento ad un oggetto di tipo CentroVaccinale.
+     * @param CV Riferimento ad un oggetto di tipo <i>CentroVaccinale</i>.
      * @see common.CentroVaccinale
      */
     @Override
@@ -116,7 +117,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      * @param nome Riferimento di tipo String che contiene il nome del centro da ricercare.
      * @param comune Riferimento di tipo String che contiene il nome del comune del centro da ricercare.
      * @param tipo Riferimento di tipo String che contiene il nome del tipo del centro da ricercare.
-     * @return Il metodo ritorna un arraylist di centri vaccinali che corrispondono ai parametri inseriti.
+     * @return Il metodo ritorna un arraylist di tipo <i>CentroVaccinale</i> che contiene i centri corrispondenti ai parametri inseriti.
+     * @see common.CentroVaccinale
      */
     public ArrayList<CentroVaccinale> cercaCentroVaccinale (String nome, String comune, String tipo) {
         System.out.println ("Cerca centro vaccinale");
@@ -143,7 +145,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     /**
      *Il metodo <em>visualizzaInfoCentroVaccinale</em>  serve a visualizzare le informazioni di un centro vaccinale selezionato dall'utente sull'applicazione.
-     * @param CV Riferimento di tipo CentroVaccinale che contiene un oggetto contente i dati del centro da visualizzare.
+     * @param CV Riferimento di tipo <i>CentroVaccinale</i> che contiene un oggetto contente i dati del centro da visualizzare.
      * @see common.CentroVaccinale
      */
     public synchronized ArrayList<ReportEventoAvverso> visualizzaInfoCentroVaccinale (CentroVaccinale CV) {
@@ -163,6 +165,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      * @param userID Riferimento di tipo String che contiene lo userID inserito dall'utente per l'autenticazione.
      * @param password Riferimento di tipo String che contiene la password inserita dall'utente per l'autenticazione.
      * @return Il metodo ritorna un oggetto di tipo <i>Cittadino</i> che contiene i dati relativi all'utente autenticato se l'autenticazione &egrave; andata a buon fine altrimenti ritorna <i>NULL</i>.
+     * @see common.Cittadino
      * @throws RemoteException
      */
     @Override

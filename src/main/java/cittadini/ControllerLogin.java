@@ -41,7 +41,9 @@ public class ControllerLogin {
     /**
      * Il metodo <em>clickIndietro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Indietro</i> nella schermata <i>'Login'</i> dell'applicazione 'cittadini'.
      * Viene riportato alla schermata <i>Home</i> (ControllerHome).
+     * * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerHome
+     * @see ActionEvent
      */
     public void clickIndietro(ActionEvent event)  {
         try {
@@ -58,15 +60,20 @@ public class ControllerLogin {
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){}
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
     /**
      * Il metodo <em>clickAccedi</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Accedi</i> nella schermata <i>'Login'</i> dell'applicazione 'cittadini'.
      * Viene verificato se i dati sono corretti e in caso positivo si viene riportati alla schermata <i>Home</i> con il proprio profilo loggato (ControllerHome).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerHome
+     * @see ActionEvent
      */
-    public void clickAccedi(ActionEvent event) throws RemoteException, NotBoundException {
+    public void clickAccedi(ActionEvent event) {
 
         // CHECK COMPILAZIONE
         if (textPax.getText().equals("") || textUserID.getText().equals("")){
@@ -75,8 +82,15 @@ public class ControllerLogin {
         }
 
         // CONTROLLO ESISTENZA UTENTE
-        Cittadino utente = server.login(textUserID.getText(), textPax.getText());
-            //... non trovato
+        Cittadino utente = null;
+        try {
+            utente = server.login(textUserID.getText(), textPax.getText());
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        //... non trovato
         if (utente == null) {
             JOptionPane.showMessageDialog(null, "Utente non trovato. Ricontrollare i dati inseriti. ");
         } else {
@@ -95,13 +109,18 @@ public class ControllerLogin {
                 schermata.setTitle("Vaccinazione cittadini");
                 schermata.setScene(new Scene(root));
                 schermata.show();
-            } catch (IOException ignored){}
+            } catch (IOException e){
+                JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+                e.printStackTrace();
+            }
         }
     }
 
     /**
      * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'Login'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
      * Come il collegamento al server.
+     * @param s &egrave; il riferimento al server.
+     * @see ServerInterface
      */
     public void setDati(ServerInterface s) {
         server = s;

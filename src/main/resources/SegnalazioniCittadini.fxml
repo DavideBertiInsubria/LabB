@@ -73,32 +73,32 @@
             <ComboBox fx:id="comboLinfo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ComboBox fx:id="comboTachi" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ComboBox fx:id="comboCrisi" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextArea fx:id="textMalDiTesta" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <TextArea fx:id="textMalDiTesta" prefHeight="200.0" prefWidth="200.0" promptText="Inserire una nota se si desidera." GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textFebbre" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <TextArea fx:id="textFebbre" prefHeight="200.0" prefWidth="200.0" promptText="Inserire una nota se si desidera." GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textDoloriMuscArtic" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <TextArea fx:id="textDoloriMuscArtic" prefHeight="200.0" prefWidth="200.0" promptText="Inserire una nota se si desidera." GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textLinfo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TextArea fx:id="textLinfo" prefHeight="200.0" prefWidth="200.0" promptText="Inserire una nota se si desidera." GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textTachi" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <TextArea fx:id="textTachi" prefHeight="200.0" prefWidth="200.0" promptText="Inserire una nota se si desidera." GridPane.columnIndex="2" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </TextArea>
-            <TextArea fx:id="textCrisi" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <TextArea fx:id="textCrisi" prefHeight="200.0" prefWidth="200.0" promptText="Inserire una nota se si desidera." GridPane.columnIndex="2" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>

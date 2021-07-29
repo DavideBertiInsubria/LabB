@@ -34,6 +34,7 @@ public class ControllerCerca {
      * <code>listaCentriVaccinaliVisualizzati</code> &egrave; la lista di oggetti di tipo CentroVaccinali.
      * Rappresenta la lista di centri vaccinali che vengono visualizzati nella schermata di ricerca.
      * @see CentroVaccinale
+     * @see ArrayList
      */
     private ArrayList<CentroVaccinale> listaCentriVaccinaliVisualizzati = new ArrayList<CentroVaccinale>();
 
@@ -59,11 +60,17 @@ public class ControllerCerca {
     /**
      * Il metodo <em>azzeraFiltro</em> si occupa di aggiungere tutti i centri esistenti nella lista di visualizzazione nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini' (e quindi di azzerare i filtri applicati).
      */
-    private void azzeraFiltro() throws RemoteException {
+    private void azzeraFiltro() {
         listCentriVacc.getItems().clear();
         listaCentriVaccinaliVisualizzati.clear();
         // SET LISTA
-        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale("", "", "");
+        try {
+            listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale("", "", "");
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            e.printStackTrace();
+            System.exit(0);
+        }
         for (CentroVaccinale centroVaccinale : listaCentriVaccinaliVisualizzati) {
             listCentriVacc.getItems().add(centroVaccinale.getNome() + " - " + centroVaccinale.getIndirizzo());
         }
@@ -72,15 +79,19 @@ public class ControllerCerca {
     /**
      * Il metodo <em>clickAzzeraFiltro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Azzera filtro</i> nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini'.
      * Richiama il metodo <i>azzeraFiltro</i>
+     * @param event &egrave; il riferimento all'evento eseguito.
+     * @see ActionEvent
      */
-    public void clickAzzeraFiltro(ActionEvent event) throws RemoteException {
+    public void clickAzzeraFiltro(ActionEvent event) {
         azzeraFiltro();
     }
     /**
      * Il metodo <em>clickCerca</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Cerca</i> nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini'.
      * Vengono applicati tutti i filtri compilati ed inseriti nei campi di ricerca dell'interfaccia grafica e viene aggiornata la lista <i>listaCentriVaccinaliVisualizzati</i>.
+     * @param event &egrave; il riferimento all'evento eseguito.
+     * @see ActionEvent
      */
-    public void clickCerca(ActionEvent event) throws RemoteException {
+    public void clickCerca(ActionEvent event) {
 
         listCentriVacc.getItems().clear();
         listaCentriVaccinaliVisualizzati.clear();
@@ -99,7 +110,13 @@ public class ControllerCerca {
         else
             Tipo = comboTipo.getValue();
         // SET LISTA
-        listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale(Nome, Comune, Tipo);
+        try {
+            listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale(Nome, Comune, Tipo);
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            e.printStackTrace();
+            System.exit(0);
+        }
         for (int i=0; i<listaCentriVaccinaliVisualizzati.size(); i++){
             listCentriVacc.getItems().add( listaCentriVaccinaliVisualizzati.get(i).getNome() + " - " + listaCentriVaccinaliVisualizzati.get(i).getIndirizzo() );
         }
@@ -108,7 +125,9 @@ public class ControllerCerca {
     /**
      * Il metodo <em>clickVisualizza</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Visualizza</i> nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini'.
      * Viene aperta la schermata di visualizzazione delle informazioni del centro vaccinale che è stato selezionato della lista (ControllerVisualizza).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerVisualizza
+     * @see ActionEvent
      */
     public void clickVisualizza(ActionEvent event) {
         if (listCentriVacc.getSelectionModel().getSelectedIndex() == -1 ){
@@ -129,12 +148,19 @@ public class ControllerCerca {
             schermata.setTitle("Visualizza centro vaccinale");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){ }
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
     /**
      * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'cerca'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
      * Come l'utente loggato e il collegamento al server.
+     * @param user &egrave; il riferimento all'utente loggato se esiste, altrimenti &egrave; null.
+     * @param s &egrave; il riferimento al server.
+     * @see Cittadino
+     * @see ServerInterface
      */
     public void setDati(Cittadino user, ServerInterface s) throws RemoteException {
         server = s;
@@ -145,7 +171,9 @@ public class ControllerCerca {
     /**
      * Il metodo <em>clickIndietro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Indietro</i> nella schermata <i>'Cerca'</i> dell'applicazione 'cittadini'.
      * Viene riportato alla schermata <i>Home</i> (ControllerHome).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerHome
+     * @see ActionEvent
      */
     public void clickIndietro(ActionEvent event)  {
         try {
@@ -162,7 +190,10 @@ public class ControllerCerca {
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){}
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
 }

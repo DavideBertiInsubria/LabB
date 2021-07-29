@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import server.ServerInterface;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -43,13 +45,26 @@ public class ControllerVisualizza {
      */
     private ServerInterface server;
 
+    /**
+     * <code>ProspettoEventiAvversi</code> &egrave; una la lista di oggetti di tipo ReportEventoAvverso.
+     * Rappresenta una lista composta da 6 elementi, ovvero i 6 tipi di eventi che servono per la visualizzazione del prospetto riassuntivo.
+     * @see ArrayList
+     * @see ReportEventoAvverso
+     */
     private ArrayList<ReportEventoAvverso> ProspettoEventiAvversi = new ArrayList<>();
 
     /**
      * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'Visualizza'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
      * Come l'utente loggato, il collegamento al server e il centro vaccinale selezionato da visualizzare.
+     * Inoltre si collega al server e recupera le informazioni occorrenti per il prospetto riassuntivo inserendole nella tabella.
+     * @param cv &egrave; il riferimento al centro vaccinale da visualizzare.
+     * @param user &egrave; il riferimento all'utente loggato se esiste, altrimenti &egrave; null.
+     * @param s &egrave; il riferimento al server.
+     * @see CentroVaccinale
+     * @see Cittadino
+     * @see ServerInterface
      */
-    public void setDati(CentroVaccinale cv, Cittadino user, ServerInterface s) throws RemoteException {
+    public void setDati(CentroVaccinale cv, Cittadino user, ServerInterface s) {
         server = s;
         CV = cv;
         User = user;
@@ -58,7 +73,13 @@ public class ControllerVisualizza {
         lbTipologia.setText(CV.getTipologia().toString());
         // SET DELLE SEVERITA' MEDIA E N. SEGNALAZIONI
         ProspettoEventiAvversi.clear();
-        ProspettoEventiAvversi = server.visualizzaInfoCentroVaccinale(CV);
+        try {
+            ProspettoEventiAvversi = server.visualizzaInfoCentroVaccinale(CV);
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            e.printStackTrace();
+            System.exit(0);
+        }
         lbT1.setText(ProspettoEventiAvversi.get(0).getEvento());
         lbM1.setText(ProspettoEventiAvversi.get(0).getSeveritaMedia()+"");
         lbN1.setText(ProspettoEventiAvversi.get(0).getNSegnalazioni()+"");
@@ -82,7 +103,9 @@ public class ControllerVisualizza {
     /**
      * Il metodo <em>clickIndietro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Indietro</i> nella schermata <i>'Visualizza'</i> dell'applicazione 'cittadini'.
      * Viene riportato alla schermata <i>Cerca</i> (ControllerCerca).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerCerca
+     * @see ActionEvent
      */
     public void clickIndietro(ActionEvent event){
         try {
@@ -101,7 +124,10 @@ public class ControllerVisualizza {
             schermata.setTitle("Cerca centro vaccinale");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){}
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
 }

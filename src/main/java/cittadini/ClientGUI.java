@@ -40,8 +40,8 @@ public class ClientGUI extends Application {
         try {
             server = (ServerInterface) registro.lookup("Vaccino");
         } catch (NotBoundException e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            e.printStackTrace();
             System.exit(0);
         }
 

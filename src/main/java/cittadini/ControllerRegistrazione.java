@@ -43,9 +43,11 @@ public class ControllerRegistrazione {
      * Il metodo <em>clickRegistrati</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Registrati</i> nella schermata <i>'Registrazione'</i> dell'applicazione 'cittadini'.
      * Innanzitutto viene verificato se i campi sono stati compilati correttamente e in caso positivo si viene riportati alla schermata <i>Home</i> con il proprio profilo loggato (ControllerHome).
      * Per la verifica dei campi utilizza il metodo <i>checkCompilazione</i> della medesima classe.
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerHome
+     * @see ActionEvent
      */
-    public void clickRegistrati(ActionEvent event) throws RemoteException {
+    public void clickRegistrati(ActionEvent event) {
 
         // CHECK COMPILAZIONE
         if (checkCompilazione()) {
@@ -57,7 +59,14 @@ public class ControllerRegistrazione {
 
             // ...CREAZIONE CITTADINO DI PROVA e SET
             Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(),textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()), "");
-            server.registraCittadino(cittadinoOK);
+            try {
+                server.registraCittadino(cittadinoOK);
+                JOptionPane.showMessageDialog(null, "Utente Registrato con successo.");
+            } catch (RemoteException e) {
+                JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+                e.printStackTrace();
+                System.exit(0);
+            }
             User = cittadinoOK;
 
             try {
@@ -76,7 +85,10 @@ public class ControllerRegistrazione {
                 schermata.setTitle("Vaccinazione cittadini");
                 schermata.setScene(new Scene(root));
                 schermata.show();
-            } catch (IOException  ignored){}
+            } catch (IOException e){
+                JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+                e.printStackTrace();
+            }
         }
 
     }
@@ -85,6 +97,7 @@ public class ControllerRegistrazione {
      * Il metodo <em>checkCompilazione</em> si occupa di effettuare la verifica di compilazione dei vari campi necessari alla registrazione.
      * Viene utilizzato nel metodo <i>clickRegistrati</i>.
      * Utilizza i metodi: <i>checkEmail</i> e <i>checkValidPassword</i>.
+     * @return <b>true</b>: se &egrave; stato compilato tutto correttamente; <b>false</b>: se non &egrave; stato compilato tutto correttamente.
      */
     private boolean checkCompilazione() {
         if (textNome.getText().equals("") || textCognome.getText().equals("") || textEmail.getText().equals("") || textUserID.getText().equals("") || textPax.getText().equals("") || textRPax.getText().equals("") || textIDVacc.getText().equals("") || textCF.getText().equals("") ) {
@@ -107,8 +120,11 @@ public class ControllerRegistrazione {
     }
 
     /**
-     * Il metodo <em>checkEmail</em> si occupa di effettuare la verifica di compilazione del campo di inserimento della email, ovvero deve seguire lo standard di una email.
+     * Il metodo <em>checkEmail</em> riceve una stringa e verifica che essa rispetti il format standard di una email, resituendo true o false.
      * Viene utilizzato nel metodo <i>checkCompilazione</i>.
+     * @param email &egrave; la stringa su cui si vuole effettuare il controllo.
+     * @return <b>true</b>: se &egrave; una email; <b>false</b>: se non &egrave; una email.
+     * @see String
      */
     private boolean checkEmail(String email) {
         String emailFormat = "^[a-zA-Z0-9_+&*-]+(?:\\."+
@@ -122,7 +138,7 @@ public class ControllerRegistrazione {
     }
 
     /**
-     * Il metodo <em>checkValidPassword</em> si occupa di effettuare la verifica di compilazione del campo di inserimento della password.
+     * Il metodo <em>checkValidPassword</em> riceve una stringa e verifica che essa rispetti le regole di composizione di una password, restituendo true o false.
      * Ovvero deve essere composta da:
      * Almeno 8 caratteri;
      * Almeno un numero;
@@ -130,6 +146,9 @@ public class ControllerRegistrazione {
      * Almeno un carattere speciale;
      * Non deve contenere spazi.
      * Viene utilizzato nel metodo <i>checkCompilazione</i>.
+     * @param password &egrave; la stringa su cui si vuole effettuare il controllo.
+     * @return <b>true</b>: se &egrave; una password valida; <b>false</b>: se non &egrave; una password valida.
+     * @see String
      */
     private boolean checkValidPassword(String password) {
         boolean number=false, upper=false, special=false;
@@ -147,7 +166,9 @@ public class ControllerRegistrazione {
     /**
      * Il metodo <em>clickIndietro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Indietro</i> nella schermata <i>'Registrazione'</i> dell'applicazione 'cittadini'.
      * Viene riportato alla schermata <i>Home</i> (ControllerHome).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerHome
+     * @see ActionEvent
      */
     public void clickIndietro(ActionEvent event)  {
         try {
@@ -164,12 +185,17 @@ public class ControllerRegistrazione {
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){}
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
     /**
      * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'Registrazione'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
      * Come il collegamento al server.
+     * @param s &egrave; il riferimento al server.
+     * @see ServerInterface
      */
     public void setDati(ServerInterface s) {
         server = s;

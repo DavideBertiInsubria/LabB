@@ -39,7 +39,9 @@ public class ControllerHome {
     /**
      * Il metodo <em>clickVisualizza</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Cerca</i> nella schermata <i>'Home'</i> dell'applicazione 'cittadini'.
      * Viene aperta la schermata di ricerca dei vari centro vaccinale (ControllerCerca).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerCerca
+     * @see ActionEvent
      */
     public void clickCerca(ActionEvent event){
         try {
@@ -58,13 +60,18 @@ public class ControllerHome {
             schermata.setTitle("Cerca centro vaccinale");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){ }
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
     /**
      * Il metodo <em>clickRegistrazione</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Registrazione</i> nella schermata <i>'Home'</i> dell'applicazione 'cittadini'.
      * Viene aperta la schermata di registrazione degli utenti (ControllerRegistrazione).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerRegistrazione
+     * @see ActionEvent
      */
     public void clickRegistrazione(ActionEvent event)  {
         if (User!=null){
@@ -85,7 +92,9 @@ public class ControllerHome {
                 schermata.setTitle("Registrazione");
                 schermata.setScene(new Scene(root));
                 schermata.show();
-            } catch (IOException ignored) {
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+                e.printStackTrace();
             }
         }
     }
@@ -93,7 +102,9 @@ public class ControllerHome {
     /**
      * Il metodo <em>clickSegnalazioni</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Segnalazione</i> nella schermata <i>'Home'</i> dell'applicazione 'cittadini'.
      * Viene aperta la schermata di segnalazione degli eventi avversi al vaccino (ControllerSegnalazioni).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerSegnalazioni
+     * @see ActionEvent
      */
     public void clickSegnalazioni(ActionEvent event){
         if (User==null){
@@ -114,14 +125,19 @@ public class ControllerHome {
                 schermata.setTitle("Segnalazioni eventi avversi");
                 schermata.setScene(new Scene(root));
                 schermata.show();
-            } catch (IOException ignored){}
+            } catch (IOException e){
+                JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+                e.printStackTrace();
+            }
         }
     }
 
     /**
      * Il metodo <em>clickLogin</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Login</i> nella schermata <i>'Home'</i> dell'applicazione 'cittadini'.
      * Viene aperta la schermata di login nella quale vi &egrave; la possibilita' di accedere al proprio profilo (ControllerLogin).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerLogin
+     * @see ActionEvent
      */
     public void clickLogin(ActionEvent event){
         try {
@@ -139,13 +155,18 @@ public class ControllerHome {
             schermata.setTitle("Login");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){}
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
     /**
      * Il metodo <em>clickLogout</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Logout</i> nella schermata <i>'Home'</i> dell'applicazione 'cittadini'.
      * Viene effettuato il logout e ricaricata la schermata Home (ControllerHome).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerHome
+     * @see ActionEvent
      */
     public void clickLogout(ActionEvent event){
         try {
@@ -164,12 +185,20 @@ public class ControllerHome {
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){}
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
     /**
      * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'Home'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
      * Come l'utente loggato e il collegamento al server.
+     * Inoltre si occupa di settare opportunamente il bottone login o logout e la stringa di benvenuto in base alla situazione.
+     * @param user &egrave; il riferimento all'utente loggato se esiste, altrimenti &egrave; null.
+     * @param s &egrave; il riferimento al server.
+     * @see Cittadino
+     * @see ServerInterface
      */
     public void setDati(Cittadino user, ServerInterface s){
         server = s;

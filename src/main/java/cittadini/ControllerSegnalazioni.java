@@ -53,7 +53,9 @@ public class ControllerSegnalazioni {
     /**
      * Il metodo <em>clickIndietro</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Indietro</i> nella schermata <i>'Segnalazioni'</i> dell'applicazione 'cittadini'.
      * Viene riportato alla schermata <i>Home</i> (ControllerHome).
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerHome
+     * @see ActionEvent
      */
     public void clickIndietro(ActionEvent event)  {
         try {
@@ -67,24 +69,24 @@ public class ControllerSegnalazioni {
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
             schermata.show();
-        } catch (IOException ignored){}
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
     }
 
     /**
      * Il metodo <em>clickInvia</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Invia</i> nella schermata <i>'Segnalazioni'</i> dell'applicazione 'cittadini'.
      * Vengono inviate tutte le segnalazioni compilate al server e si viene riportati alla schermata <i>Home</i> con il proprio profilo loggato (ControllerHome).
-     * <b>ATTENZIONE</b>: la segnalazione può essere inviata una sola volta per utente.
+     * @param event &egrave; il riferimento all'evento eseguito.
      * @see ControllerHome
+     * @see ActionEvent
      */
     public void clickInvia(ActionEvent event)  {
+
         try {
-          
-        	// CHIUSURA
-            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            thisWindow.close();
-            
             // INVIO SEGNALAZIONE...
-            if (comboMalDiTesta.getValue()!=null) { // e' stata compilata la severità?   -    comboMalDiTesta.getValue()>0 && comboMalDiTesta.getValue()<=5
+            if (comboMalDiTesta.getValue()!=null) { // e' stata compilata la severità?   -    comboMalDiTesta.getValue()>0 && comboMalDiTesta.getValue()<=5 ??
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Mal di testa", comboMalDiTesta.getValue(), textMalDiTesta.getText());
                 server.registraSegnalazione(s);
             }
@@ -106,8 +108,18 @@ public class ControllerSegnalazioni {
             }
             if (comboCrisi.getValue()!=null) {
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Crisi ipertensiva", comboCrisi.getValue(), textCrisi.getText());
-                server.registraSegnalazione(s);
+                    server.registraSegnalazione(s);
             }
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
+            e.printStackTrace();
+            System.exit(0);
+        }
+
+        try {
+            // CHIUSURA
+            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisWindow.close();
 
             // APERTURA NUOVA SCHERMATA
             Stage schermata = new Stage();
@@ -117,16 +129,22 @@ public class ControllerSegnalazioni {
             cc.setDati(User, server);
             schermata.setTitle("Vaccinazione cittadini");
             schermata.setScene(new Scene(root));
-            JOptionPane.showMessageDialog(null, "Segnalazione inviata con successo.");
+            JOptionPane.showMessageDialog(null, "Segnalazione\\i inviata con successo.");
             schermata.show();
         } catch (IOException e){
-        	e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
         }
     }
 
     /**
      * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'Segnalazioni'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
      * Come l'utente loggato e il collegamento al server.
+     * Inoltre si collega al server e controlla se sono gia' state inviate segnalazioni di un certo tipo, e in tal caso blocca la loro compilazione.
+     * @param c &egrave; il riferimento all'utente loggato.
+     * @param s &egrave; il riferimento al server.
+     * @see Cittadino
+     * @see ServerInterface
      */
     public void setDati(Cittadino c, ServerInterface s){
         server = s;
@@ -134,32 +152,39 @@ public class ControllerSegnalazioni {
         // CHECK SULL'ESISTENZA DI UNA SEGNALAZIONE DI OGNI EVENTO
         try {
             if (server.checkSegnalazione(User.getIDVaccino(), "Mal di testa")){
-                comboMalDiTesta.setEditable(false);
+                comboMalDiTesta.setDisable(true);
                 textMalDiTesta.setEditable(false);
+                textMalDiTesta.setPromptText("E' già stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Febbre")){
-                comboFebbre.setEditable(false);
+                comboFebbre.setDisable(true);
                 textFebbre.setEditable(false);
+                textFebbre.setPromptText("E' già stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Dolori muscolari e articolari")){
-                comboDoloriMuscArtic.setEditable(false);
+                comboDoloriMuscArtic.setDisable(true);
                 textDoloriMuscArtic.setEditable(false);
+                textDoloriMuscArtic.setPromptText("E' già stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Linfoadenopatia")){
-                comboLinfo.setEditable(false);
+                comboLinfo.setDisable(true);
                 textLinfo.setEditable(false);
+                textLinfo.setPromptText("E' già stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Tachicardia")){
-                comboTachi.setEditable(false);
+                comboTachi.setDisable(true);
                 textTachi.setEditable(false);
+                textTachi.setPromptText("E' già stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Crisi ipertensiva")){
-                comboCrisi.setEditable(false);
+                comboCrisi.setDisable(true);
                 textCrisi.setEditable(false);
+                textCrisi.setPromptText("E' già stata inviata una segnalazione per questo evento.");
             }
         } catch (RemoteException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
             e.printStackTrace();
-            // IMPLEMENTO MESSAGGIO
+            System.exit(0);
         }
     }
 }

@@ -50,9 +50,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     /**
      * Il metodo <em>checkSegnalazione</em> serve a controllare se un evento &egrave; già stato segnalato da un cittadino.
-     * @param ID
-     * @param evento
-     * @return
+     * @param ID Contiene l'ID vaccinazione del cittadino che sta effettuando la segnalazione.
+     * @param evento Contiene l'evento che il cittadino sta segnalando.
+     * @return Un valore booleano per dare una risposta.
      */
     public synchronized boolean checkSegnalazione(int ID, String evento){
         try {

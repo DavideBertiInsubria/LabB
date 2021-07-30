@@ -97,12 +97,21 @@ public class DBVaccinazioniManagement extends DBManager{
 		if(r.next()) {
 			ResultSet r2 = query("SELECT IDSegnalazione FROM Segnalazione "+
 								"WHERE IDVaccinazione="+IDVaccinazione+" AND IDEvento="+r.getInt(1));
-			if(!r2.next())
-				return false;
-			else
+			if(r2.next())
 				return true;
+			else
+				return false;
 		}
 		return false;
+	}
+	
+	public boolean checkUserId(String nick) throws SQLException {
+		ResultSet r = query("SELECT UserId "+
+							"FROM CittadiniRegistrati WHERE UserId='"+nick+"'");
+		if(r.next())
+			return true;
+		else
+			return false;
 	}
 	
 	public void registraSegnalazione(Segnalazione segnalazione) throws SQLException {

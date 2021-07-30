@@ -46,17 +46,19 @@ public class DBVaccinazioniManagement extends DBManager{
 
 		String userId = cittadino.getUserID();
 		if(checkCampiCit ("Nick",userId)) ritorno.add("Il nick inserito e' gia' stato registrato.");
+
+		int idvacc= cittadino.getIDVaccino ();
+		if(!checkCampi ("IDVaccinazione",String.valueOf (idvacc))) ritorno.add("L'id vaccinazione inserito non coincide con quello inserito in fase di vaccinazione.");
+		else if(checkCampiCit ("IDVaccinazione",String.valueOf (idvacc))) ritorno.add("L'id vaccinazione inserito e' gia' stato registrato.");
 		int idcentro;
-		int idvacc;
-		if(ritorno != null) return ritorno;
-		ResultSet ids = query("SELECT IDCentro,IDVaccinazione FROM Vaccinati WHERE CF='"+cf+"'");
+
+		if(ritorno.size ()>0) return ritorno;
+		ResultSet ids = query("SELECT IDCentro FROM Vaccinati WHERE CF='"+cf+"'");
 
 		if(DBManager.ResultSetSize(ids) == 1) {
 			idcentro = ids.getInt(1);
-			idvacc = ids.getInt(2);
 			
 			cittadino.setIDCentro(idcentro);
-			cittadino.setIDVaccino(idvacc);
 			
 			query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,IDVaccinazione,CF,IDCentro,Nick) "
 					+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+idvacc+"','"+cf+"','"+idcentro+"','"+userId+"')");
@@ -66,15 +68,32 @@ public class DBVaccinazioniManagement extends DBManager{
 	}
 
 	public boolean checkCampi(String campo, String value) throws SQLException {
-		ResultSet r = query("SELECT Nome "+
-				"FROM Vaccinati WHERE "+campo+"='"+value+"'");
-		return r.next();
+		if(campo.equals ("IDVaccinazione"))
+		{
+			ResultSet r = query("SELECT Nome "+
+					"FROM Vaccinati WHERE "+campo+"='"+Integer.parseInt (value)+"'");
+			return r.next ();
+		}
+		else {
+			ResultSet r = query ("SELECT Nome " +
+					"FROM Vaccinati WHERE " + campo + "='" + value + "'");
+			return r.next ();
+		}
 	}
 
 	public boolean checkCampiCit(String campo,String value) throws SQLException {
-		ResultSet r = query("SELECT nick "+
-				"FROM CittadiniRegistrati WHERE "+campo+"='"+value+"'");
-		return r.next();
+		if(campo.equals ("IDVaccinazione"))
+		{
+			ResultSet r = query("SELECT Nick "+
+					"FROM Vaccinati WHERE "+campo+"='"+Integer.parseInt (value)+"'");
+			return r.next();
+		}
+		else {
+			ResultSet r = query ("SELECT Nick " +
+					"FROM CittadiniRegistrati WHERE " + campo + "='" + value + "'");
+			return r.next();
+		}
+
 	}
 
 	public void registraVaccinato(Vaccinato vaccinato,String datasomm,Vaccino vaccino) throws SQLException {

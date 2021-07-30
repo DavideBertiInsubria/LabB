@@ -185,7 +185,7 @@ public class ControllerSegnalazioni {
                 textCrisi.setEditable(false);
                 textCrisi.setPromptText("E' già stata inviata una segnalazione per questo evento.");
             }
-        } catch (RemoteException | SQLException e) {
+        } catch (RemoteException e) {
             JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
             e.printStackTrace();
             System.exit(0);

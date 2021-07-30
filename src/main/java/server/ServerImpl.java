@@ -54,11 +54,25 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      * @param evento
      * @return
      */
-    public synchronized boolean checkSegnalazione(int ID, String evento) throws SQLException {
-           return Database.checkSegnalazione (ID,evento);
+    public synchronized boolean checkSegnalazione(int ID, String evento){
+        try {
+            return Database.checkSegnalazione (ID,evento);
+        } catch (SQLException e) {
+            e.printStackTrace ();
+            return false;
+        }
     }
 
-    /**
+    public synchronized boolean checkUserID(String ID) {
+        try {
+            return Database.checkUserId (ID);
+        } catch (SQLException e) {
+            e.printStackTrace ();
+            return false;
+        }
+    }
+
+        /**
      * Il metodo <em>registraSegnalazione</em> serve a registrare i dati di una segnalazione sul database da parte di un cittadino registrato.
      * @param seg Riferimento ad un oggetto di tipo <i>Segnalazione</i> che contiene i dati riguardo ad una segnalazione da effettuare.
      * @see common.Segnalazione

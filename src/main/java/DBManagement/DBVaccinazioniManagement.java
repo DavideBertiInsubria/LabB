@@ -27,17 +27,26 @@ public class DBVaccinazioniManagement extends DBManager{
 	}
 	
 
-	public void registraCittadino(Cittadino cittadino) throws SQLException {
-		
+	public String registraCittadino(Cittadino cittadino) throws SQLException {
+		String ritorno= null;
 		String nome = cittadino.getNome();
+		if(checkCampi ("Nome",nome)) ritorno+=" Nome";
+
 		String cognome = cittadino.getCognome();
+		if(checkCampi ("Cognome",cognome)) ritorno+=" Cognome";
+
 		String email = cittadino.getEmail();
+		if(checkCampiCit ("Email",email)) ritorno+=" Email";
+
 		String pwd = cittadino.getPassword();
+
 		String cf = cittadino.getCF();
+		if(checkCampi ("CF",cf)||checkCampiCit ("CF",cf)) ritorno+=" CodiceFiscale";
+
 		String userId = cittadino.getUserID();
 		int idcentro;
 		int idvacc;
-		
+		if(ritorno != null) return "Ricontrolla i campi: "+ritorno+".";
 		ResultSet ids = query("SELECT IDCentro,IDVaccinazione FROM Vaccinati WHERE CF='"+cf+"'");
 
 		if(DBManager.ResultSetSize(ids) == 1) {
@@ -51,10 +60,23 @@ public class DBVaccinazioniManagement extends DBManager{
 					+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+idvacc+"','"+cf+"','"+idcentro+"','"+userId+"')");
 		
 		}
+		return null;
 	}
-	
+
+	public boolean checkCampi(String campo, String value) throws SQLException {
+		ResultSet r = query("SELECT Nome "+
+				"FROM Vaccinati WHERE"+campo+"='"+value+"'");
+		return r.next();
+	}
+
+	public boolean checkCampiCit(String campo,String value) throws SQLException {
+		ResultSet r = query("SELECT nick "+
+				"FROM CittadiniRegistrati WHERE"+campo+"='"+value+"'");
+		return r.next();
+	}
+
 	public void registraVaccinato(Vaccinato vaccinato,String datasomm,Vaccino vaccino) throws SQLException {
-		
+
 		String nome = vaccinato.getNome ();
 		String cognome = vaccinato.getCognome();
 		String cf = vaccinato.getCF();

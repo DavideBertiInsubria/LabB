@@ -27,26 +27,28 @@ public class DBVaccinazioniManagement extends DBManager{
 	}
 	
 
-	public String registraCittadino(Cittadino cittadino) throws SQLException {
-		String ritorno= null;
+	public ArrayList<String> registraCittadino(Cittadino cittadino) throws SQLException {
+		ArrayList<String > ritorno=new ArrayList<> ();
 		String nome = cittadino.getNome();
-		if(checkCampi ("Nome",nome)) ritorno+=" Nome";
+		if(checkCampi ("Nome",nome)) ritorno.add("Il nome inserito non coincide con quello inserito in fase di vaccinazione.");
 
 		String cognome = cittadino.getCognome();
-		if(checkCampi ("Cognome",cognome)) ritorno+=" Cognome";
+		if(checkCampi ("Cognome",cognome)) ritorno.add("Il cognome inserito non coincide con quello inserito in fase di vaccinazione.");
 
 		String email = cittadino.getEmail();
-		if(checkCampiCit ("Email",email)) ritorno+=" Email";
+		if(checkCampiCit ("Email",email)) ritorno.add("L'email inserita e' gia' stata registrata.");
 
 		String pwd = cittadino.getPassword();
 
 		String cf = cittadino.getCF();
-		if(checkCampi ("CF",cf)||checkCampiCit ("CF",cf)) ritorno+=" CodiceFiscale";
+		if(checkCampi ("CF",cf)) ritorno.add("Il codice fiscale inserito non coincide con quello inserito in fase di vaccinazione.");
+		else if(checkCampiCit ("CF",cf)) ritorno.add("Il codice fiscale inserito e' gia' stato registrato.");
 
 		String userId = cittadino.getUserID();
+		if(checkCampiCit ("Nick",userId)) ritorno.add("Il nick inserito e' gia' stato registrato.");
 		int idcentro;
 		int idvacc;
-		if(ritorno != null) return "Ricontrolla i campi: "+ritorno+".";
+		if(ritorno != null) return ritorno;
 		ResultSet ids = query("SELECT IDCentro,IDVaccinazione FROM Vaccinati WHERE CF='"+cf+"'");
 
 		if(DBManager.ResultSetSize(ids) == 1) {
@@ -123,13 +125,13 @@ public class DBVaccinazioniManagement extends DBManager{
 		}
 		return false;
 	}
-	
-	public boolean checkUserId(String nick) throws SQLException {
+
+	/*public boolean checkUserId(String nick) throws SQLException {
 		ResultSet r = query("SELECT nick "+
 							"FROM CittadiniRegistrati WHERE nick='"+nick+"'");
 		return r.next();
-	}
-	
+	}*/
+
 	public void registraSegnalazione(Segnalazione segnalazione) throws SQLException {
 		
 		int idvaccinazione = segnalazione.getIDVaccinazione();

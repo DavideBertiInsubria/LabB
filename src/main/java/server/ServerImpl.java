@@ -37,7 +37,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      * @param c Riferimento ad un oggetto di tipo <i>Cittadino</i> che contiene le informazioni da aggiungere al database
      * @see common.Cittadino
      */
-    public synchronized String registraCittadino (Cittadino c){
+    public synchronized ArrayList<String> registraCittadino (Cittadino c){
         System.out.println ("Registrazione cittadino");
         try {
             return Database.registraCittadino (c);
@@ -45,7 +45,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         } catch (SQLException e) {
             e.printStackTrace ();
             System.out.println("La registrazione del cittadino non è andata a buon fine riprovare");
-            return "Errore";
+            return null;
         }
     }
 
@@ -58,15 +58,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public synchronized boolean checkSegnalazione(int ID, String evento){
         try {
             return Database.checkSegnalazione (ID,evento);
-        } catch (SQLException e) {
-            e.printStackTrace ();
-            return false;
-        }
-    }
-
-    public synchronized boolean checkUserID(String ID) {
-        try {
-            return Database.checkUserId (ID);
         } catch (SQLException e) {
             e.printStackTrace ();
             return false;

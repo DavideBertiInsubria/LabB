@@ -92,6 +92,10 @@ public class CvCntrlCentro {
             JOptionPane.showMessageDialog(null, "La sigla di una provincia contiene un numero massimo di due caratteri.", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        if(txtAddrZipc.getText().length() != 5 && isNumerical(txtAddrZipc.getText())) {
+            JOptionPane.showMessageDialog(null, "Il campo deve avere lunghezza cinque e contenere solo numeri.");
+            return false;
+        }
         return true;
     }
 
@@ -109,7 +113,6 @@ public class CvCntrlCentro {
     }
     */
 
-    /*
     private static boolean isNumerical(String s) {
         try {
             int i = Integer.parseInt(s);
@@ -118,6 +121,5 @@ public class CvCntrlCentro {
             return false;
         }
     }
-    */
 
 }

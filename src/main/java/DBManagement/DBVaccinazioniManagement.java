@@ -97,10 +97,7 @@ public class DBVaccinazioniManagement extends DBManager{
 		if(r.next()) {
 			ResultSet r2 = query("SELECT IDSegnalazione FROM Segnalazione "+
 								"WHERE IDVaccinazione="+IDVaccinazione+" AND IDEvento="+r.getInt(1));
-			if(r2.next())
-				return true;
-			else
-				return false;
+			return r2.next();
 		}
 		return false;
 	}

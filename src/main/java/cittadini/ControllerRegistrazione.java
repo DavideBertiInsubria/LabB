@@ -28,13 +28,6 @@ public class ControllerRegistrazione {
      */
     private ServerInterface server;
 
-    /**
-     * <code>User</code> &egrave; il riferimento all'utente loggato, ed è un oggetto di tipo <i>Cittadino</i>.
-     * Se l'utente non è loggato allora <i>User</i> &egrave; uguale a <b>null</b>.
-     * @see Cittadino
-     */
-    private Cittadino User;
-
     @FXML
     TextField textNome, textCognome, textEmail, textUserID, textIDVacc, textCF;
     @FXML
@@ -55,14 +48,10 @@ public class ControllerRegistrazione {
 
             // CONTROLLO ESISTENZA DATI E CORREZIONE
             try {
-                ArrayList<String> listaErrori = server.registraCittadino(User);
+                Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()), "");
+                ArrayList<String> listaErrori = server.registraCittadino(cittadinoOK);
                 if ( listaErrori==null ){
-                   // ...CREAZIONE CITTADINO DI PROVA e SET
-                   Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()), "");
-                   server.registraCittadino(cittadinoOK);
                    JOptionPane.showMessageDialog(null, "Utente Registrato con successo.");
-                   User = cittadinoOK;
-
                    try {
                        // CHIUSURA
                        Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -75,7 +64,7 @@ public class ControllerRegistrazione {
 
                        // ...APERTURA HOME
                        ControllerHome cc = loader.getController();
-                       cc.setDati(User, server);
+                       cc.setDati(cittadinoOK, server);
                        schermata.setTitle("Vaccinazione cittadini");
                        schermata.setScene(new Scene(root));
                        schermata.show();

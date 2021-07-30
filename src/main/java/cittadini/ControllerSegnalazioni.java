@@ -58,8 +58,12 @@ public class ControllerSegnalazioni {
      * @see ActionEvent
      */
     public void clickIndietro(ActionEvent event)  {
-        try {
 
+        // CHIUSURA
+        Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        thisWindow.close();
+
+        try {
             // APERTURA NUOVA SCHERMATA
             Stage schermata = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
@@ -116,11 +120,11 @@ public class ControllerSegnalazioni {
             System.exit(0);
         }
 
-        try {
-            // CHIUSURA
-            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            thisWindow.close();
+        // CHIUSURA
+        Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        thisWindow.close();
 
+        try {
             // APERTURA NUOVA SCHERMATA
             Stage schermata = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));

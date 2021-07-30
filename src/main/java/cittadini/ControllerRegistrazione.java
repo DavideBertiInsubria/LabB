@@ -50,44 +50,44 @@ public class ControllerRegistrazione {
     public void clickRegistrati(ActionEvent event) {
 
         // CHECK COMPILAZIONE
-        if (checkCompilazione()) {
-            // SE TUTTO E' COMPILATO CORRETTAMENTE
-            System.out.println("\n\n TUTTO COMPILATO CORRETTAMENTE\nESECUZIONE METODO DEL SERVER...\n\n");
+        if (checkCompilazione()) {    // SE TUTTO E' COMPILATO CORRETTAMENTE
 
-            // CONTROLLO USERID
-            //...
-
-            // ...CREAZIONE CITTADINO DI PROVA e SET
-            Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(),textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()), "");
+             // CONTROLLO ESISTENZA USERID
             try {
-                server.registraCittadino(cittadinoOK);
-                JOptionPane.showMessageDialog(null, "Utente Registrato con successo.");
+                if ( server.checkUserID(textUserID.getText()) ){
+                   JOptionPane.showMessageDialog(null, "UserID non disponibile, già utilizzato.");
+                } else {
+                   // ...CREAZIONE CITTADINO DI PROVA e SET
+                   Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()), "");
+                   server.registraCittadino(cittadinoOK);
+                   JOptionPane.showMessageDialog(null, "Utente Registrato con successo.");
+                   User = cittadinoOK;
+
+                   try {
+                       // CHIUSURA
+                       Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                       thisWindow.close();
+
+                       // APERTURA NUOVA SCHERMATA
+                       Stage schermata = new Stage();
+                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
+                       Parent root = loader.load();
+
+                       // ...APERTURA HOME
+                       ControllerHome cc = loader.getController();
+                       cc.setDati(User, server);
+                       schermata.setTitle("Vaccinazione cittadini");
+                       schermata.setScene(new Scene(root));
+                       schermata.show();
+                   } catch (IOException e) {
+                       JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+                       e.printStackTrace();
+                   }
+               }
             } catch (RemoteException e) {
                 JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
                 e.printStackTrace();
                 System.exit(0);
-            }
-            User = cittadinoOK;
-
-            try {
-                // CHIUSURA
-                Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                thisWindow.close();
-
-                // APERTURA NUOVA SCHERMATA
-                Stage schermata = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
-                Parent root = loader.load();
-
-                    // ...APERTURA HOME
-                ControllerHome cc = loader.getController();
-                cc.setDati(User, server);
-                schermata.setTitle("Vaccinazione cittadini");
-                schermata.setScene(new Scene(root));
-                schermata.show();
-            } catch (IOException e){
-                JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
-                e.printStackTrace();
             }
         }
 

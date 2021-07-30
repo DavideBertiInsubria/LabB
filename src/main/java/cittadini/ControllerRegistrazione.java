@@ -14,6 +14,7 @@ import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
@@ -52,11 +53,10 @@ public class ControllerRegistrazione {
         // CHECK COMPILAZIONE
         if (checkCompilazione()) {    // SE TUTTO E' COMPILATO CORRETTAMENTE
 
-             // CONTROLLO ESISTENZA USERID
+            // CONTROLLO ESISTENZA DATI E CORREZIONE
             try {
-                if ( server.checkUserID(textUserID.getText()) ){
-                   JOptionPane.showMessageDialog(null, "UserID non disponibile, già utilizzato.");
-                } else {
+                ArrayList<String> listaErrori = server.registraCittadino(User);
+                if ( listaErrori==null ){
                    // ...CREAZIONE CITTADINO DI PROVA e SET
                    Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()), "");
                    server.registraCittadino(cittadinoOK);
@@ -83,7 +83,11 @@ public class ControllerRegistrazione {
                        JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
                        e.printStackTrace();
                    }
-               }
+               } else {
+                    for (String s : listaErrori) {
+                        JOptionPane.showMessageDialog(null, s);
+                    }
+                }
             } catch (RemoteException e) {
                 JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
                 e.printStackTrace();

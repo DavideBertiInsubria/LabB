@@ -106,12 +106,9 @@ public class DBVaccinazioniManagement extends DBManager{
 	}
 	
 	public boolean checkUserId(String nick) throws SQLException {
-		ResultSet r = query("SELECT UserId "+
-							"FROM CittadiniRegistrati WHERE UserId='"+nick+"'");
-		if(r.next())
-			return true;
-		else
-			return false;
+		ResultSet r = query("SELECT nick "+
+							"FROM CittadiniRegistrati WHERE nick='"+nick+"'");
+		return r.next();
 	}
 	
 	public void registraSegnalazione(Segnalazione segnalazione) throws SQLException {

@@ -22,6 +22,10 @@ public class CvCntrlCentro {
     @FXML
     private RadioButton btnVia, btnViale, btnPiazza, btnAziendale, btnHub, btnOspedaliero;
 
+    private final int ARR_LENGTH = 6;
+    //private TextField[] inputField = new TextField[ARR_LENGTH];
+    private String[] out = new String[ARR_LENGTH];
+
     public void backFromCentroVaccinale(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
         Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -31,8 +35,18 @@ public class CvCntrlCentro {
     }
     public void confirm(ActionEvent event) {
         if(check()) {
-            // NOME del centro vaccinale
+            // INIZIALIZZAZIONE DELL'ARRAY DI DATI DI INPUT
+            TextField[] centreAddress = {txtName, txtAddrName, txtAddrNumb, txtAddrCity, txtAddrProv, txtAddrZipc};
+            RadioButton[] streetType = {btnPiazza, btnVia, btnViale};
+            RadioButton[] centreType = {btnAziendale, btnHub, btnOspedaliero};
+            // INIZIALIZZAZIONE DELL'ARRAY DI DATI DI OUTPUT
+            int i, j;
+            for(i = 0, j = 0; i < ARR_LENGTH; i++, j++) {
+                out[j] = centreAddress[i].getText().trim().replaceAll("\\s+", " ");
+            }
+
             String name = txtName.getText().trim().replaceAll("\\s+", " ");
+
             // INDIRIZZO del centro vaccinale
             // CAMPO N.1: QUALIFICATORE
             String field1 = null;
@@ -43,16 +57,7 @@ public class CvCntrlCentro {
             } else if (btnPiazza.isSelected()) {
                 field1 = btnPiazza.getText();
             }
-            // CAMPO N.2: NOME
-            String field2 = txtAddrName.getText().trim().replaceAll("\\s+", " ");
-            // CAMPO N.3: NUMERO CIVICO
-            String field3 = txtAddrNumb.getText().trim().replaceAll("\\s+", " ");
-            // CAMPO N.4: COMUNE
-            String field4 = txtAddrCity.getText().trim().replaceAll("\\s+", " ");
-            // CAMPO N.5: PROVINCIA
-            String field5 = txtAddrProv.getText().trim().replaceAll("\\s+", " ");
-            // CAMPO N.6: CODICE DI AVVIAMENTO POSTALE
-            String field6 = txtAddrZipc.getText().trim().replaceAll("\\s+", " ");
+
             // TIPOLOGIA del centro vaccinale
             TipologiaCentro type = null;
             if(btnAziendale.isSelected()) {
@@ -63,7 +68,12 @@ public class CvCntrlCentro {
                 type = TipologiaCentro.ospedaliero;
             }
             // COSTRUZIONE INDIRIZZO
-            String addr = field1 + " " + field2 + " " + field3 + ", " + field4 + " (" + field5 + "), " + field6;
+            String address = field1 + " " + out[1] + " " + out[2] + " " + out[3] + " (" + out[4] + ") " + out[5];
+
+            System.out.println(name + address + type);
+
+            /*
+
             // COSTRUZIONE CENTRO VACCINALE
             CentroVaccinale cv = new CentroVaccinale(name, addr, type.toString());
             // COLLEGAMENTO A SERVER
@@ -81,6 +91,9 @@ public class CvCntrlCentro {
             oldStage.close();
             // APERTURA DELLA NUOVA FINESTRA
             new CvHomePage();
+
+            */
+
         }
     }
     private boolean check() {
@@ -99,7 +112,6 @@ public class CvCntrlCentro {
         return true;
     }
 
-    /*
     private static boolean isAlphabetical(String s) {
         String[] arr = s.split(" ");
         boolean alphabetical;
@@ -111,7 +123,6 @@ public class CvCntrlCentro {
         }
         return true;
     }
-    */
 
     private static boolean isNumerical(String s) {
         try {

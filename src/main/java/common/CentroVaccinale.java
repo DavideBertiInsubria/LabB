@@ -3,7 +3,7 @@ package common;
 import java.io.Serializable;
 
 /**
- * La classe <em>CentroVaccinale</em> viene utilizzata per creare un oggetto che identifica un centro vaccinale nell'applicazione.
+ * La classe <em>CentroVaccinale</em> viene utilizzata per creare un oggetto che identifica un centro vaccinale all'interno dell'applicazione.
  * @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  */
 public class CentroVaccinale implements Serializable {
@@ -11,15 +11,15 @@ public class CentroVaccinale implements Serializable {
     private int IDcentro;
 
 	/**
-	 *
+	 *Costruttore utilizzato per creare oggetti della classe senza dover inizializzare i parametri.
 	 */
 	public CentroVaccinale(){ }
 
 	/**
-	 *
-	 * @param nome
-	 * @param indirizzo
-	 * @param tipologia
+	 *Costruttore utilizzato per creare oggetti  della classe con inizializzazione dei parametri della classe.
+	 * @param nome Parametro di tipo <i>String </i> che identifica il nome del centro vaccinale.
+	 * @param indirizzo Parametro di tipo <i>String </i> che identifica l'indirizzo del centro vaccinale.
+	 * @param tipologia Parametro di tipo <i>String </i> che identifica il tipo di centro vaccinale (HUB/OSPEDALIERO/AZIENDALE).
 	 */
     public CentroVaccinale(String nome,String indirizzo,String tipologia) {
 		this.nome = nome;
@@ -28,7 +28,7 @@ public class CentroVaccinale implements Serializable {
 	}
 
 	/**
-	 *
+	 *Costruttore utilizzato per
 	 * @param IDcentro
 	 * @param nome
 	 * @param indirizzo
@@ -42,14 +42,14 @@ public class CentroVaccinale implements Serializable {
 	}
 
 	/**
-	 *
-	 * @return
+	 *Il metodo <em>getIDcentro</em> &egrave; utilizzato per ottenere l'ID di un centro.
+ 	 * @return Un valore di tipo <i>Int</i> che identifica l'ID di un centro.
 	 */
 	public int getIDcentro(){return IDcentro; }
 
 	/**
-	 *
-	 * @return
+	 *Il metodo <em>getNome</em> &egrave; utilizzato per ottenere il nome di un centro.
+	 * @return Un valore di tipo <i>String</i> che contiene il nome del centro.
 	 */
 	public String getNome() {
 		return nome;
@@ -57,6 +57,8 @@ public class CentroVaccinale implements Serializable {
 
 	/**
 	 *
+	 * Il metodo <em>getIndirizzo</em> &egrave; utilizzato per ottenere l'indirizzo di un centro.
+	 * @return Un valore di tipo <i>String</i> che contiene l'indirizzo del centro.
 	 * @return
 	 */
 	public String getIndirizzo() {
@@ -64,8 +66,8 @@ public class CentroVaccinale implements Serializable {
 	}
 
 	/**
-	 *
-	 * @return
+	 *Il metodo <em>getTipologia</em> &egrave; utilizzato per ottenere la tipologia di un centro.
+	 * @return Un valore di tipo <i>String</i> che contiene la tipologia del centro.
 	 */
 	public String getTipologia() {
 		return tipologia;

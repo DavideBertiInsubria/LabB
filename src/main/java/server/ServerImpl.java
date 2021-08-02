@@ -34,8 +34,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     /**
      *Il metodo <em>registraCittadino</em> serve a registrare i dati di un cittadino sul database.
-     * @param c Riferimento ad un oggetto di tipo <i>Cittadino</i> che contiene le informazioni da aggiungere al database
+     * @param c Riferimento ad un oggetto di tipo <i>Cittadino</i> che contiene le informazioni da inserire nel al database
      * @see common.Cittadino
+     * @return <i>ArrayList<String></i> &egrave; un arrayList contenente i campi compilati dagli utenti che non soddisfano i requisiti per poter essere registrati.
      */
     public synchronized ArrayList<String> registraCittadino (Cittadino c){
         System.out.println ("Registrazione cittadino");
@@ -50,10 +51,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     /**
-     * Il metodo <em>checkSegnalazione</em> serve a controllare se un evento &egrave; già stato segnalato da un cittadino.
+     * Il metodo <em>checkSegnalazione</em> serve a controllare se un evento &egrave; gi&agrave; stato segnalato da un cittadino.
      * @param ID Contiene l'ID vaccinazione del cittadino che sta effettuando la segnalazione.
      * @param evento Contiene l'evento che il cittadino sta segnalando.
-     * @return Un valore booleano per dare una risposta.
+     * @return Un valore booleano per confermare se una segnalazione &egrave; gi&agrave; stata segnalata.
      */
     public synchronized boolean checkSegnalazione(int ID, String evento){
         try {

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  * La classe <em>ServerImpl</em> viene utilizzata per implementare i metodi resi disponibili ai client tramite l'interfaccia ServerInterface.
- * @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * @author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  */
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {

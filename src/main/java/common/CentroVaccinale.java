@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * La classe <em>CentroVaccinale</em> viene utilizzata per creare un oggetto che identifica un centro vaccinale all'interno dell'applicazione.
- * @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * @author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  */
 public class CentroVaccinale implements Serializable {
     private String nome, indirizzo, tipologia;

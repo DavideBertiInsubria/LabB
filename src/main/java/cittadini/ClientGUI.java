@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.rmi.NotBoundException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-/** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+/** @author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  * La classe <em>ClientGUI</em> rappresenta il punto di inizio dell'applicazione 'cittadini', ovvero contiene il main di avvio.
  * L'interfaccia grafica è implementata tramite <em>JavaFX</em>.
  * @see Application

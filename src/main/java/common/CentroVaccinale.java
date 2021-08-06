@@ -16,7 +16,7 @@ public class CentroVaccinale implements Serializable {
 	public CentroVaccinale(){ }
 
 	/**
-	 *Costruttore utilizzato per creare oggetti  della classe con inizializzazione dei parametri della classe.
+	 *Costruttore utilizzato per creare oggetti  della classe con inizializzazione di alcuni dei parametri della classe.
 	 * @param nome Parametro di tipo <i>String </i> che identifica il nome del centro vaccinale.
 	 * @param indirizzo Parametro di tipo <i>String </i> che identifica l'indirizzo del centro vaccinale.
 	 * @param tipologia Parametro di tipo <i>String </i> che identifica il tipo di centro vaccinale (HUB/OSPEDALIERO/AZIENDALE).
@@ -28,7 +28,7 @@ public class CentroVaccinale implements Serializable {
 	}
 
 	/**
-	 *Costruttore utilizzato per
+	 *Costruttore utilizzato per creare oggetti della classe con inizializzazione di tutti i parametri della classe.
 	 * @param IDcentro
 	 * @param nome
 	 * @param indirizzo

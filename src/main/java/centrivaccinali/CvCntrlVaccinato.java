@@ -1,5 +1,6 @@
 package centrivaccinali;
 
+import common.CentroVaccinale;
 import common.Vaccinato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +25,13 @@ public class CvCntrlVaccinato {
     private RadioButton btnAstraZeneca, btnJohnsonJohnson, btnModerna, btnPfizer;
     @FXML
     private TextField txtBld, txtFn, txtLn, txtSsn, txtIdn;
+
+    /**
+     * <code>CV</code> &egrave; il riferimento al centro vaccinale selezionato sul quale verrà registrato il vaccinato, ed è un oggetto di tipo <i>CentroVaccinale</i>.
+     * &egrave; null se non si è selezionato nulla
+     * @see CentroVaccinale
+     */
+    private CentroVaccinale CV = null;
 
     public void backFromCittadinoVaccinato(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
@@ -83,4 +91,10 @@ public class CvCntrlVaccinato {
         }
         return true;
     }
+
+    public void setDati(CentroVaccinale cv) throws RemoteException {
+        CV = cv;
+        txtBld.setText(CV.getNome());
+    }
+
 }

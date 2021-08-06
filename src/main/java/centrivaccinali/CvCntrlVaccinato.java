@@ -76,7 +76,7 @@ public class CvCntrlVaccinato {
             // NUMERO UNIVOCO DI IDENTIFICAZIONE
             int vxIdn = Integer.valueOf(txtIdn.getText());
             // COSTRUZIONE VACCINATO
-            Vaccinato vax = new Vaccinato(cvName, vxFn, vxLn, vxSsn, type, vxIdn, ddMMyyyy);
+            Vaccinato vax = new Vaccinato(CV, vxFn, vxLn, vxSsn, type, vxIdn, ddMMyyyy);
             // COLLEGAMENTO A SERVER
             try {
                 Registry reg = LocateRegistry.getRegistry("*", 1099);

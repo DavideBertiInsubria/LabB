@@ -101,7 +101,7 @@ public class DBVaccinazioniManagement extends DBManager{
 		String nome = vaccinato.getNome ();
 		String cognome = vaccinato.getCognome();
 		String cf = vaccinato.getCF();
-		String nomecentro = vaccinato.getNomeCentro();
+		String nomecentro = vaccinato.getCentro().getNome();
 		int idcentro;
 		
 		ResultSet id = query("SELECT IDCentro FROM CentriVaccinali WHERE Nome='"+nomecentro+"'");

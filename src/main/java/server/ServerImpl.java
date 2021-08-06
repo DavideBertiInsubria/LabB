@@ -92,13 +92,13 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public synchronized void registraVaccinato (Vaccinato v) {
         System.out.println ("Registrazione Vaccinato");
-       /* try {
-            //Database.registraVaccinato ();
+       try {
+            Database.registraVaccinato (v);
         }catch (SQLException throwables){
             throwables.printStackTrace ();
             System.out.println("La registrazione del vaccinato non è andata a buon fine riprovare");
-        }*/
-        //query per la registrazione del vaccinato
+        }
+
     }
 
     /**

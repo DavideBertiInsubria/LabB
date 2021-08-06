@@ -92,13 +92,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public synchronized void registraVaccinato (Vaccinato v) {
         System.out.println ("Registrazione Vaccinato");
+        /*
        try {
             Database.registraVaccinato (v);
         }catch (SQLException throwables){
             throwables.printStackTrace ();
             System.out.println("La registrazione del vaccinato non è andata a buon fine riprovare");
         }
-
+        */
     }
 
     /**
@@ -179,7 +180,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         try {
             cittadini=Database.loginCittadino (userID,password);
             System.out.println ("Login effettuato con successo");
-            return new Cittadino (cittadini.getString ("cf"),cittadini.getString ("nome"),cittadini.getString ("cognome"),cittadini.getString ("nick"),cittadini.getString ("email"),cittadini.getString ("password"),cittadini.getInt ("idvaccinazione"),"");
+            return new Cittadino (cittadini.getString ("cf"),cittadini.getString ("nome"),cittadini.getString ("cognome"),cittadini.getString ("nick"),cittadini.getString ("email"),cittadini.getString ("password"),cittadini.getInt ("idvaccinazione"));
         } catch (SQLException throwables) {
             System.out.println ("Login fallito");
             throwables.printStackTrace ();

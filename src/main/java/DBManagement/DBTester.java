@@ -81,7 +81,7 @@ public class DBTester extends DBVaccinazioniManagement{
 		
 		Vaccino vaccino = Vaccino.values()[randInt.nextInt(Vaccino.values().length)];
 				
-		Cittadino citt = new Cittadino(cf.toString(),nome,cognome,"","","",0,nomecentro);
+		Cittadino citt = new Cittadino(cf.toString(),nome,cognome,"","","",0);
 		
 		int giorno = randInt.nextInt(28)+1;
 		int mese = randInt.nextInt(12)+1;
@@ -116,7 +116,7 @@ public class DBTester extends DBVaccinazioniManagement{
 		
 		String userid = nome+"."+cognome+String.valueOf(randInt.nextInt(999));
 		
-		Cittadino citt = new Cittadino(cf,nome,cognome,userid,email,pwd.toString(),0,"");
+		Cittadino citt = new Cittadino(cf,nome,cognome,userid,email,pwd.toString(),0);
 		
 		
 		

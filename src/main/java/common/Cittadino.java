@@ -20,11 +20,9 @@ public class Cittadino extends Vaccinato implements Serializable {
      * @param email Parametro di tipo <i>String</i> per identificare la email.
      * @param pwd Parametro di tipo <i>String</i> per identificare la password.
      * @param idvaccinazione Parametro di tipo <i>Int</i> per identificare l'ID vaccinazione.
-     * @param nomecentro Parametro di tipo <i>String</i> per identificare il nome del centro.
      */
-    public Cittadino(String cf,String nome,String cognome, String userID, String email,String pwd,int idvaccinazione,String nomecentro) {
-       
-        super.setNomeCentro(nomecentro);
+    public Cittadino(String cf,String nome,String cognome, String userID, String email,String pwd,int idvaccinazione) {
+
         super.setNome(nome);
         super.setCognome(cognome);
         super.setCF(cf);

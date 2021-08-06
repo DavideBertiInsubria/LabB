@@ -48,7 +48,7 @@ public class ControllerRegistrazione {
 
             // CONTROLLO ESISTENZA DATI E CORREZIONE
             try {
-                Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()), "");
+                Cittadino cittadinoOK = new Cittadino(textCF.getText(), textNome.getText(), textCognome.getText(), textUserID.getText(), textEmail.getText(), textPax.getText(), Integer.valueOf(textIDVacc.getText()));
                 ArrayList<String> listaErrori = server.registraCittadino(cittadinoOK);
                 if ( listaErrori==null ){
                    JOptionPane.showMessageDialog(null, "Utente Registrato con successo.");

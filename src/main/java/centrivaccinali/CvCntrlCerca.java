@@ -22,20 +22,13 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class CvCntrlCerca implements Initializable {
+public class CvCntrlCerca {
 
     private ArrayList<CentroVaccinale> listaCentriVaccinaliVisualizzati = new ArrayList<CentroVaccinale>();
     @FXML
     ListView<String> listCentriVaccinali;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            setDati();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void setDati() throws RemoteException {
         compilaLista();

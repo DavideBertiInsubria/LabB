@@ -40,6 +40,16 @@ public class CvCntrlVaccinato {
         // APERTURA DELLA NUOVA FINESTRA
         new CvHomePage();
     }
+
+    public void clickCerca(ActionEvent event) {
+        // CHIUSURA DELLA VECCHIA FINESTRA
+        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        oldStage.close();
+        // APERTURA DELLA NUOVA FINESTRA
+        new CvCerca();
+    }
+
+
     public void confirm(ActionEvent event) {
         if(check()) {
             // NOME DEL CENTRO VACCINALE

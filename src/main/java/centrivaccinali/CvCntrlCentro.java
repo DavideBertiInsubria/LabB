@@ -82,7 +82,7 @@ public class CvCntrlCentro implements Initializable {
             CentroVaccinale cv = new CentroVaccinale(name, address, type.toString());
             // COLLEGAMENTO A SERVER
             try {
-                Registry reg = LocateRegistry.getRegistry("*", 1099);
+                Registry reg = LocateRegistry.getRegistry("localhost", 1099);
                 ServerInterface server = (ServerInterface) reg.lookup("Vaccino");
             //    ClientInterface client = new ClientImpl();
                 server.registraCentroVaccinale(cv);

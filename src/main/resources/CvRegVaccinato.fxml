@@ -18,7 +18,7 @@
       <Label layoutX="77.0" layoutY="194.0" text="Data di somministrazione:" />
       <Label layoutX="78.0" layoutY="226.0" text="Vaccino:" />
       <Label layoutX="79.0" layoutY="295.0" text="ID di vaccinazione:" />
-      <TextField fx:id="txtBld" layoutX="257.0" layoutY="50.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il nome del centro vaccinale" />
+      <TextField fx:id="txtBld" layoutX="257.0" layoutY="50.0" prefHeight="25.0" prefWidth="216.0" promptText="Inserire il nome del centro vaccinale" />
       <TextField fx:id="txtFn" layoutX="258.0" layoutY="85.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio nome" />
       <TextField fx:id="txtLn" layoutX="258.0" layoutY="120.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio cognome" />
       <TextField fx:id="txtSsn" layoutX="257.0" layoutY="155.0" prefHeight="25.0" prefWidth="275.0" promptText="Inserire il proprio codice fiscale" />
@@ -39,5 +39,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btnCerca" layoutX="481.0" layoutY="50.0" mnemonicParsing="false" text="Cerca" />
    </children>
 </AnchorPane>

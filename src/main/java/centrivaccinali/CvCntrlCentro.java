@@ -150,6 +150,8 @@ public class CvCntrlCentro implements Initializable {
         boxAddressProvince.setItems(province);
         boxAddressProvince.setVisibleRowCount(10);
         boxAddressProvince.setEditable(false);
+
+        boxAddressProvince.setPromptText("Provincia");
     }
 
 }

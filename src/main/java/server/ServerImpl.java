@@ -112,10 +112,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         try {
             Database.registraCentroVaccinale (CV);
             System.out.println("Registrazione effettuata");
-        } catch (SQLException e) {
-            System.out.println("Registrazione fallita");
-            e.printStackTrace ();
-        }
+        } catch (SQLException e) {}
 
     }
 

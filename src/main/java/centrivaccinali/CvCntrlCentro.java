@@ -1,7 +1,6 @@
 package centrivaccinali;
 
 import common.CentroVaccinale;
-import common.TipologiaCentro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,13 +23,13 @@ import java.util.ResourceBundle;
 
 public class CvCntrlCentro implements Initializable {
     @FXML
-    private TextField txtName, txtAddrName, txtAddrNumb, txtAddrCity, txtAddrProv, txtAddrZipc;
+    private TextField txtName, txtAddrName, txtAddrNumb, txtAddrZipc, txtAddrCity;
     @FXML
     private RadioButton btnVia, btnViale, btnPiazza, btnAziendale, btnHub, btnOspedaliero;
     @FXML
     private ComboBox<String> boxAddressProvince;
 
-    private ObservableList<String> province = FXCollections.observableArrayList(
+    private final ObservableList<String> province = FXCollections.observableArrayList(
             "AG","AL","AN","AO","AP","AQ","AR","AT","AV","BA","BG","BI","BL","BN","BO","BR","BS","BT","BZ","CA",
             "CB","CE","CH","CI","CL","CN","CO","CR","CS","CT","CZ","EN","FC","FE","FG","FI","FM","FR","KR","GE",
             "GO","GR","IM","IS","LC","LE","LI","LO","LT","LU","MB","MC","ME","MI","MN","MO","MS","MT","NA","NO",
@@ -45,46 +44,28 @@ public class CvCntrlCentro implements Initializable {
         // APERTURA DELLA NUOVA FINESTRA
         new CvHomePage();
     }
+
     public void confirm(ActionEvent event) {
-        // CONTROLLO DELLA CORRETTEZZA DI COMPILAZIONE
+        // CONTROLLO DELLA COMPILAZIONE
         if(check()) {
-            // NOME
-            String name = CvUtil.snip(txtName.getText());
-            // INDIRIZZO
-            RadioButton[] street = { btnPiazza, btnVia, btnViale };
-            String addressPartOne = "";
-            for(RadioButton rb: street) {
-                if(rb.isSelected())
-                    addressPartOne = rb.getText() + " ";
-            }
-            TextField[] centreAddress = { txtAddrName, txtAddrNumb, txtAddrCity, txtAddrProv, txtAddrZipc };
-            String addressPartTwo = "";
-            for(TextField tf: centreAddress) {
-                addressPartTwo += CvUtil.snip(tf.getText()) + " ";
-            }
-            String address = addressPartOne + addressPartTwo;
-            // CENTRO VACCINALE : TIPOLOGIA
-            TipologiaCentro type = null;
-            if(btnAziendale.isSelected()) {
-                type = TipologiaCentro.aziendale;
-            } else if(btnHub.isSelected()) {
-                type = TipologiaCentro.hub;
-            } else if(btnOspedaliero.isSelected()) {
-                type = TipologiaCentro.ospedaliero;
-            }
-
-            String s = boxAddressProvince.getValue();
-            String finale = addressPartOne+" "+centreAddress[0].getText()+centreAddress[1].getText()+centreAddress[2].getText()+s+centreAddress[4].getText();
-
-
-
+            // ESTRAZIONE DI DATI DA TEXTFIELD
+            TextField[] txt = { txtName, txtAddrName, txtAddrNumb, txtAddrZipc, txtAddrCity };
+            String[] buf = CvUtil.toStringArray(txt);
+            // ESTRAZIONE DI DATI DA RADIOBUTTON
+            RadioButton[] street = { btnVia, btnViale, btnPiazza };
+            String streetType = CvUtil.selectRadioButton(street);
+            RadioButton[] centre = { btnAziendale, btnHub, btnOspedaliero };
+            String centreType = CvUtil.selectRadioButton(centre);
+            // ESTRAZIONE DI DATI DA COMBOBOX
+            String prov = boxAddressProvince.getValue();
+            // COSTRUZIONE INDIRIZZO
+            String addr = streetType + " " + buf[1] + " " + buf[2] + " " + buf[3] + " " + buf[4] + " " + prov;
             // COSTRUZIONE CENTRO VACCINALE
-            CentroVaccinale cv = new CentroVaccinale(name, address, type.toString());
+            CentroVaccinale cv = new CentroVaccinale(buf[0], addr, centreType);
             // COLLEGAMENTO A SERVER
             try {
                 Registry reg = LocateRegistry.getRegistry("localhost", 1099);
                 ServerInterface server = (ServerInterface) reg.lookup("Vaccino");
-            //    ClientInterface client = new ClientImpl();
                 server.registraCentroVaccinale(cv);
             } catch (RemoteException | NotBoundException e) {
                 JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -96,61 +77,41 @@ public class CvCntrlCentro implements Initializable {
             // APERTURA DELLA NUOVA FINESTRA
             new CvHomePage();
 
-
-
-            //System.out.println(name + address + type.toString());
-            //System.out.println(finale);
+            //System.out.println(buf[0]);
+            //System.out.println(addr);
+            //System.out.println(centreType);
 
         }
     }
+
     private boolean check() {
-        if(txtName.getText().isBlank() || txtAddrName.getText().isBlank() || txtAddrNumb.getText().isBlank() || txtAddrCity.getText().isBlank() || txtAddrProv.getText().isBlank() || txtAddrZipc.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Tutti i campi devono essere compilati.", "Warning", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-        if(txtAddrProv.getText().length() != 2 || CvUtil.isNumerical((txtAddrProv.getText()))) {
-            JOptionPane.showMessageDialog(null, "La sigla di una provincia e' composta da due caratteri alfabetici.", "Warning", JOptionPane.WARNING_MESSAGE);
+        // MESSAGGI DI ERRORE
+        String errOnLvl1 = "Tutti i campi devono essere obbligatoriamente compilati.";
+        String errOnLvl2 = "Il codice di avviamento postale e' composto da cinque caratteri numerici.";
+        String errOnLvl3 = "La provincia deve essere obbligatoriamente selezionata.";
+        // CONTROLLO DELLA CORRETTEZZA DI COMPILAZIONE PER TEXTFIELD
+        if(txtName.getText().isBlank() || txtAddrName.getText().isBlank() || txtAddrNumb.getText().isBlank() || txtAddrZipc.getText().isBlank() || txtAddrCity.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, errOnLvl1, "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if(txtAddrZipc.getText().length() != 5 || !CvUtil.isNumerical(txtAddrZipc.getText())) {
-            JOptionPane.showMessageDialog(null, "Il codice di avviamento postale e' composto da cinque caratteri numerici.", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, errOnLvl2, "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        // CONTROLLO DELLA CORRETTEZZA DI COMPILAZIONE PER COMBOBOX
         if(boxAddressProvince.getValue() == null || boxAddressProvince.getValue().isBlank()){
-            JOptionPane.showMessageDialog(null, "errore con provincia");
+            JOptionPane.showMessageDialog(null, errOnLvl3, "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-
         return true;
-    }
-
-    private static boolean isAlphabetical(String s) {
-        String[] arr = s.split(" ");
-        boolean alphabetical;
-        for (String value : arr) {
-            alphabetical = value.chars().allMatch(Character::isLetter);
-            if (!alphabetical) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private String isType(RadioButton[] arr) {
-        for(RadioButton rb: arr) {
-            if(rb.isSelected()){
-                return rb.getText() + " ";
-            }
-        }
-        return arr[0].getText();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // INIZIALIZZAZIONE DELLA COMBOBOX
         boxAddressProvince.setItems(province);
         boxAddressProvince.setVisibleRowCount(10);
         boxAddressProvince.setEditable(false);
-
         boxAddressProvince.setPromptText("Provincia");
     }
 

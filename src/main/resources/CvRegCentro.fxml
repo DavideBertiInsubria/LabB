@@ -18,18 +18,17 @@
       <Label layoutX="78.0" layoutY="112.0" text="Indirizzo:" />
       <TextField fx:id="txtAddrName" layoutX="300.0" layoutY="108.0" prefHeight="25.0" prefWidth="225.0" promptText="nome" />
       <TextField fx:id="txtAddrNumb" layoutX="300.0" layoutY="136.0" prefHeight="25.0" prefWidth="225.0" promptText="numero civico" />
-      <TextField fx:id="txtAddrCity" layoutX="300.0" layoutY="164.0" prefHeight="25.0" prefWidth="225.0" promptText="comune" />
-      <TextField fx:id="txtAddrProv" layoutX="300.0" layoutY="192.0" prefHeight="25.0" prefWidth="225.0" promptText="provincia" />
-      <TextField fx:id="txtAddrZipc" layoutX="300.0" layoutY="220.0" prefHeight="25.0" prefWidth="225.0" promptText="CAP" />
+      <TextField fx:id="txtAddrCity" layoutX="300.0" layoutY="192.0" prefHeight="25.0" prefWidth="225.0" promptText="comune" />
+      <TextField fx:id="txtAddrZipc" layoutX="300.0" layoutY="164.0" prefHeight="25.0" prefWidth="225.0" promptText="CAP" />
       <Label layoutX="78.0" layoutY="279.0" text="Tipologia:" />
-      <RadioButton fx:id="btnAziendale" layoutX="228.0" layoutY="279.0" mnemonicParsing="false" selected="true" text="aziendale">
+      <RadioButton fx:id="btnAziendale" layoutX="228.0" layoutY="279.0" mnemonicParsing="false" text="aziendale">
          <toggleGroup>
             <ToggleGroup fx:id="grpTipologia" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="btnHub" layoutX="355.0" layoutY="279.0" mnemonicParsing="false" text="hub" toggleGroup="$grpTipologia" />
       <RadioButton fx:id="btnOspedaliero" layoutX="442.0" layoutY="279.0" mnemonicParsing="false" text="ospedaliero" toggleGroup="$grpTipologia" />
-      <RadioButton fx:id="btnVia" layoutX="226.0" layoutY="112.0" mnemonicParsing="false" selected="true" text="via">
+      <RadioButton fx:id="btnVia" layoutX="226.0" layoutY="112.0" mnemonicParsing="false" text="via">
          <toggleGroup>
             <ToggleGroup fx:id="grpIndirizzo" />
          </toggleGroup>
@@ -41,6 +40,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="boxAddressProvince" layoutX="299.0" layoutY="245.0" prefWidth="150.0" />
+      <ComboBox fx:id="boxAddressProvince" layoutX="300.0" layoutY="220.0" prefHeight="25.0" prefWidth="225.0" />
    </children>
 </AnchorPane>

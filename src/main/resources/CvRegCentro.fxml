@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSKYBLUE;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlCentro">
    <children>
-      <Button layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#backFromCentroVaccinale" text="Indietro" />
+      <Button layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#backToHomePage" text="Indietro" />
       <Button layoutX="323.0" layoutY="339.0" mnemonicParsing="false" onAction="#confirm" text="Conferma e invia" />
       <Label layoutX="78.0" layoutY="58.0" text="Nome:" />
       <TextField fx:id="txtName" layoutX="226.0" layoutY="54.0" prefHeight="25.0" prefWidth="300.0" />
@@ -19,7 +19,7 @@
       <TextField fx:id="txtAddrName" layoutX="300.0" layoutY="108.0" prefHeight="25.0" prefWidth="225.0" promptText="nome" />
       <TextField fx:id="txtAddrNumb" layoutX="300.0" layoutY="136.0" prefHeight="25.0" prefWidth="225.0" promptText="numero civico" />
       <TextField fx:id="txtAddrCity" layoutX="300.0" layoutY="192.0" prefHeight="25.0" prefWidth="225.0" promptText="comune" />
-      <TextField fx:id="txtAddrZipc" layoutX="300.0" layoutY="164.0" prefHeight="25.0" prefWidth="225.0" promptText="CAP" />
+      <TextField fx:id="txtAddrZipc" layoutX="300.0" layoutY="164.0" prefHeight="25.0" prefWidth="225.0" promptText="codice di avviamento postale" />
       <Label layoutX="78.0" layoutY="279.0" text="Tipologia:" />
       <RadioButton fx:id="btnAziendale" layoutX="228.0" layoutY="279.0" mnemonicParsing="false" text="aziendale">
          <toggleGroup>

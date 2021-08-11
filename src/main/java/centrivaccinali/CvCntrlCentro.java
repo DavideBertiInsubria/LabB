@@ -37,7 +37,7 @@ public class CvCntrlCentro implements Initializable {
             "RE","RI","RM","RN","RO","SA","SI","SO","SP","SR","SS","SV","TA","TE","TN","TO","TP","TR","TS","TV",
             "UD","VA","VB","VC","VE","VI","VR","VS","VT","VV");
 
-    public void backFromCentroVaccinale(ActionEvent event) {
+    public void backToHomePage(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
         Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         oldStage.close();

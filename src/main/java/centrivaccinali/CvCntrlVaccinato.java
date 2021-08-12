@@ -24,7 +24,7 @@ public class CvCntrlVaccinato {
     @FXML
     private RadioButton btnAstraZeneca, btnJohnsonJohnson, btnModerna, btnPfizer;
     @FXML
-    private TextField txtBld, txtFn, txtLn, txtSsn, txtIdn;
+    private TextField txtCentreName, txtFirstName, txtLastName, txtFiscalCode, txtId;
 
     /**
      * <code>CV</code> &egrave; il riferimento al centro vaccinale selezionato sul quale verrà registrato il vaccinato, ed è un oggetto di tipo <i>CentroVaccinale</i>.
@@ -33,15 +33,7 @@ public class CvCntrlVaccinato {
      */
     private CentroVaccinale CV = null;
 
-    public void backFromCittadinoVaccinato(ActionEvent event) {
-        // CHIUSURA DELLA VECCHIA FINESTRA
-        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        oldStage.close();
-        // APERTURA DELLA NUOVA FINESTRA
-        new CvHomePage();
-    }
-
-    public void clickCerca(ActionEvent event) {
+    public void search(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
         Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         oldStage.close();
@@ -49,39 +41,30 @@ public class CvCntrlVaccinato {
         new CvCerca();
     }
 
+    public void backToHomePage(ActionEvent event) {
+        // CHIUSURA DELLA VECCHIA FINESTRA
+        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        oldStage.close();
+        // APERTURA DELLA NUOVA FINESTRA
+        new CvHomePage();
+    }
 
     public void confirm(ActionEvent event) {
         if(check()) {
-            // NOME DEL CENTRO VACCINALE
-            String cvName = txtBld.getText().trim().replaceAll("\\s+", " ");
-            // NOME DEL VACCINATO
-            String vxFn = txtFn.getText().trim().replaceAll("\\s+", " ");
-            // COGNOME DEL VACCINATO
-            String vxLn = txtLn.getText().trim().replaceAll("\\s+", " ");
-            // CODICE FISCALE DEL VACCINATO
-            String vxSsn = txtSsn.getText().trim().replaceAll("\\s+", " ");
-            // DATA DI SOMMINISTRAZIONE
+            // ESTRAZIONE DI DATI DA TEXTFIELD
+            TextField[] txt = { txtFirstName, txtLastName, txtFiscalCode, txtId };
+            String[] buf = CvUtil.toStringArray(txt);
+            // ESTRAZIONE DI DATI DA RADIOBUTTON
+            RadioButton[] vaccine = { btnAstraZeneca, btnJohnsonJohnson, btnModerna, btnPfizer };
+            String vaccineType = CvUtil.selectRadioButton(vaccine);
+            // ESTRAZIONE DI DATI DA DATEPICKER
             LocalDate ddMMyyyy = date.getValue();
-            // MARCA DI VACCINO
-            String type = null;
-            if(btnAstraZeneca.isSelected()) {
-                type = btnAstraZeneca.getText();
-            } else if(btnJohnsonJohnson.isSelected()) {
-                type = btnJohnsonJohnson.getText();
-            } else if(btnModerna.isSelected()) {
-                type = btnModerna.getText();
-            } else if(btnPfizer.isSelected()) {
-                type = btnPfizer.getText();
-            }
-            // NUMERO UNIVOCO DI IDENTIFICAZIONE
-            int vxIdn = Integer.valueOf(txtIdn.getText());
             // COSTRUZIONE VACCINATO
-            Vaccinato vax = new Vaccinato(CV, vxFn, vxLn, vxSsn, type, vxIdn, ddMMyyyy);
+            Vaccinato vax = new Vaccinato(CV, buf[0], buf[1], buf[2], vaccineType, Integer.parseInt(buf[3]), ddMMyyyy);
             // COLLEGAMENTO A SERVER
             try {
-                Registry reg = LocateRegistry.getRegistry("*", 1099);
+                Registry reg = LocateRegistry.getRegistry("localhost", 1099);
                 ServerInterface server = (ServerInterface) reg.lookup("Vaccino");
-            //    ClientInterface client = new ClientImpl();
                 server.registraVaccinato(vax);
             } catch (RemoteException | NotBoundException e) {
                 JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -92,10 +75,14 @@ public class CvCntrlVaccinato {
             oldStage.close();
             // APERTURA DELLA NUOVA FINESTRA
             new CvHomePage();
+
+            // System.out.println(txtCentreName.getText()+" "+buf[0]+" "+buf[1]+" "+buf[2]+" "+vaccineType+" "+Integer.parseInt(buf[3])+" "+ddMMyyyy);
+
         }
     }
+
     private boolean check() {
-        if(txtBld.getText().isBlank() || txtFn.getText().isBlank() || txtLn.getText().isBlank() || txtSsn.getText().isBlank() || date.getValue() == null || txtIdn.getText().isBlank()) {
+        if(txtCentreName.getText().isBlank() || txtFirstName.getText().isBlank() || txtLastName.getText().isBlank() || txtFiscalCode.getText().isBlank() || date.getValue() == null || txtId.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Tutti i campi devono essere compilati.", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
@@ -104,7 +91,7 @@ public class CvCntrlVaccinato {
 
     public void setDati(CentroVaccinale cv) throws RemoteException {
         CV = cv;
-        txtBld.setText(CV.getNome());
+        txtCentreName.setText(CV.getNome());
     }
 
 }

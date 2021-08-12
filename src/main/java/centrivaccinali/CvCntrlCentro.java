@@ -113,9 +113,7 @@ public class CvCntrlCentro implements Initializable {
             // APERTURA DELLA NUOVA FINESTRA
             new CvHomePage();
 
-            //System.out.println(buf[0]);
-            //System.out.println(addr);
-            //System.out.println(centreType);
+            //System.out.println(buf[0] + " " + addr + " " + centreType);
 
         }
     }

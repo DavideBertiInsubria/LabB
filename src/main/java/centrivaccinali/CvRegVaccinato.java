@@ -6,7 +6,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * GUI del modulo per la registrazione di un cittadino vaccinato.
+ * @author Berti Davide
+ * @author Ivanov Aleksandar Evgeniev
+ * @author Mazza Serghej
+ * @author Rizzi Silvio 719638 VA
+ */
 public class CvRegVaccinato {
+
+    /**
+     * Costruttore della classe. Utilizza il file <code>CvRegVaccinato.fxml</code> per generare correttamente la GUI.
+     */
     public CvRegVaccinato() {
         try {
             Stage stage = new Stage();

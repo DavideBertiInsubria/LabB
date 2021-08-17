@@ -18,6 +18,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.time.LocalDate;
 
+/**
+ * Controller associato a <code>CvRegVaccinato</code>.
+ * @author Berti Davide
+ * @author Ivanov Aleksandar Evgeniev
+ * @author Mazza Serghej
+ * @author Rizzi Silvio 719638 VA
+ * @see CvRegVaccinato
+ */
 public class CvCntrlVaccinato {
     @FXML
     private DatePicker date;
@@ -26,13 +34,15 @@ public class CvCntrlVaccinato {
     @FXML
     private TextField txtCentreName, txtFirstName, txtLastName, txtFiscalCode, txtId;
 
-    /**
-     * <code>CV</code> &egrave; il riferimento al centro vaccinale selezionato sul quale verrà registrato il vaccinato, ed è un oggetto di tipo <i>CentroVaccinale</i>.
-     * &egrave; null se non si è selezionato nulla
-     * @see CentroVaccinale
-     */
     private CentroVaccinale CV = null;
 
+    /**
+     * Chiude la finestra corrente e crea una nuova istanza di <code>CvCerca</code>. &Egrave; associato al bottone
+     * per la selezione di un centro vaccinale registrato.
+     * @param event il riferimento all'evento associato
+     * @see CvCerca
+     * @see ActionEvent
+     */
     public void search(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
         Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -41,6 +51,13 @@ public class CvCntrlVaccinato {
         new CvCerca();
     }
 
+    /**
+     * Chiude la finestra corrente e crea una nuova istanza di <code>CvHomePage</code>. &Egrave; associato al bottone
+     * per il ritorno alla pagina iniziale.
+     * @param event il riferimento all'evento associato
+     * @see CvHomePage
+     * @see ActionEvent
+     */
     public void backToHomePage(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
         Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -49,6 +66,13 @@ public class CvCntrlVaccinato {
         new CvHomePage();
     }
 
+    /**
+     * Chiude la finestra corrente inviando i dati inseriti a un server opportunamente collegato e crea una nuova
+     * istanza di <code>CvHomePage</code>. &Egrave; associato al bottone di conferma.
+     * @param event il riferimento all'evento associato
+     * @see CvHomePage
+     * @see ActionEvent
+     */
     public void confirm(ActionEvent event) {
         if(check()) {
             // ESTRAZIONE DI DATI DA TEXTFIELD
@@ -81,6 +105,11 @@ public class CvCntrlVaccinato {
         }
     }
 
+    /**
+     * Controlla che i dati richiesti dal modulo di registrazione siano stati inseriti correttamente. L'applicazione
+     * richiede che tutti i campi siano obbligatoriamente compilati.
+     * @return <code>true</code> se tutti i campi sono stati compilati correttamente, <code>false</code> altrimenti.
+     */
     private boolean check() {
         if(txtCentreName.getText().isBlank() || txtFirstName.getText().isBlank() || txtLastName.getText().isBlank() || txtFiscalCode.getText().isBlank() || date.getValue() == null || txtId.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Tutti i campi devono essere compilati.", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -89,6 +118,12 @@ public class CvCntrlVaccinato {
         return true;
     }
 
+    /**
+     * Visualizza il nome del centro vaccinale selezionato nel campo corrispondente del modulo di registrazione.
+     * @param cv il riferimento al centro vaccinale selezionato
+     * @throws RemoteException
+     * @see CentroVaccinale
+     */
     public void setDati(CentroVaccinale cv) throws RemoteException {
         CV = cv;
         txtCentreName.setText(CV.getNome());

@@ -78,7 +78,7 @@ public class CvCntrlVaccinato {
             // ESTRAZIONE DI DATI DA RADIOBUTTON
             RadioButton[] vaccine = { btnAstraZeneca, btnJohnsonJohnson, btnModerna, btnPfizer };
             String vaccineType = CvUtil.selectRadioButton(vaccine);
-            if (vaccineType == "Johnson & Johnson")
+            if (vaccineType.equals("Johnson & Johnson"))
                 vaccineType = "JJ";
             // ESTRAZIONE DI DATI DA DATEPICKER
             LocalDate ddMMyyyy = date.getValue();

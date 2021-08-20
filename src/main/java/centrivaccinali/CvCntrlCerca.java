@@ -33,27 +33,15 @@ public class CvCntrlCerca {
 
     private ArrayList<CentroVaccinale> listaCentriVaccinaliVisualizzati = new ArrayList<CentroVaccinale>();
 
-    /**
-     * Chiude la finestra corrente e crea una nuova istanza di <code>CvRegVaccinato</code>. &Egrave; associato al bottone
-     * per il ritorno alla pagina precedente.
-     * @param event il riferimento all'evento associato
-     * @see CvRegVaccinato
-     * @see ActionEvent
-     */
-    public void backToRegVaccinato(ActionEvent event) {
-        // CHIUSURA DELLA VECCHIA FINESTRA
-        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        oldStage.close();
-        // APERTURA DELLA NUOVA FINESTRA
-        new CvRegVaccinato();
-    }
+    private CvCntrlVaccinato CNTRLV;
 
     /**
      * Invoca il metodo interno <code>compilaLista</code>.
      * @throws RemoteException se la connessione al server fallisce
      */
-    public void setDati() throws RemoteException {
+    public void setDati(CvCntrlVaccinato cntrlV) throws RemoteException {
         compilaLista();
+        CNTRLV = cntrlV;
     }
 
     /**
@@ -100,18 +88,8 @@ public class CvCntrlCerca {
                 // CHIUSURA
                 Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 thisWindow.close();
-
-                // APERTURA NUOVA SCHERMATA
-                Stage schermata = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/CvRegVaccinato.fxml"));
-                Parent root = loader.load();
-                CvCntrlVaccinato cc = loader.getController();
-                cc.setDati(listaCentriVaccinaliVisualizzati.get(listCentriVaccinali.getSelectionModel().getSelectedIndex()));  // PASSO IL CENTRO VACCINALE SELEZIONATO
-                schermata.setTitle("CENTRI VACCINALI - Registrazione Cittadini Vaccinati");
-                schermata.setScene(new Scene(root));
-                schermata.show();
-            } catch (IOException e){
-                JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+                CNTRLV.setDati(listaCentriVaccinaliVisualizzati.get(listCentriVaccinali.getSelectionModel().getSelectedIndex()));
+            } catch (RemoteException e) {
                 e.printStackTrace();
             }
         }

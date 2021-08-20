@@ -44,11 +44,8 @@ public class CvCntrlVaccinato {
      * @see ActionEvent
      */
     public void search(ActionEvent event) {
-        // CHIUSURA DELLA VECCHIA FINESTRA
-        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        oldStage.close();
         // APERTURA DELLA NUOVA FINESTRA
-        new CvCerca();
+        new CvCerca(this);
     }
 
     /**

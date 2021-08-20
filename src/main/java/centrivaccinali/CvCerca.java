@@ -19,13 +19,13 @@ public class CvCerca {
     /**
      * Costruttore della classe. Utilizza il file <code>CvCerca.fxml</code> per generare correttamente la GUI.
      */
-    public CvCerca() {
+    public CvCerca(CvCntrlVaccinato cntrlV) {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CvCerca.fxml"));
             Parent root = loader.load();
             CvCntrlCerca cc = loader.getController();
-            cc.setDati();
+            cc.setDati(cntrlV);
             stage.setTitle("CENTRI VACCINALI - Ricerca Centri Vaccinali");
             stage.setScene(new Scene(root));
             stage.show();

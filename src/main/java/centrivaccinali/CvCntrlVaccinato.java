@@ -114,6 +114,18 @@ public class CvCntrlVaccinato {
             JOptionPane.showMessageDialog(null, "Tutti i campi devono essere compilati.", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        if(txtFiscalCode.getText().length() != 16) {
+            JOptionPane.showMessageDialog(null,"Il codice fiscale deve contere 16 caratteri", "Warning", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if(!CvUtil.isNumerical(txtId.getText())) {
+            JOptionPane.showMessageDialog(null, "il codice di identificazione deve contenere solo caratteri numerici", "Warning", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if(!CvUtil.isAlphabetical(txtFirstName.getText()) || !CvUtil.isAlphabetical(txtLastName.getText())) {
+            JOptionPane.showMessageDialog(null, "Nome e cognome non possono contenere numeri o caratteri speciali.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         return true;
     }
 

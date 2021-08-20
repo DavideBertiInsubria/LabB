@@ -63,4 +63,16 @@ public class CvUtil {
         }
         return str;
     }
+
+    public static boolean isAlphabetical(String s){
+        int i;
+        for(i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (!Character.isLetter(ch) && ch != ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

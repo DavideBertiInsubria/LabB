@@ -116,6 +116,26 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 		}
 	}
+	public void registraVaccinato(Vaccinato vaccinato) throws SQLException {
+
+		String nome = vaccinato.getNome ();
+		String cognome = vaccinato.getCognome();
+		String cf = vaccinato.getCF();
+		String nomecentro = vaccinato.getCentro().getNome();
+		int idcentro;
+
+		ResultSet id = query("SELECT IDCentro FROM CentriVaccinali WHERE Nome='"+nomecentro+"'");
+
+		if(DBManager.ResultSetSize(id) == 1) {
+			idcentro = id.getInt(1);
+			vaccinato.setIDCentro(idcentro);
+
+			query("INSERT INTO "+
+					"Vaccinati(IDCentro,NomeCentro,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato) "+
+					"VALUES("+idcentro+",'"+nomecentro+"','"+nome+"','"+cognome+"','"+cf+"','"+vaccinato.getDatasomm()+"','"+vaccinato.getVaccino()+"')");
+
+		}
+	}
 	
 	public ArrayList<ReportEventoAvverso> getReportSegnalazioni(int IDCentro) throws SQLException {
 		ResultSet eventi = query("SELECT IDEvento,Evento FROM EventoAvverso");

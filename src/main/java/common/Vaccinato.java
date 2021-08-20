@@ -83,4 +83,6 @@ public class Vaccinato implements Serializable {
     	this.Centro = Centro;
     }
 
+    public LocalDate getDatasomm(){ return data;}
+
 }

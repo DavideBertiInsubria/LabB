@@ -9,7 +9,6 @@ public class Vaccinato implements Serializable {
     private String cognome,CF,vaccino,nome;
     private int IDCentro,IDVaccino;
     private LocalDate data;
-    private Date DataSV;
 
 
     public Vaccinato(CentroVaccinale Centro, String nome, String cognome, String CF, String vaccino, int IDVaccino, LocalDate data) {

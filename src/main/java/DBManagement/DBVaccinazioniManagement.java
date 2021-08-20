@@ -123,6 +123,7 @@ public class DBVaccinazioniManagement extends DBManager{
 		String cognome = vaccinato.getCognome();
 		String cf = vaccinato.getCF();
 		String nomecentro = vaccinato.getCentro().getNome();
+		int idvaccinazione = vaccinato.getIDVaccino();
 		int idcentro;
 
 		ResultSet id = query("SELECT IDCentro FROM CentriVaccinali WHERE Nome='"+nomecentro+"'");
@@ -132,8 +133,8 @@ public class DBVaccinazioniManagement extends DBManager{
 			vaccinato.setIDCentro(idcentro);
 
 			query("INSERT INTO "+
-					"Vaccinati(IDCentro,NomeCentro,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato) "+
-					"VALUES("+idcentro+",'"+nomecentro+"','"+nome+"','"+cognome+"','"+cf+"','"+vaccinato.getDatasomm()+"','"+vaccinato.getVaccino()+"')");
+					"Vaccinati(IDCentro,NomeCentro,IDVaccinazione,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato) "+
+					"VALUES("+idcentro+",'"+nomecentro+"',"+idvaccinazione+",'"+nome+"','"+cognome+"','"+cf+"','"+vaccinato.getDatasomm()+"','"+vaccinato.getVaccino()+"')");
 
 		}
 	}

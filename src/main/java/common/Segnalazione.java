@@ -1,7 +1,10 @@
 package common;
 
 import java.io.Serializable;
-
+/**
+ *La classe <em>Segnalazione</em> viene utilizzata per creare un oggetto che contenga una segnalazione di un evento avverso.
+ *@author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ */
 public class Segnalazione implements Serializable {
 	
 	private int IDVaccinazione;

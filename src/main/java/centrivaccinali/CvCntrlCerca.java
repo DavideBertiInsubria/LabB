@@ -34,6 +34,21 @@ public class CvCntrlCerca {
     private ArrayList<CentroVaccinale> listaCentriVaccinaliVisualizzati = new ArrayList<CentroVaccinale>();
 
     /**
+     * Chiude la finestra corrente e crea una nuova istanza di <code>CvRegVaccinato</code>. &Egrave; associato al bottone
+     * per il ritorno alla pagina precedente.
+     * @param event il riferimento all'evento associato
+     * @see CvRegVaccinato
+     * @see ActionEvent
+     */
+    public void backToRegVaccinato(ActionEvent event) {
+        // CHIUSURA DELLA VECCHIA FINESTRA
+        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        oldStage.close();
+        // APERTURA DELLA NUOVA FINESTRA
+        new CvRegVaccinato();
+    }
+
+    /**
      * Invoca il metodo interno <code>compilaLista</code>.
      * @throws RemoteException se la connessione al server fallisce
      */

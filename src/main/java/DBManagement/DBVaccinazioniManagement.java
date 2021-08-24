@@ -11,13 +11,37 @@ import common.Cittadino;
 import common.ReportEventoAvverso;
 import common.Segnalazione;
 
+/**
+ * La classe DBVaccinazioniManagement mette a disposizione servizi specifici per il database dei centri vaccinali
+ * @author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * @see #registraCentroVaccinale(CentroVaccinale)
+ * @see #registraCittadino(Cittadino)
+ * @see #checkCampi(String, String)
+ * @see #checkCampiCit(String, String)
+ * @see #registraVaccinato(Vaccinato)
+ * @see #registraVaccinato(Vaccinato, String, Vaccino)
+ * @see #getReportSegnalazioni(int)
+ * @see #checkSegnalazione(int, String)
+ * @see #registraSegnalazione(Segnalazione)
+ * @see #loginCittadino(String, String)
+ * @see #cercaCentroVaccinale(String, String, String)
+ */
 public class DBVaccinazioniManagement extends DBManager{
 
+	/**
+	 * Costruttore per la connessione al database specificato
+	 * @throws SQLException
+	 */
 	public DBVaccinazioniManagement() throws SQLException {
 		super("jdbc:postgresql://localhost/dblabb","postgres","test");
 	}
 	
 	
+	/**
+	 * Aggiunge un centro vaccinale nel database
+	 * @param centro Centro vaccinali da registrare
+	 * @throws SQLException
+	 */
 	public void registraCentroVaccinale(CentroVaccinale centro) throws SQLException {
 		String nome = centro.getNome();
 		String indirizzo = centro.getIndirizzo();
@@ -26,6 +50,13 @@ public class DBVaccinazioniManagement extends DBManager{
 				+ "VALUES('"+nome+"','"+indirizzo+"','"+tipologia+"')");
 	}
 	
+	
+	/**
+	 * Aggiunge un cittadino già vaccinato nel database
+	 * @param cittadino {@link common.Cittadino Cittadino} da registrare
+	 * @return
+	 * @throws SQLException
+	 */
 
 	public ArrayList<String> registraCittadino(Cittadino cittadino) throws SQLException {
 		ArrayList<String > ritorno=new ArrayList<> ();
@@ -67,6 +98,13 @@ public class DBVaccinazioniManagement extends DBManager{
 		return null;
 	}
 
+	/**
+	 * Ricerca di vaccinati tramite chiave e valore dinamici
+	 * @param campo Il nome del campo su cui si vuole basare la ricerca
+	 * @param value Il valore che deve assumere campo per ricercare i record
+	 * @return ritorna un valore booleano che sta a indicare se è stato trovato almeno un record di un vaccinato che ha come campo=valore
+	 * @throws SQLException
+	 */
 	public boolean checkCampi(String campo, String value) throws SQLException {
 		if(campo.equals ("IDVaccinazione"))
 		{
@@ -81,6 +119,15 @@ public class DBVaccinazioniManagement extends DBManager{
 		}
 	}
 
+	/**
+	 * Ricerca di vaccinati o cittadini tramite chiave e valore dinamici
+	 * @param campo Il nome del campo su cui si vuole basare la ricerca.
+	 * Se è uguale a "IDVaccinazione" si cercherà nella tabella dei vaccinati, altrimenti in quella dei cittadini
+	 * @param value Il valore che deve assumere campo per ricercare i record
+	 * @return ritorna un valore booleano che sta a indicare se è stato trovato almeno
+	 * un record di un vaccinato o di un cittadino che ha come campo=valore
+	 * @throws SQLException
+	 */
 	public boolean checkCampiCit(String campo,String value) throws SQLException {
 		if(campo.equals ("IDVaccinazione"))
 		{
@@ -96,6 +143,13 @@ public class DBVaccinazioniManagement extends DBManager{
 
 	}
 
+	/**
+	 * Registra un vaccinato nel database
+	 * @param vaccinato {@link common.Vaccinato Vaccinato} che si vuole registrare
+	 * @param datasomm La data in cui è stato somministrato il vaccino
+	 * @param vaccino Vaccino che è stato somministrato
+	 * @throws SQLException
+	 */
 	public void registraVaccinato(Vaccinato vaccinato,String datasomm,Vaccino vaccino) throws SQLException {
 
 		String nome = vaccinato.getNome ();
@@ -117,6 +171,12 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 		}
 	}
+	
+	/**
+	 * Registra un vaccinato nel database
+	 * @param vaccinato {@link common.Vaccinato Vaccinato} che si vuole registrare
+	 * @throws SQLException
+	 */
 	public void registraVaccinato(Vaccinato vaccinato) throws SQLException {
 
 		String nome = vaccinato.getNome ();
@@ -139,6 +199,13 @@ public class DBVaccinazioniManagement extends DBManager{
 		}
 	}
 	
+	/**
+	 * Report per evento avverso del numero di segnalazioni e media della severità segnalati ad un centro vaccinale
+	 * @param IDCentro Identificativo numero del centro vaccinale
+	 * @return ArrayList di oggetti di tipo {@link common.ReportEventoAvverso ReportEventoAvverso}
+	 * @throws SQLException
+	 */
+	
 	public ArrayList<ReportEventoAvverso> getReportSegnalazioni(int IDCentro) throws SQLException {
 		ResultSet eventi = query("SELECT IDEvento,Evento FROM EventoAvverso");
 		ArrayList<ReportEventoAvverso> report = new ArrayList<ReportEventoAvverso>(); 
@@ -157,6 +224,14 @@ public class DBVaccinazioniManagement extends DBManager{
 		return report;
 	}
 	
+	/**
+	 * Controlla se un vaccinato ha già segnalato un determinato evento avverso
+	 * @param IDVaccinazione Identificativo numero della vaccinazione
+	 * @param evento Nome dell' evento avverso
+	 * @return Ritorna un valore booleano che assume vero se il vaccinato ha già segnalato un
+	 * evento avverso di nome evento
+	 * @throws SQLException
+	 */
 	public boolean checkSegnalazione(int IDVaccinazione, String evento) throws SQLException{
 		ResultSet r = query("SELECT IDEvento FROM EventoAvverso WHERE Evento='"+evento+"'");
 		if(r.next()) {
@@ -173,6 +248,11 @@ public class DBVaccinazioniManagement extends DBManager{
 		return r.next();
 	}*/
 
+	/**
+	 * Registra un segnalazione di un evento avverso sul database
+	 * @param segnalazione {@link common.Segnalazione Segnalazione} da registrare
+	 * @throws SQLException
+	 */
 	public void registraSegnalazione(Segnalazione segnalazione) throws SQLException {
 		
 		int idvaccinazione = segnalazione.getIDVaccinazione();
@@ -191,6 +271,13 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 	}
 	
+	/**
+	 * Effettua il controllo se esiste un {@link common.Cittadino Cittadino} registrato con nickname e password specificati
+	 * @param nick Nickname del cittadino registrato
+	 * @param pwd Password del cittadino registrato
+	 * @return Ritorna un resultset con i dati del cittadino che ha come nickname e password quelli specificati come parametri, altrimenti null
+	 * @throws SQLException
+	 */
 	public ResultSet loginCittadino(String nick,String pwd) throws SQLException {
 
 		ResultSet l = query("SELECT * FROM CittadiniRegistrati WHERE nick='"+nick+"' AND Password='"+pwd+"'");
@@ -200,6 +287,15 @@ public class DBVaccinazioniManagement extends DBManager{
 		return null;
 	}
 	
+	/**
+	 * Cerca un centro vaccinale nel database con filtri di ricerca per nome, comune o tipologia. Lasciare un parametro vuoto
+	 * se non lo si vuole come filtro di ricerca
+	 * @param nome Nome del centro vaccinale che si vuole cercare
+	 * @param comune Comune del centro vaccinale che si vuole cercare
+	 * @param tipologia Tipologia del centro vaccinale che si vuole cercare
+	 * @return ResultSet con i dati dei centri vaccinali trovati
+	 * @throws SQLException
+	 */
 	public ResultSet cercaCentroVaccinale(String nome,String comune,String tipologia) throws SQLException {
 		
 		if(nome.equals(""))

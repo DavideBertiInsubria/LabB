@@ -9,6 +9,7 @@ import java.io.IOException;
 
 /**
  * GUI del modulo per la selezione di un centro vaccinale registrato.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej

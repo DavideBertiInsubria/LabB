@@ -20,6 +20,7 @@ import java.time.LocalDate;
 
 /**
  * Controller associato a <code>CvRegVaccinato</code>.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
@@ -107,12 +108,6 @@ public class CvCntrlVaccinato {
         }
     }
 
-    /**
-     * Visualizza il nome del centro vaccinale selezionato nel campo corrispondente del modulo di registrazione.
-     * @param cv il riferimento al centro vaccinale selezionato
-     * @throws RemoteException
-     * @see CentroVaccinale
-     */
     public void setDati(CentroVaccinale cv) throws RemoteException {
         CV = cv;
         txtCentreName.setText(CV.getNome());

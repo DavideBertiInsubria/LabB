@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Controller associato a <code>CvCerca</code>.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
@@ -54,10 +55,6 @@ public class CvCntrlCerca {
         }
     }
 
-    /**
-     * Popola la lista con i nominativi di centri vaccinali registrati nella base di dati dell'applicazione.
-     * @throws RemoteException se la connessione al server fallisce
-     */
     public void setDati(CvCntrlVaccinato cntrlV) throws RemoteException {
         compilaLista();
         CNTRLV = cntrlV;

@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 
 /**
  * Controller associato a <code>CvHomePage</code>.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
@@ -15,11 +16,12 @@ import javafx.stage.Stage;
 public class CvCntrlHome {
 
     /**
-     * Chiude la finestra corrente e crea una nuova istanza di <code>CvRegCentro</code>. &Egrave; associato al bottone
-     * per la registrazione di un centro vaccinale.
+     * Chiude la finestra corrente e crea una nuova istanza di <code>CvRegCentro</code>. Questo metodo &egrave; associato
+     * al bottone per la registrazione di un centro vaccinale.
+     *
      * @param event il riferimento all'evento associato
-     * @see CvRegCentro
      * @see ActionEvent
+     * @see CvRegCentro
      */
     public void clickRegistraCentro(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
@@ -30,11 +32,12 @@ public class CvCntrlHome {
     }
 
     /**
-     * Chiude la finestra corrente e crea una nuova istanza di <code>CvRegVaccinato</code>. &Egrave; associato al bottone
-     * per la registrazione di un cittadino vaccinato.
+     * Chiude la finestra corrente e crea una nuova istanza di <code>CvRegVaccinato</code>. Questo metodo &egrave; associato
+     * al bottone per la registrazione di un cittadino vaccinato.
+     *
      * @param event il riferimento all'evento associato
-     * @see CvRegVaccinato
      * @see ActionEvent
+     * @see CvRegVaccinato
      */
     public void clickRegistraVaccinato(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA

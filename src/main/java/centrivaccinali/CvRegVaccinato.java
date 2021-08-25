@@ -8,6 +8,7 @@ import java.io.IOException;
 
 /**
  * GUI del modulo per la registrazione di un cittadino vaccinato.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class CvRegVaccinato {
 
     /**
-     * Costruttore della classe. Utilizza il file <code>CvRegVaccinato.fxml</code> per generare correttamente la GUI.
+     * Il costruttore della classe.
      */
     public CvRegVaccinato() {
         try {

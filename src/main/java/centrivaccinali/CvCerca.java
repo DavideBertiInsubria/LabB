@@ -17,7 +17,9 @@ import java.io.IOException;
 public class CvCerca {
 
     /**
-     * Costruttore della classe. Utilizza il file <code>CvCerca.fxml</code> per generare correttamente la GUI.
+     * Il costruttore della classe.
+     *
+     * @param cntrlV il riferimento al controller associato a <code>CvRegVaccinato</code>
      */
     public CvCerca(CvCntrlVaccinato cntrlV) {
         try {

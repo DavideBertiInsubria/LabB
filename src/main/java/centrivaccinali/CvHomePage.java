@@ -7,9 +7,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * <p>
- *     La pagina iniziale dell'applicazione.
- * </p>
+ * GUI della pagina iniziale dell'applicazione.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
@@ -18,12 +17,7 @@ import java.io.IOException;
 public class CvHomePage {
 
     /**
-     * <p>
-     *     Il costruttore della classe.
-     * </p>
-     * <p>
-     *     <em>NOTA: i dati necessari alla costruzione della GUI sono recuperati nel file <code>.fxml</code> associato alla classe.</em>
-     * </p>
+     * Il costruttore della classe.
      */
     public CvHomePage() {
         try {

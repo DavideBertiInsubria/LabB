@@ -42,12 +42,18 @@ public class ControllerSegnalazioni {
 
     @FXML
     public void initialize() {
-        comboMalDiTesta.getItems().addAll(1,2,3,4,5);
-        comboFebbre.getItems().addAll(1,2,3,4,5);
-        comboDoloriMuscArtic.getItems().addAll(1,2,3,4,5);
-        comboLinfo.getItems().addAll(1,2,3,4,5);
-        comboTachi.getItems().addAll(1,2,3,4,5);
-        comboCrisi.getItems().addAll(1,2,3,4,5);
+        comboMalDiTesta.getItems().addAll(0,1,2,3,4,5);
+        comboFebbre.getItems().addAll(0,1,2,3,4,5);
+        comboDoloriMuscArtic.getItems().addAll(0,1,2,3,4,5);
+        comboLinfo.getItems().addAll(0,1,2,3,4,5);
+        comboTachi.getItems().addAll(0,1,2,3,4,5);
+        comboCrisi.getItems().addAll(0,1,2,3,4,5);
+        comboMalDiTesta.getSelectionModel().select(0);
+        comboFebbre.getSelectionModel().select(0);
+        comboDoloriMuscArtic.getSelectionModel().select(0);
+        comboLinfo.getSelectionModel().select(0);
+        comboTachi.getSelectionModel().select(0);
+        comboCrisi.getSelectionModel().select(0);
     }
 
     /**
@@ -90,27 +96,27 @@ public class ControllerSegnalazioni {
 
         try {
             // INVIO SEGNALAZIONE...
-            if (comboMalDiTesta.getValue()!=null) { // e' stata compilata la severità?   -    comboMalDiTesta.getValue()>0 && comboMalDiTesta.getValue()<=5 ??
+            if (comboMalDiTesta.getValue()!=null && comboMalDiTesta.getValue()>0) { // e' stata compilata la severità?   -    comboMalDiTesta.getValue()>0 && comboMalDiTesta.getValue()<=5 ??
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Mal di testa", comboMalDiTesta.getValue(), textMalDiTesta.getText());
                 server.registraSegnalazione(s);
             }
-            if (comboFebbre.getValue()!=null) {
+            if (comboFebbre.getValue()!=null  && comboFebbre.getValue()>0) {
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Febbre", comboFebbre.getValue(), textFebbre.getText());
                 server.registraSegnalazione(s);
             }
-            if (comboDoloriMuscArtic.getValue()!=null) {
+            if (comboDoloriMuscArtic.getValue()!=null  && comboDoloriMuscArtic.getValue()>0) {
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Dolori muscolari e articolari", comboDoloriMuscArtic.getValue(), textDoloriMuscArtic.getText());
                 server.registraSegnalazione(s);
             }
-            if (comboLinfo.getValue()!=null) {
+            if (comboLinfo.getValue()!=null  && comboLinfo.getValue()>0) {
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Linfoadenopatia", comboLinfo.getValue(), textLinfo.getText());
                 server.registraSegnalazione(s);
             }
-            if (comboTachi.getValue()!=null) {
+            if (comboTachi.getValue()!=null  && comboTachi.getValue()>0) {
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Tachicardia", comboTachi.getValue(), textTachi.getText());
                 server.registraSegnalazione(s);
             }
-            if (comboCrisi.getValue()!=null) {
+            if (comboCrisi.getValue()!=null  && comboCrisi.getValue()>0) {
                 Segnalazione s = new Segnalazione(User.getIDVaccino(), "Crisi ipertensiva", comboCrisi.getValue(), textCrisi.getText());
                     server.registraSegnalazione(s);
             }

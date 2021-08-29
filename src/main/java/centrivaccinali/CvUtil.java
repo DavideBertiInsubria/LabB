@@ -5,6 +5,7 @@ import javafx.scene.control.TextField;
 
 /**
  * Questa classe contiene metodi statici di utilit&agrave; che permettono di operare su oggetti di tipi differenti.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
@@ -15,6 +16,7 @@ public class CvUtil {
     /**
      * Ottimizza gli spazi bianchi di una stringa. Spazi bianchi in posizione <em>leading</em> o <em>trailing</em>
      * sono rimossi, mentre spazi bianchi multipli sono sostituiti con spazi bianchi singoli.
+     *
      * @param s una stringa da ottimizzare
      * @return una stringa in cui gli spazi bianchi sono ottimizzati
      */
@@ -24,6 +26,7 @@ public class CvUtil {
 
     /**
      * Controlla se una stringa &egrave; composta solamente da caratteri numerici.
+     *
      * @param s una stringa da analizzare
      * @return <code>true</code> se la stringa &egrave; composta da caratteri numerici, <code>false</code> altrimenti.
      */
@@ -37,7 +40,8 @@ public class CvUtil {
     }
 
     /**
-     * Restituisce una stringa contenente il testo del <code>RadioButton</code> selezionato all'interno di un array di <code>RadioButton</code>.
+     * Restituisce una stringa contenente il testo del <code>RadioButton</code> selezionato all'interno di un array.
+     *
      * @param buf un array di <code>RadioButton</code>
      * @return una stringa contenente il testo del <code>RadioButton</code> selezionato
      */
@@ -52,6 +56,7 @@ public class CvUtil {
 
     /**
      * Converte un array di <code>TextField</code> in un array equivalente di stringhe di testo corrispondente.
+     *
      * @param buf un array di <code>TextField</code>
      * @return un array di stringhe contenente il testo di ogni <code>TextField</code>
      */
@@ -64,6 +69,12 @@ public class CvUtil {
         return str;
     }
 
+    /**
+     * Controlla se una stringa &egrave; composta solamente da caratteri alfabetici.
+     *
+     * @param s una stringa da analizzare
+     * @return <code>true</code> se la stringa &egrave; composta da caratteri alfabetici, <code>false</code> altrimenti.
+     */
     public static boolean isAlphabetical(String s){
         int i;
         for(i = 0; i < s.length(); i++) {
@@ -74,5 +85,4 @@ public class CvUtil {
         }
         return true;
     }
-
 }

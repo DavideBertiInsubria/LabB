@@ -20,6 +20,7 @@ import java.time.LocalDate;
 
 /**
  * Controller associato a <code>CvRegVaccinato</code>.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
@@ -37,11 +38,12 @@ public class CvCntrlVaccinato {
     private CentroVaccinale CV = null;
 
     /**
-     * Chiude la finestra corrente e crea una nuova istanza di <code>CvCerca</code>. &Egrave; associato al bottone
-     * per la selezione di un centro vaccinale registrato.
+     * Sposta la finestra corrente in background e crea una nuova istanza di <code>CvCerca</code>. Questo metodo &egrave;
+     * associato al bottone per la selezione di un centro vaccinale registrato.
+     *
      * @param event il riferimento all'evento associato
-     * @see CvCerca
      * @see ActionEvent
+     * @see CvCerca
      */
     public void search(ActionEvent event) {
         // APERTURA DELLA NUOVA FINESTRA
@@ -49,11 +51,12 @@ public class CvCntrlVaccinato {
     }
 
     /**
-     * Chiude la finestra corrente e crea una nuova istanza di <code>CvHomePage</code>. &Egrave; associato al bottone
-     * per il ritorno alla pagina iniziale.
+     * Chiude la finestra corrente e crea una nuova istanza di <code>CvHomePage</code>. Questo metodo &egrave; associato
+     * al bottone per il ritorno alla pagina iniziale.
+     *
      * @param event il riferimento all'evento associato
-     * @see CvHomePage
      * @see ActionEvent
+     * @see CvHomePage
      */
     public void backToHomePage(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
@@ -64,11 +67,12 @@ public class CvCntrlVaccinato {
     }
 
     /**
-     * Chiude la finestra corrente inviando i dati inseriti a un server opportunamente collegato e crea una nuova
-     * istanza di <code>CvHomePage</code>. &Egrave; associato al bottone di conferma.
+     * Chiude la finestra corrente inviando i dati correttamente inseriti a un server opportunamente collegato e crea
+     * una nuova istanza di <code>CvHomePage</code>. Questo metodo &egrave; associato al bottone per la conferma dell'operazione.
+     *
      * @param event il riferimento all'evento associato
-     * @see CvHomePage
      * @see ActionEvent
+     * @see CvHomePage
      */
     public void confirm(ActionEvent event) {
         if(check()) {
@@ -104,11 +108,11 @@ public class CvCntrlVaccinato {
         }
     }
 
-    /**
-     * Controlla che i dati richiesti dal modulo di registrazione siano stati inseriti correttamente. L'applicazione
-     * richiede che tutti i campi siano obbligatoriamente compilati.
-     * @return <code>true</code> se tutti i campi sono stati compilati correttamente, <code>false</code> altrimenti.
-     */
+    public void setDati(CentroVaccinale cv) throws RemoteException {
+        CV = cv;
+        txtCentreName.setText(CV.getNome());
+    }
+
     private boolean check() {
         if(txtCentreName.getText().isBlank() || txtFirstName.getText().isBlank() || txtLastName.getText().isBlank() || txtFiscalCode.getText().isBlank() || date.getValue() == null || txtId.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Tutti i campi devono essere compilati.", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -128,16 +132,4 @@ public class CvCntrlVaccinato {
         }
         return true;
     }
-
-    /**
-     * Visualizza il nome del centro vaccinale selezionato nel campo corrispondente del modulo di registrazione.
-     * @param cv il riferimento al centro vaccinale selezionato
-     * @throws RemoteException
-     * @see CentroVaccinale
-     */
-    public void setDati(CentroVaccinale cv) throws RemoteException {
-        CV = cv;
-        txtCentreName.setText(CV.getNome());
-    }
-
 }

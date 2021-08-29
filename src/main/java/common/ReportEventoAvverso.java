@@ -14,7 +14,7 @@ public class ReportEventoAvverso implements Serializable {
 
 	/**
 	 *Costruttore per creare un oggetto con tutte le variabili necessarie.
-	 * @param Evento Parametro di tipo <i>String</i> per identificare il nome dell'evento avverso
+	 * @param Evento Parametro di tipo <i>String</i> per identificare il nome dell'evento avverso.
 	 * @param severitaMedia Parametro di tipo <i>float</i> per identificare la serverit&agrave; media di un evento avverso all'interno del centro vaccinale.
 	 * @param NSegnalazioni Parametro di tipo <i>Int</i> per identificare il numero di segnalazioni di un evento avverso all'interno del centro vaccinale.
 	 */

@@ -7,9 +7,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * <p>
- *     L'interfaccia grafica che implementa il modulo per la registrazione di un nuovo centro vaccinale.
- * </p>
+ * GUI del modulo per la registrazione di un centro vaccinale.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
@@ -18,12 +17,7 @@ import java.io.IOException;
 public class CvRegCentro {
 
     /**
-     * <p>
-     *     Il costruttore della classe.
-     * </p>
-     * <p>
-     *     <em>NOTA: i dati necessari alla costruzione della GUI sono recuperati nel file <code>.fxml</code> associato alla classe.</em>
-     * </p>
+     * Il costruttore della classe.
      */
     public CvRegCentro() {
         try {

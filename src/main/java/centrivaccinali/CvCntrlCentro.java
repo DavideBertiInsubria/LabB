@@ -22,15 +22,13 @@ import java.rmi.registry.Registry;
 import java.util.ResourceBundle;
 
 /**
- * <code>CvCntrlCentro</code> implementa il controller associato all'interfaccia grafica <code>CvRegCentro</code>
- * appartenente all'applicazione destinata all'utilizzo da parte di centri vaccinali e cittadini vaccinati.
+ * Controller associato a <code>CvRegCentro</code>.
+ *
  * @author Berti Davide
  * @author Ivanov Aleksandar Evgeniev
  * @author Mazza Serghej
  * @author Rizzi Silvio 719638 VA
- * @version 1.0
  * @see CvRegCentro
- * @since 1.0
  */
 public class CvCntrlCentro implements Initializable {
     @FXML
@@ -48,14 +46,23 @@ public class CvCntrlCentro implements Initializable {
             "RE","RI","RM","RN","RO","SA","SI","SO","SP","SR","SS","SV","TA","TE","TN","TO","TP","TR","TS","TV",
             "UD","VA","VB","VC","VE","VI","VR","VS","VT","VV");
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // INIZIALIZZAZIONE DELLA COMBOBOX
+        boxAddressProvince.setItems(province);
+        boxAddressProvince.setVisibleRowCount(10);
+        boxAddressProvince.setEditable(false);
+        boxAddressProvince.setPromptText("Provincia");
+    }
+
     /**
-     * Determina la chiusura della finestra corrente e l'apertura di una finestra nuova, in cui &egrave visualizzata
-     * l'interfaccia grafica <code>CvHomePage</code>, nel momento in cui si interagisce con il componente al quale
-     * &egrave associato questo metodo.
-     * @param event l'evento associato che determina l'invocazione del metodo
+     *
+     * Chiude la finestra corrente e crea una nuova istanza di <code>CvHomePage</code>. Questo metodo &egrave; associato
+     * al bottone per il ritorno alla pagina iniziale.
+     *
+     * @param event il riferimento all'evento associato
      * @see ActionEvent
      * @see CvHomePage
-     * @since 1.0
      */
     public void backToHomePage(ActionEvent event) {
         // CHIUSURA DELLA VECCHIA FINESTRA
@@ -66,20 +73,13 @@ public class CvCntrlCentro implements Initializable {
     }
 
     /**
-     * <p>
-     *     Chiude la finestra corrente inviando i dati inseriti nel modulo a un server collegato e apre una nuova finestra
-     *     in cui &egrave caricata la pagina iniziale.
-     * </p>
-     * <p>
-     *     L'invio di dati &egrave vincolato alla corretta compilazione del modulo presente nella pagina; in caso contrario,
-     *     saranno visualizzati opportuni messaggi di avvertimento in cui &egrave descritta la tipologia di errore avvenuto.
-     * </p>
-     * <p>
-     *     Nel caso in cui l'applicazione non riuscisse a connettersi al server desiderato in modo corretto, sar&agrave
-     *     visualizzato un opportuno messaggio di errore.
-     * </p>
      *
-     * @param event l'evento associato che determina l'invocazione del metodo
+     * Chiude la finestra corrente inviando i dati correttamente inseriti a un server opportunamente collegato e crea
+     * una nuova istanza di <code>CvHomePage</code>. Questo metodo &egrave; associato al bottone per la conferma dell'operazione.
+     *
+     * @param event il riferimento all'evento associato
+     * @see ActionEvent
+     * @see CvHomePage
      */
     public void confirm(ActionEvent event) {
         // CONTROLLO DELLA COMPILAZIONE
@@ -118,21 +118,6 @@ public class CvCntrlCentro implements Initializable {
         }
     }
 
-    /**
-     * Controlla se i campi sono stati compilati in ottemperanza ai seguenti vincoli imposti dall'applicazione:
-     * <ul>
-     *     <li>
-     *         tutti i campi devono essere obbligatoriamente compilati a eccezione dei pulsanti associati alla scelta
-     *         del qualificatore (<strong>via</strong>, viale, piazza) dell'indirizzo e alla scelta della tipologia
-     *         (<strong>aziendale</strong>, hub, ospedaliero) di centro vaccinale i cui valori di default sono indicati
-     *         in <strong>grassetto</strong>.
-     *     </li>
-     *     <li>
-     *         il codice di avviamento postale deve essere obbligatoriamente composto da cinque caratteri numerici
-     *     </li>
-     * </ul>
-     * @return <code>true</code> se tutti i campi sono stati correttamente compilati, altrimenti <code>false</code>
-     */
     private boolean check() {
         // MESSAGGI DI ERRORE
         String errOnLvl1 = "Tutti i campi devono essere obbligatoriamente compilati.";
@@ -154,21 +139,4 @@ public class CvCntrlCentro implements Initializable {
         }
         return true;
     }
-
-    /**
-     * Inizializza la <code>ComboBox</code> con l'elenco delle sigle delle provincie vigenti.
-     * @param url the location used to resolve relative paths for the root object, or <code>null</code> if the location
-     *            is not known (dalla documentazione per JavaFX 16)
-     * @param resourceBundle the resources used to localize the root object, or <code>null</code> if the root object was
-     *                       not localized (dalla documentazione per JavaFX 16)
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // INIZIALIZZAZIONE DELLA COMBOBOX
-        boxAddressProvince.setItems(province);
-        boxAddressProvince.setVisibleRowCount(10);
-        boxAddressProvince.setEditable(false);
-        boxAddressProvince.setPromptText("Provincia");
-    }
-
 }

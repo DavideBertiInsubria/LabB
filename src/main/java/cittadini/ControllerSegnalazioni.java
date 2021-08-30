@@ -15,7 +15,6 @@ import server.ServerInterface;
 import javax.swing.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 
 /** @author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  * La classe <em>ControllerSegnalazioni</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Segnalazioni'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.

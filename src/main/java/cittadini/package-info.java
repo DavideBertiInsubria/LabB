@@ -1,9 +1,10 @@
 /** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
  * Il package <em>cittadini</em> si occupa di gestire il client e l'interfaccia grafica dell'applicazione 'cittadini' nella quale è possibile ricercare le informazioni dei centri vaccinali, registrarsi, inviare degli eventi avversi del vaccino etc...
- * Esso &egrave; costituito da 7 classi:
+ * Esso &egrave; costituito da 8 classi:
  * <ul>
  *     <li>ClientGui
  *     <li>ControllerCerca
+ *     <li>ControllerConnection
  *     <li>ControllerHome
  *     <li>ControllerLogin
  *     <li>ControllerRegistrazione
@@ -12,6 +13,7 @@
  * </ul>
  * @see cittadini.ClientGUI
  * @see cittadini.ControllerCerca
+ * @see cittadini.ControllerConnection
  * @see cittadini.ControllerHome
  * @see cittadini.ControllerLogin
  * @see cittadini.ControllerRegistrazione

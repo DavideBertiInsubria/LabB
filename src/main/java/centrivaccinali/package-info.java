@@ -5,6 +5,7 @@
  *     <li>CvMain
  *     <li>CvHomePage
  *     <li>CvRegCentro
+ *     <li>CvCntrlConnection
  *     <li>CvRegVaccinato
  *     <li>CvCerca
  *     <li>CvCntrlHome
@@ -12,6 +13,7 @@
  *     <li>CvCntrlVaccinato
  *     <li>CvCntrlCerca
  *     <li>CvUtil
+ *     <li>ServerConnection
  * </ul>
  *
  * @author Berti Davide
@@ -21,6 +23,7 @@
  * @see centrivaccinali.CvMain
  * @see centrivaccinali.CvHomePage
  * @see centrivaccinali.CvRegCentro
+ * @see centrivaccinali.CvCntrlConnection
  * @see centrivaccinali.CvRegVaccinato
  * @see centrivaccinali.CvCerca
  * @see centrivaccinali.CvCntrlHome
@@ -28,5 +31,6 @@
  * @see centrivaccinali.CvCntrlVaccinato
  * @see centrivaccinali.CvCntrlCerca
  * @see centrivaccinali.CvUtil
+ * @see centrivaccinali.ServerConnection
  */
 package centrivaccinali;

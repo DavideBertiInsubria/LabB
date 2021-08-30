@@ -41,7 +41,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
                 <configuration>
-                    <mainClass>ClientGUI</mainClass>
+                    <mainClass>cittadini.ClientGUI</mainClass>
                 </configuration>
             </plugin>
         </plugins>

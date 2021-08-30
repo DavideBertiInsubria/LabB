@@ -28,7 +28,7 @@ public class ControllerHome {
      * Se l'utente non è loggato allora <i>User</i> &egrave; uguale a <b>null</b>.
      * @see Cittadino
      */
-    private static Cittadino User;
+    private Cittadino User;
 
     /**
      * <code>server</code> &egrave; il riferimento al server.

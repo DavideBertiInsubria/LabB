@@ -100,10 +100,8 @@ public class CvCntrlCentro implements Initializable {
             CentroVaccinale cv = new CentroVaccinale(buf[0], addr, centreType);
             // COLLEGAMENTO A SERVER
             try {
-                Registry reg = LocateRegistry.getRegistry("localhost", 1099);
-                ServerInterface server = (ServerInterface) reg.lookup("Vaccino");
-                server.registraCentroVaccinale(cv);
-            } catch (RemoteException | NotBoundException e) {
+                ServerConnection.SERVER.registraCentroVaccinale(cv);
+            } catch (RemoteException e) {
                 JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }

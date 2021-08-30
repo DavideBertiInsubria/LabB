@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSKYBLUE;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlHome">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSKYBLUE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="centrivaccinali.CvCntrlHome">
    <children>
       <Label layoutX="192.0" layoutY="49.0" text="CENTRI VACCINALI">
          <font>
@@ -15,5 +15,10 @@
       <Button fx:id="btnRegistrazioneCittadinoVaccinato" layoutX="323.0" layoutY="215.0" mnemonicParsing="false" onAction="#clickRegistraVaccinato" text="Registrati ora" />
       <Label layoutX="156.0" layoutY="166.0" text="Sei un centro vaccinale?" />
       <Label layoutX="142.0" layoutY="219.0" text="Sei un cittadino vaccinato?" />
+      <Button layoutX="260.0" layoutY="347.0" mnemonicParsing="false" onAction="#clickConnection" style="-fx-background-color: #007FFF;" text="Connessione" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

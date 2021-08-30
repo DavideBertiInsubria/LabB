@@ -1,8 +1,14 @@
 package centrivaccinali;
 
+import cittadini.ControllerConnection;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * Controller associato a <code>CvHomePage</code>.
@@ -45,5 +51,25 @@ public class CvCntrlHome {
         stage.close();
         // APERTURA DELLA NUOVA FINESTRA
         new CvRegVaccinato();
+    }
+
+    /**
+     * Chiude la finestra corrente e crea una nuova finestra di gestione del server. Questo metodo &egrave; associato
+     * al bottone per la configurazione e connessione al server.
+     *
+     * @param event il riferimento all'evento associato
+     * @see CvCntrlConnection
+     * @see ActionEvent
+     */
+    public void clickConnection(ActionEvent event) throws IOException {
+        // AVVIO APPLICAZIONE CITTADINI
+        Stage schermata = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CvConnection.fxml"));
+        Parent root = loader.load();
+        // ... SET DATI
+        CvCntrlConnection cc = loader.getController();
+        schermata.setTitle("Connection");
+        schermata.setScene(new Scene(root));
+        schermata.show();
     }
 }

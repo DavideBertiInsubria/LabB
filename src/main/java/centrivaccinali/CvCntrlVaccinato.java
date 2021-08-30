@@ -90,10 +90,8 @@ public class CvCntrlVaccinato {
             Vaccinato vax = new Vaccinato(CV, buf[0], buf[1], buf[2], vaccineType, Integer.parseInt(buf[3]), ddMMyyyy);
             // COLLEGAMENTO A SERVER
             try {
-                Registry reg = LocateRegistry.getRegistry("localhost", 1099);
-                ServerInterface server = (ServerInterface) reg.lookup("Vaccino");
-                server.registraVaccinato(vax);
-            } catch (RemoteException | NotBoundException e) {
+                ServerConnection.SERVER.registraVaccinato(vax);
+            } catch (RemoteException e) {
                 JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }

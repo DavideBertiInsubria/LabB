@@ -61,20 +61,11 @@ public class CvCntrlCerca {
     }
 
     private void compilaLista() {
-        // COLLEGAMENTO A SERVER
-        ServerInterface server = null;
-        try {
-            Registry reg = LocateRegistry.getRegistry("localhost", 1099);
-            server = (ServerInterface) reg.lookup("Vaccino");
-        } catch (RemoteException | NotBoundException e) {
-            JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
-        }
         listCentriVaccinali.getItems().clear();
         listaCentriVaccinaliVisualizzati.clear();
         // COMPILAZIONE DELLA LISTA
         try {
-            listaCentriVaccinaliVisualizzati = server.cercaCentroVaccinale("", "", "");
+            listaCentriVaccinaliVisualizzati = ServerConnection.SERVER.cercaCentroVaccinale("", "", "");
         } catch (RemoteException e) {
             JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();

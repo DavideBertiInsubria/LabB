@@ -64,5 +64,13 @@
             <Insets right="25.0" />
          </GridPane.margin>
       </Label>
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickConnessione" prefHeight="16.0" prefWidth="85.0" style="-fx-background-color: #8B0000;" text="Connessione" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </Button>
    </children>
 </GridPane>

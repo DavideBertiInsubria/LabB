@@ -19,37 +19,18 @@ import java.rmi.registry.Registry;
 public class ClientGUI extends Application {
 
     /**
-     * <code>server</code> &egrave; il riferimento al server.
-     * @see ServerInterface
-     */
-    private ServerInterface server;
-
-    /**
-     * Il metodo <em>start</em> si occupa innanzitutto di effettuare il collegamento del server e successivamente di avviare l'interfaccia grafica dell'applicazione 'cittadini'.
+     * Il metodo <em>start</em> si occupa di avviare l'applicazione 'cittadini' aprendo innanzitutto la schermata di connessione al server.
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
         // AVVIO APPLICAZIONE CITTADINI
         Stage schermata = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ConnectionCittadini.fxml"));
         Parent root = loader.load();
-
-        // ...COLLEGAMENTO AL SERVER
-        Registry registro = LocateRegistry.getRegistry("localhost", 1099); // *DA INSERIRE INDIRIZZO IP DEL SERVER
-        server = null;
-        try {
-            server = (ServerInterface) registro.lookup("Vaccino");
-        } catch (NotBoundException e) {
-            JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");
-            e.printStackTrace();
-            System.exit(0);
-        }
-
         // ... SET DATI
-        ControllerHome cc = loader.getController();
-        cc.setDati(null, server);
-
-        schermata.setTitle("Vaccinazione cittadini");
+        ControllerConnection cc = loader.getController();
+        cc.setDati(null, null);
+        schermata.setTitle("Connection");
         schermata.setScene(new Scene(root));
         schermata.show();
     }

@@ -192,6 +192,36 @@ public class ControllerHome {
     }
 
     /**
+     * Il metodo <em>clickConnessione</em> &egrave; l'evento che si verifica nel momento in cui viene schiacciato il bottone <i>Connessione</i> nella schermata <i>'Home'</i> dell'applicazione 'cittadini'.
+     * Viene aperta la schermata di gestione del collegamento al server (ControllerConnection).
+     * @param event &egrave; il riferimento all'evento eseguito.
+     * @see ControllerConnection
+     * @see ActionEvent
+     */
+    public void clickConnessione(ActionEvent event){
+        try {
+            // CHIUSURA
+            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisWindow.close();
+
+            // APERTURA NUOVA SCHERMATA
+            Stage schermata = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ConnectionCittadini.fxml"));
+            Parent root = loader.load();
+            // ... SET DATI
+            ControllerConnection cc = loader.getController();
+            cc.setDati(User, server);
+
+            schermata.setTitle("Connection");
+            schermata.setScene(new Scene(root));
+            schermata.show();
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Errore di tipo \"LOAD\".");
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Il metodo <em>setDati</em> serve per fornire alla schermata <i>'Home'</i> tutti i dati e le informazioni occorrenti dalle altre schermate di interfaccia grafica.
      * Come l'utente loggato e il collegamento al server.
      * Inoltre si occupa di settare opportunamente il bottone login o logout e la stringa di benvenuto in base alla situazione.

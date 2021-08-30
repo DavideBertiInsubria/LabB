@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import server.ServerInterface;
 
@@ -49,12 +50,12 @@ public class CvCntrlConnection {
         } catch (NotBoundException | RemoteException e) {
             e.printStackTrace();
             lbStato.setText("Stato :  KO");
-            lbStato.setStyle("-fx-background-color: red;");
+            lbStato.setStyle("-fx-background-color: red; -fx-text-fill:WHITE;");
             serverTest = null;
             return;
         }
         lbStato.setText("Stato :  OK");
-        lbStato.setStyle("-fx-background-color: green;");
+        lbStato.setStyle("-fx-background-color: green; -fx-text-fill:WHITE;");
 
     }
 
@@ -85,13 +86,13 @@ public class CvCntrlConnection {
         } catch (NotBoundException | RemoteException e) {
             e.printStackTrace();
             lbStato.setText("Stato :  KO");
-            lbStato.setStyle("-fx-background-color: red;");
+            lbStato.setStyle("-fx-background-color: red; -fx-text-fill:WHITE;");
             JOptionPane.showMessageDialog(null, "Impossibile collegarsi a questo indirizzo IP.");
             serverTest = null;
             return;
         }
         lbStato.setText("Stato :  OK");
-        lbStato.setStyle("-fx-background-color: green;");
+        lbStato.setStyle("-fx-background-color: green; -fx-text-fill:WHITE;");
         JOptionPane.showMessageDialog(null, "Collegamento avvenuto con successo.");
         ServerConnection.SERVER = serverTest;
 

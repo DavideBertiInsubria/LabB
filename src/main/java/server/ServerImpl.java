@@ -36,7 +36,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      *Il metodo <em>registraCittadino</em> serve a registrare i dati di un cittadino sul database.
      * @param c Riferimento ad un oggetto di tipo <i>Cittadino</i> che contiene le informazioni da inserire nel al database
      * @see common.Cittadino
-     * @return <i>ArrayList<String></i> &egrave; un arrayList contenente i campi compilati dagli utenti che non soddisfano i requisiti per poter essere registrati.
+     * @return <i>ArrayListString</i> &egrave; un arrayList contenente i campi compilati dagli utenti che non soddisfano i requisiti per poter essere registrati.
      */
     public synchronized ArrayList<String> registraCittadino (Cittadino c){
         System.out.println ("Registrazione cittadino");

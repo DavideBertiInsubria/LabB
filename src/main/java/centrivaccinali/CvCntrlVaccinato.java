@@ -21,10 +21,10 @@ import java.time.LocalDate;
 /**
  * Controller associato a <code>CvRegVaccinato</code>.
  *
- * @author Berti Davide
- * @author Ivanov Aleksandar Evgeniev
- * @author Mazza Serghej
- * @author Rizzi Silvio 719638 VA
+ * @author Berti Davide - 740665 VA
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  * @see CvRegVaccinato
  */
 public class CvCntrlVaccinato {

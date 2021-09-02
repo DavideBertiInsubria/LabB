@@ -17,8 +17,13 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-/** @author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+/**
  * La classe <em>ControllerRegistrazione</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Registrazione'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
+ *
+ * @author Berti Davide - 740665 VA
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  */
 public class ControllerRegistrazione {
 

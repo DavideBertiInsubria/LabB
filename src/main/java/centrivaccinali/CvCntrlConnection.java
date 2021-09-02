@@ -20,6 +20,14 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * Controller associato alla schermata di gestione alla connessione al server.
+ *
+ * @author Berti Davide - 740665 VA
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
+ */
 public class CvCntrlConnection {
 
     /**

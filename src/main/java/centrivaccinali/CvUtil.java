@@ -32,7 +32,7 @@ public class CvUtil {
      */
     public static boolean isNumerical(String s) {
         try {
-            int i = Integer.parseInt(s);
+            long l = Long.parseLong(s);
             return true;
         } catch (NumberFormatException e) {
             return false;

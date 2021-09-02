@@ -33,7 +33,7 @@ public class DBVaccinazioniManagement extends DBManager{
 	 * @throws SQLException
 	 */
 	public DBVaccinazioniManagement() throws SQLException {
-		super("jdbc:postgresql://localhost/dblabb","postgres","test");
+		super("jdbc:postgresql://localhost:5433/dblabb","postgres","test");
 	}
 	
 	

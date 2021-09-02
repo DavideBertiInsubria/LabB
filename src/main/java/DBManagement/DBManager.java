@@ -35,6 +35,7 @@ public class DBManager {
 	 * @throws SQLException
 	 */
 	public void connect() throws SQLException{
+    	System.out.println("Classpath: "+System.getProperty("java.class.path").replace(':','\n'));
 		conn = DriverManager.getConnection(url, user, pwd);
 	}
 	

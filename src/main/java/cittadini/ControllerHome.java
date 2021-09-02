@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * La classe <em>ControllerHome</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Home'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

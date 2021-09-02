@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * GUI della pagina iniziale dell'applicazione.
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

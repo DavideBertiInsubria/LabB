@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Il punto di ingresso dell'applicazione destinata all'uso da parte di centri vaccinali e cittadini vaccinati.
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

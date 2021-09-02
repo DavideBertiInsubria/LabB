@@ -15,7 +15,7 @@ import java.rmi.registry.Registry;
  * La classe <em>ClientGUI</em> rappresenta il punto di inizio dell'applicazione 'cittadini', ovvero contiene il main di avvio.
  * L'interfaccia grafica è implementata tramite <em>JavaFX</em>.
  *
- *  * @author Berti Davide -
+ *  * @author Berti Davide - 740665 VA
  *  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  *  * @author Mazza Serghej - 740687 VA
  *  * @author Rizzi Silvio - 719638 VA

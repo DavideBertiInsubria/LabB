@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * La classe <em>ReportEventoAvverso</em> viene utilizzata per creare un oggetto che contenga il report di un evento avverso di un centro vaccinale.
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

@@ -19,7 +19,7 @@ import java.rmi.RemoteException;
 /**
  * La classe <em>ControllerSegnalazioni</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Segnalazioni'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

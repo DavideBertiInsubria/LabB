@@ -9,7 +9,7 @@ import java.sql.Statement;
  * La classe DBManager offre servizi di base per la connessione ed
  * esecuzione di query su un determinato database
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

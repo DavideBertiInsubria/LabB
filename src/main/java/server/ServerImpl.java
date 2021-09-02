@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * La classe <em>ServerImpl</em> viene utilizzata per implementare i metodi resi disponibili ai client tramite l'interfaccia ServerInterface.
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

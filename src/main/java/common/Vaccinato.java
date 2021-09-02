@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * La classe <em>Vaccinato</em> viene utilizzata per creare un oggetto che identifichi un vaccinato all'interno dell'applicazione.
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

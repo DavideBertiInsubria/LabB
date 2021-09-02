@@ -14,7 +14,7 @@ import common.Segnalazione;
 /**
  * La classe DBVaccinazioniManagement mette a disposizione servizi specifici per il database dei centri vaccinali
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

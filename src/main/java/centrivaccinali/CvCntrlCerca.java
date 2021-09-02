@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Controller associato a <code>CvCerca</code>.
  *
- * @author Berti Davide -
+ * @author Berti Davide - 740665 VA
  * @author Ivanov Aleksandar Evgeniev - 742789 VA
  * @author Mazza Serghej - 740687 VA
  * @author Rizzi Silvio - 719638 VA

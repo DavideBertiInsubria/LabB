@@ -16,8 +16,13 @@ import javax.swing.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-/** @author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+/**
  * La classe <em>ControllerSegnalazioni</em> rappresenta il <i>controller</i> dell'interfaccia grafica della schermata <i>'Segnalazioni'</i> dell'applicazione 'cittadini', sviluppato con JavaFX.
+ *
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  */
 public class ControllerSegnalazioni {
 

@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 /**
- *La classe <em>Vaccinato</em> viene utilizzata per creare un oggetto che identifichi un vaccinato all'interno dell'applicazione.
- *@author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * La classe <em>Vaccinato</em> viene utilizzata per creare un oggetto che identifichi un vaccinato all'interno dell'applicazione.
+ *
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  */
 public class Vaccinato implements Serializable {
     private CentroVaccinale Centro;

@@ -13,10 +13,10 @@ import java.io.IOException;
 /**
  * Controller associato a <code>CvHomePage</code>.
  *
- * @author Berti Davide
- * @author Ivanov Aleksandar Evgeniev
- * @author Mazza Serghej
- * @author Rizzi Silvio 719638 VA
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  * @see CvHomePage
  */
 public class CvCntrlHome {

@@ -13,7 +13,11 @@ import common.Segnalazione;
 
 /**
  * La classe DBVaccinazioniManagement mette a disposizione servizi specifici per il database dei centri vaccinali
- * @author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ *
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  * @see #registraCentroVaccinale(CentroVaccinale)
  * @see #registraCittadino(Cittadino)
  * @see #checkCampi(String, String)
@@ -33,7 +37,7 @@ public class DBVaccinazioniManagement extends DBManager{
 	 * @throws SQLException
 	 */
 	public DBVaccinazioniManagement() throws SQLException {
-		super("jdbc:postgresql://localhost/dblabb","postgres","test");
+		super("jdbc:postgresql://localhost/dblabb","admin","admin");
 	}
 	
 	

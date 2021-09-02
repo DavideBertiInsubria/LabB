@@ -10,10 +10,10 @@ import java.io.IOException;
 /**
  * GUI del modulo per la selezione di un centro vaccinale registrato.
  *
- * @author Berti Davide
- * @author Ivanov Aleksandar Evgeniev
- * @author Mazza Serghej
- * @author Rizzi Silvio 719638 VA
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  */
 public class CvCerca {
 

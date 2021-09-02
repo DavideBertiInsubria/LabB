@@ -8,7 +8,11 @@ import java.sql.Statement;
 /**
  * La classe DBManager offre servizi di base per la connessione ed
  * esecuzione di query su un determinato database
- * @author Serghej Mazza
+ *
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  */
 
 public class DBManager {

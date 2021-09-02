@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
- *La classe <em>Cittadino</em> viene utilizzata per creare un oggetto che identifichi un cittadino all'interno del sistema.
- *@author Ivanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+ * La classe <em>Cittadino</em> viene utilizzata per creare un oggetto che identifichi un cittadino all'interno del sistema.
+ *
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  */
 public class Cittadino extends Vaccinato implements Serializable {
     private String email, password, userID;

@@ -1,4 +1,4 @@
-/** @author Invanov Aleksandar Evgeniev, Mazza Serghej, Berti Davide, Rizzi Silvio
+/**
  * Il package <em>common</em> contiene tutte le classi utilizzate per gestire i vari attori che compongono l'applicazione.
  * &egrave; costituito da 5 classi:
  * <ul>
@@ -8,6 +8,11 @@
  *     <li>Segnalazione
  *     <li>Vaccinato
  * </ul>
+ *
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  * @see common.CentroVaccinale
  * @see common.Cittadino
  * @see common.ReportEventoAvverso

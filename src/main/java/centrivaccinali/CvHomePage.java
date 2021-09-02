@@ -9,10 +9,10 @@ import java.io.IOException;
 /**
  * GUI della pagina iniziale dell'applicazione.
  *
- * @author Berti Davide
- * @author Ivanov Aleksandar Evgeniev
- * @author Mazza Serghej
- * @author Rizzi Silvio 719638 VA
+ * @author Berti Davide -
+ * @author Ivanov Aleksandar Evgeniev - 742789 VA
+ * @author Mazza Serghej - 740687 VA
+ * @author Rizzi Silvio - 719638 VA
  */
 public class CvHomePage {
 

@@ -45,96 +45,68 @@
     			 <artifactId>maven-compiler-plugin</artifactId>
                  <version>3.8.1</version>
             </plugin>
-        </plugins>
-    </build>
-    
-	<profiles>
-		<profile>
-			<id>Server</id>
-			<build>
-				<plugins>
-					<!--
-		            <plugin>
-		                 <groupId>org.apache.maven.plugins</groupId>
-		    			 <artifactId>maven-jar-plugin</artifactId>
-		                 <version>3.2.0</version>
-		                  <configuration>                  
-		                    <archive>
-		                    	<manifest>
-		                    		<mainClass>server.ServerImpl</mainClass>
-		                    	</manifest>
-		                    </archive>
-		                </configuration>
-		            </plugin>
-		             -->
-
-					<plugin>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<version>3.3.0</version>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+				<execution>
+					<id>build-Server</id>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
+								<mainClass>server.ServerImpl</mainClass>
+							</manifest>
+						</archive>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+						<finalName>Server</finalName>
+					</configuration>
+					<phase>package</phase>
+					<goals>
+						<goal>single</goal>
+					</goals>
+				</execution>
+					<execution>
+						<id>build-ClientCittadini</id>
 						<configuration>
 							<archive>
 								<manifest>
-									<addClasspath>true</addClasspath>
-									<classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
-									<mainClass>server.ServerImpl</mainClass>
+									<mainClass>cittadini.ClientGUI</mainClass>
 								</manifest>
 							</archive>
 							<descriptorRefs>
 								<descriptorRef>jar-with-dependencies</descriptorRef>
 							</descriptorRefs>
+							<finalName>ClientCittadini</finalName>
 						</configuration>
-						<executions>
-							<execution>
-								<id>make-assembly</id>
-								<phase>install</phase>
-								<goals>
-									<goal>single</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-		        </plugins>
-	    	</build>
-		</profile>
-		<profile>
-			<id>ClientCittadino</id>
-			<build>
-				<plugins>
-		            <plugin>
-		                <groupId>org.apache.maven.plugins</groupId>
-		    			<artifactId>maven-jar-plugin</artifactId>
-		                <version>3.2.0</version>
-		                <configuration>                  
-		                    <archive>
-		                    	<manifest>
-		                    		<mainClass>cittadini.ClientGUI</mainClass>
-		                    	</manifest>
-		                    </archive>
-		                </configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>ClientCentroVaccinale</id>
-			<build>
-				<plugins>
-		            <plugin>
-		                <groupId>org.apache.maven.plugins</groupId>
-		    			<artifactId>maven-jar-plugin</artifactId>
-		                <version>3.2.0</version>
-		                <configuration>                  
-		                    <archive>
-		                    	<manifest>
-		                    		<mainClass>centrivaccinali.CvMain</mainClass>
-		                    	</manifest>
-		                    </archive>
-		                </configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>build-ClientCentriVaccinali</id>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>centrivaccinali.CvMain</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<finalName>ClientCentriVaccinali</finalName>
+						</configuration>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+        </plugins>
+    </build>
 
 </project>

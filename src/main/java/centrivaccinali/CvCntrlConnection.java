@@ -5,6 +5,7 @@ import common.Cittadino;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -115,6 +116,10 @@ public class CvCntrlConnection {
      */
     public void clickChiudi(ActionEvent event) {
         if (ServerConnection.SERVER != null) {
+            // CHIUSURA FINESTRA
+            Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            oldStage.close();
+            // APERTURA NUOVA FINESTRA
             new CvHomePage();
         } else {
             JOptionPane.showMessageDialog(null, "Bisogna collegarsi ad un server per avviare l'applicazione.");

@@ -4,6 +4,7 @@ import common.Cittadino;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -126,6 +127,9 @@ public class ControllerConnection  {
      */
     public void clickChiudi(ActionEvent event) throws IOException {
         if (server != null) {
+            // CHIUSURA
+            Stage thisWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisWindow.close();
             // AVVIO APPLICAZIONE CITTADINI
             Stage schermata = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeCittadini.fxml"));

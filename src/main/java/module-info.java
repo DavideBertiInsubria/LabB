@@ -4,6 +4,7 @@ module LabB {
     requires java.sql;
     requires java.rmi;
     requires java.desktop;
+    //uses java.sql.Driver;
     opens centrivaccinali to javafx.fxml;
     opens cittadini to javafx.fxml;
     opens common to javafx.fxml;

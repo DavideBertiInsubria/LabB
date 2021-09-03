@@ -1,0 +1,38 @@
+Comandi Per L'esecuzione:
+
+
+WINDOWS:
+
+1) Estrarre il file Berti_740665 dove si desidera (es. Desktop).
+   Si otterà una cartella denominata LabB
+
+2) Aprire il CMD e recarsi nella posizione della cartella del progetto
+	es.  - Cartella situata sul desktop, digitare:
+	
+			cd Desktop\LabB
+			
+2) digitare:
+
+			mvn clean compile package install 
+
+3) 	Per avviare il SERVER eseguire:
+
+			java -jar target/Server-jar-with-dependencies.jar
+			
+	Per avviare il CLIENT CENTRIVACCINALI eseguire:
+	
+			java --module-path ".\lib\javafx-sdk-15.0.1\lib" --add-modules javafx.controls,javafx.fxml -jar target/ClientCentriVaccinali-jar-with-dependencies.jar
+	
+	Per avviare il CLIENT CITTADINI eseguire:
+	
+			java --module-path ".\lib\javafx-sdk-15.0.1\lib" --add-modules javafx.controls,javafx.fxml -jar target/ClientCittadini-jar-with-dependencies.jar
+			
+
+Si consiglia di aprire due CMD, uno per eseguire il server e uno per i client.
+
+
+
+LINUX:
+
+
+MAC:

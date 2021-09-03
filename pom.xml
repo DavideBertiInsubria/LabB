@@ -71,7 +71,7 @@
 						<archive>
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
+								<classpathPrefix>${project.build.finalName}.lib\</classpathPrefix>
 								<mainClass>server.ServerImpl</mainClass>
 							</manifest>
 						</archive>

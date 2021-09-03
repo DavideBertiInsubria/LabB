@@ -9,13 +9,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import server.ServerInterface;
 
 import javax.swing.*;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.time.LocalDate;
 
 /**
@@ -117,11 +113,15 @@ public class CvCntrlVaccinato {
             return false;
         }
         if(txtFiscalCode.getText().length() != 16) {
-            JOptionPane.showMessageDialog(null,"Il codice fiscale deve contere 16 caratteri", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Il codice fiscale deve contere 16 caratteri.", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if(!CvUtil.isNumerical(txtId.getText())) {
-            JOptionPane.showMessageDialog(null, "il codice di identificazione deve contenere solo caratteri numerici", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Il codice di identificazione deve contenere una stringa di caratteri numerici di lunghezza valida.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtId.getText()) < 0) {
+            JOptionPane.showMessageDialog(null,"Il codice di identificazione non deve contenere un numero negativo.", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if(!CvUtil.isAlphabetical(txtFirstName.getText()) || !CvUtil.isAlphabetical(txtLastName.getText())) {

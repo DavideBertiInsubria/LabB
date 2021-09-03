@@ -183,8 +183,13 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         ResultSet cittadini = null;
         try {
             cittadini=Database.loginCittadino (userID,password);
-            System.out.println ("Login effettuato con successo");
-            return new Cittadino (cittadini.getString ("cf"),cittadini.getString ("nome"),cittadini.getString ("cognome"),cittadini.getString ("nick"),cittadini.getString ("email"),cittadini.getString ("password"),cittadini.getInt ("idvaccinazione"));
+            if (cittadini != null ) {
+                System.out.println("Login effettuato con successo");
+                return new Cittadino(cittadini.getString("cf"), cittadini.getString("nome"), cittadini.getString("cognome"), cittadini.getString("nick"), cittadini.getString("email"), cittadini.getString("password"), cittadini.getInt("idvaccinazione"));
+            } else {
+                System.out.println ("Login fallito");
+                return null;
+            }
         } catch (SQLException throwables) {
             System.out.println ("Login fallito");
             throwables.printStackTrace ();

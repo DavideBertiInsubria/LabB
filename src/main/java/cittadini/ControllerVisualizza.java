@@ -85,24 +85,26 @@ public class ControllerVisualizza {
             e.printStackTrace();
             System.exit(0);
         }
-        lbT1.setText(ProspettoEventiAvversi.get(0).getEvento());
-        lbM1.setText(ProspettoEventiAvversi.get(0).getSeveritaMedia()+"");
-        lbN1.setText(ProspettoEventiAvversi.get(0).getNSegnalazioni()+"");
-        lbT2.setText(ProspettoEventiAvversi.get(1).getEvento());
-        lbM2.setText(ProspettoEventiAvversi.get(1).getSeveritaMedia()+"");
-        lbN2.setText(ProspettoEventiAvversi.get(1).getNSegnalazioni()+"");
-        lbT3.setText(ProspettoEventiAvversi.get(2).getEvento());
-        lbM3.setText(ProspettoEventiAvversi.get(2).getSeveritaMedia()+"");
-        lbN3.setText(ProspettoEventiAvversi.get(2).getNSegnalazioni()+"");
-        lbT4.setText(ProspettoEventiAvversi.get(3).getEvento());
-        lbM4.setText(ProspettoEventiAvversi.get(3).getSeveritaMedia()+"");
-        lbN4.setText(ProspettoEventiAvversi.get(3).getNSegnalazioni()+"");
-        lbT5.setText(ProspettoEventiAvversi.get(4).getEvento());
-        lbM5.setText(ProspettoEventiAvversi.get(4).getSeveritaMedia()+"");
-        lbN5.setText(ProspettoEventiAvversi.get(4).getNSegnalazioni()+"");
-        lbT6.setText(ProspettoEventiAvversi.get(5).getEvento());
-        lbM6.setText(ProspettoEventiAvversi.get(5).getSeveritaMedia()+"");
-        lbN6.setText(ProspettoEventiAvversi.get(5).getNSegnalazioni()+"");
+        if (ProspettoEventiAvversi.size()!=0) {
+            lbT1.setText(ProspettoEventiAvversi.get(0).getEvento());
+            lbM1.setText(ProspettoEventiAvversi.get(0).getSeveritaMedia() + "");
+            lbN1.setText(ProspettoEventiAvversi.get(0).getNSegnalazioni() + "");
+            lbT2.setText(ProspettoEventiAvversi.get(1).getEvento());
+            lbM2.setText(ProspettoEventiAvversi.get(1).getSeveritaMedia() + "");
+            lbN2.setText(ProspettoEventiAvversi.get(1).getNSegnalazioni() + "");
+            lbT3.setText(ProspettoEventiAvversi.get(2).getEvento());
+            lbM3.setText(ProspettoEventiAvversi.get(2).getSeveritaMedia() + "");
+            lbN3.setText(ProspettoEventiAvversi.get(2).getNSegnalazioni() + "");
+            lbT4.setText(ProspettoEventiAvversi.get(3).getEvento());
+            lbM4.setText(ProspettoEventiAvversi.get(3).getSeveritaMedia() + "");
+            lbN4.setText(ProspettoEventiAvversi.get(3).getNSegnalazioni() + "");
+            lbT5.setText(ProspettoEventiAvversi.get(4).getEvento());
+            lbM5.setText(ProspettoEventiAvversi.get(4).getSeveritaMedia() + "");
+            lbN5.setText(ProspettoEventiAvversi.get(4).getNSegnalazioni() + "");
+            lbT6.setText(ProspettoEventiAvversi.get(5).getEvento());
+            lbM6.setText(ProspettoEventiAvversi.get(5).getSeveritaMedia() + "");
+            lbN6.setText(ProspettoEventiAvversi.get(5).getNSegnalazioni() + "");
+        }
     }
 
     /**

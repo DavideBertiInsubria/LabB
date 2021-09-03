@@ -1,5 +1,15 @@
 Comandi Per L'esecuzione:
 
+ATTENZIONE: prima di procedere bisogna importare il database su postgresql, e per farlo basta seguire questi passaggi:
+
+			1) Creare un database su postgre denominato 'dblabb' (per esempio con pgAdmin)
+			2) Importare il database tramite il file 'dblabbstructure.sql' situato nella cartella del progetto (oppure copiare ed incollare il suo contenuto nel Query Tool del database)
+			3) Eseguire al Query Tool il seguento comando:
+					CREATE USER admin WITH PASSWORD 'admin';
+
+Fatto ciò si può procedere con l'esecuzione.
+
+Seguire i seguenti passi:
 
 1) Estrarre il file Berti_740665 dove si desidera (es. Desktop).
    Si otterà una cartella denominata LabB
@@ -48,6 +58,7 @@ LINUX:
 			
 
 Si consiglia di aprire due terminali, uno per eseguire il server e uno per i client.
+
 
 
 MAC:

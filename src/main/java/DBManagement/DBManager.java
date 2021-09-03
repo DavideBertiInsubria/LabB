@@ -60,7 +60,7 @@ public class DBManager {
 	/**
 	 * Metodo per eseguire una query sul database
 	 * @param q Query da eseguire
-	 * @return Ritorna un resultset oppure null se non c'è connessione al database
+	 * @return Ritorna un resultset oppure null se non c'&egrave; connessione al database
 	 * @throws SQLException
 	 */
 	public ResultSet query(String q)  throws SQLException{

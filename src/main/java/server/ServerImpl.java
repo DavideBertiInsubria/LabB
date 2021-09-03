@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     /**
-     * <code>Database</code> &egrave; il riferimento al database utilizzato per inserire e reperire i dati ed è un oggetto di tipo <i>DBVaccinazioniManagement</i>.
+     * <code>Database</code> &egrave; il riferimento al database utilizzato per inserire e reperire i dati ed &egrave; un oggetto di tipo <i>DBVaccinazioniManagement</i>.
      * @see DBManagement.DBVaccinazioniManagement
      */
     private final DBVaccinazioniManagement Database;

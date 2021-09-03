@@ -118,7 +118,7 @@ public class DBVaccinazioniManagement extends DBManager{
 	 * Ricerca di vaccinati tramite chiave e valore dinamici
 	 * @param campo Il nome del campo su cui si vuole basare la ricerca
 	 * @param value Il valore che deve assumere campo per ricercare i record
-	 * @return ritorna un valore booleano che sta a indicare se è stato trovato almeno un record di un vaccinato che ha come campo=valore
+	 * @return ritorna un valore booleano che sta a indicare se &egrave; stato trovato almeno un record di un vaccinato che ha come campo=valore
 	 * @throws SQLException
 	 */
 	public boolean checkCampi(String campo, String value) throws SQLException {
@@ -138,9 +138,9 @@ public class DBVaccinazioniManagement extends DBManager{
 	/**
 	 * Ricerca di vaccinati o cittadini tramite chiave e valore dinamici
 	 * @param campo Il nome del campo su cui si vuole basare la ricerca.
-	 * Se è uguale a "IDVaccinazione" si cercherà nella tabella dei vaccinati, altrimenti in quella dei cittadini
+	 * Se &egrave; uguale a "IDVaccinazione" si cercherà nella tabella dei vaccinati, altrimenti in quella dei cittadini
 	 * @param value Il valore che deve assumere campo per ricercare i record
-	 * @return ritorna un valore booleano che sta a indicare se è stato trovato almeno
+	 * @return ritorna un valore booleano che sta a indicare se &egrave; stato trovato almeno
 	 * un record di un vaccinato o di un cittadino che ha come campo=valore
 	 * @throws SQLException
 	 */
@@ -162,8 +162,8 @@ public class DBVaccinazioniManagement extends DBManager{
 	/**
 	 * Registra un vaccinato nel database
 	 * @param vaccinato {@link common.Vaccinato Vaccinato} che si vuole registrare
-	 * @param datasomm La data in cui è stato somministrato il vaccino
-	 * @param vaccino Vaccino che è stato somministrato
+	 * @param datasomm La data in cui &egrave; stato somministrato il vaccino
+	 * @param vaccino Vaccino che &egrave; stato somministrato
 	 * @throws SQLException
 	 */
 	public void registraVaccinato(Vaccinato vaccinato,String datasomm,Vaccino vaccino) throws SQLException {

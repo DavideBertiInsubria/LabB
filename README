@@ -9,13 +9,13 @@ Comandi Per L'esecuzione:
 	
 			cd Desktop\LabB
 			
-2) digitare:
+3) digitare:
 
 			mvn clean compile package install 
 
 WINDOWS:
 
-3) 	Per avviare il SERVER eseguire:
+4) 	Per avviare il SERVER eseguire:
 
 			java -jar target/Server-jar-with-dependencies.jar
 			
@@ -34,7 +34,7 @@ Si consiglia di aprire due CMD, uno per eseguire il server e uno per i client.
 
 LINUX:
 
-3) 	Per avviare il SERVER eseguire:
+4) 	Per avviare il SERVER eseguire:
 
 			java -jar target/Server-jar-with-dependencies.jar
 			

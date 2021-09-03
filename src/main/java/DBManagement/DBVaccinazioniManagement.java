@@ -50,7 +50,7 @@ public class DBVaccinazioniManagement extends DBManager{
 		String nome = centro.getNome();
 		String indirizzo = centro.getIndirizzo();
 		String tipologia = centro.getTipologia();
-		query("INSERT INTO CentriVaccinali(Nome,Indirizzo,Tipologia) "
+		queryUpdate("INSERT INTO CentriVaccinali(Nome,Indirizzo,Tipologia) "
 				+ "VALUES('"+nome+"','"+indirizzo+"','"+tipologia+"')");
 	}
 	
@@ -83,8 +83,10 @@ public class DBVaccinazioniManagement extends DBManager{
 		if(checkCampiCit ("Nick",userId)) ritorno.add("Il nick inserito e' gia' stato registrato.");
 
 		int idvacc= cittadino.getIDVaccino ();
-		if(!checkCampi ("IDVaccinazione",String.valueOf (idvacc))) ritorno.add("L'id vaccinazione inserito non coincide con quello inserito in fase di vaccinazione.");
+
+		if ( !checkIDVaccCF(cf, idvacc) ) ritorno.add("L'id vaccinazione inserito non coincide con quello inserito in fase di vaccinazione.");
 		else if(checkCampiCit ("IDVaccinazione",String.valueOf (idvacc))) ritorno.add("L'id vaccinazione inserito e' gia' stato registrato.");
+
 		int idcentro;
 
 		if(ritorno.size ()>0) return ritorno;
@@ -94,13 +96,23 @@ public class DBVaccinazioniManagement extends DBManager{
 			idcentro = ids.getInt(1);
 			
 			cittadino.setIDCentro(idcentro);
-			
-			query("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,IDVaccinazione,CF,IDCentro,Nick) "
+
+			queryUpdate("INSERT INTO CittadiniRegistrati(Nome,Cognome,Email,Password,IDVaccinazione,CF,IDCentro,Nick) "
 					+ "VALUES('"+nome+"','"+cognome+"','"+email+"','"+pwd+"','"+idvacc+"','"+cf+"','"+idcentro+"','"+userId+"')");
 		
 		}
 		return null;
 	}
+
+
+	public boolean checkIDVaccCF(String CF, int IDVacc) throws SQLException {
+		ResultSet r = query("SELECT Nome "+
+				"FROM Vaccinati WHERE IDVaccinazione = '"+IDVacc+"' AND CF = '" + CF + "'");
+		return r.next ();
+	}
+
+
+
 
 	/**
 	 * Ricerca di vaccinati tramite chiave e valore dinamici
@@ -135,8 +147,8 @@ public class DBVaccinazioniManagement extends DBManager{
 	public boolean checkCampiCit(String campo,String value) throws SQLException {
 		if(campo.equals ("IDVaccinazione"))
 		{
-			ResultSet r = query("SELECT Nick "+
-					"FROM Vaccinati WHERE "+campo+"='"+Integer.parseInt (value)+"'");
+			ResultSet r = query("SELECT nick "+
+					"FROM CittadiniRegistrati WHERE "+campo+"='"+Integer.parseInt (value)+"'");
 			return r.next();
 		}
 		else {
@@ -168,8 +180,8 @@ public class DBVaccinazioniManagement extends DBManager{
 		if(DBManager.ResultSetSize(id) == 1) {
 			idcentro = id.getInt(1);
 			vaccinato.setIDCentro(idcentro);
-			
-			query("INSERT INTO "+
+
+			queryUpdate("INSERT INTO "+
 					"Vaccinati(IDCentro,NomeCentro,IDVaccinazione,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato) "+
 					"VALUES("+idcentro+",'"+nomecentro+"',"+idvaccinazione+",'"+nome+"','"+cognome+"','"+cf+"','"+datasomm+"','"+vaccino+"')");
 		
@@ -196,7 +208,7 @@ public class DBVaccinazioniManagement extends DBManager{
 			idcentro = id.getInt(1);
 			vaccinato.setIDCentro(idcentro);
 
-			query("INSERT INTO "+
+			queryUpdate("INSERT INTO "+
 					"Vaccinati(IDCentro,NomeCentro,IDVaccinazione,Nome,Cognome,CF,DataSomministrazione,VaccinoSomministrato) "+
 					"VALUES("+idcentro+",'"+nomecentro+"',"+idvaccinazione+",'"+nome+"','"+cognome+"','"+cf+"','"+vaccinato.getDatasomm()+"','"+vaccinato.getVaccino()+"')");
 
@@ -269,7 +281,7 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 		if(DBManager.ResultSetSize(id) == 1) {
 			idevento = id.getInt(1);
-			query("INSERT INTO Segnalazione(IDVaccinazione,IDEvento,Severita,Nota)"+
+			queryUpdate("INSERT INTO Segnalazione(IDVaccinazione,IDEvento,Severita,Nota)"+
 			"VALUES("+idvaccinazione+","+idevento+","+severita+",'"+nota+"')");
 		}
 		
@@ -325,5 +337,19 @@ public class DBVaccinazioniManagement extends DBManager{
 		
 	}
 
-	
+	public void CheckStrutturaEventi() throws SQLException {
+
+		queryEvento(1,"Mal di testa");
+		queryEvento(2,"Febbre");
+		queryEvento(3,"Dolori muscolari e articolari");
+		queryEvento(4,"Linfoadenopatia");
+		queryEvento(5,"Tachicardia");
+		queryEvento(6,"Crisi ipertensiva");
+
+	}
+
+	private void queryEvento(int id, String evento) throws SQLException {
+		queryUpdate(" INSERT INTO EventoAvverso (idEvento,Evento)" +
+				" VALUES(" + id + ",'" + evento + "')" );
+	}
 }

@@ -77,7 +77,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public synchronized void registraSegnalazione (Segnalazione seg){
         System.out.println ("Registrazione segnalazione");
         if(seg.getNota()==null){
-            seg.setNota("");
+            seg.setNota(" ");
         }
         try {
             Database.registraSegnalazione (seg);
@@ -99,6 +99,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         
        try {
             Database.registraVaccinato (v);
+           System.out.println("La registrazione del vaccinato è andata a buon fine");
         }catch (SQLException throwables){
             throwables.printStackTrace ();
             System.out.println("La registrazione del vaccinato non è andata a buon fine riprovare");
@@ -117,7 +118,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         try {
             Database.registraCentroVaccinale (CV);
             System.out.println("Registrazione effettuata");
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -222,6 +225,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public static void main(String args[])throws Exception {
         ServerImpl server = new ServerImpl ();
         server.exec();
+        server.CheckStrutturaEventi();
     }
 
+    private void CheckStrutturaEventi(){
+        try {
+            Database.CheckStrutturaEventi();
+        } catch (SQLException throwables) {
+            System.out.println("Eventi gia' presenti.");
+        }
+    }
 }

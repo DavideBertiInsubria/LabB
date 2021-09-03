@@ -72,6 +72,19 @@ public class DBManager {
 		}
 		return null;
 	}
+
+	/**
+	 * Metodo per eseguire una query di update sul database
+	 * @param q Query di update da eseguire
+	 * @throws SQLException
+	 */
+	public void queryUpdate(String q)  throws SQLException{
+		if(conn != null) {
+			System.out.println(q);
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			stmt.executeUpdate(q);
+		}
+	}
 	
 	/**
 	 * Chiude la connessione al database, per riaprirla istanziare un nuovo oggetto

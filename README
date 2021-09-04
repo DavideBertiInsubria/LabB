@@ -1,5 +1,7 @@
 Comandi Per L'esecuzione:
 
+N.B. L'applicativo è stato testato solo su windows e linux.
+
 ATTENZIONE: prima di procedere bisogna importare il database su postgresql, e per farlo basta seguire questi passaggi:
 
 			1) Creare un database su postgre denominato 'dblabb' (per esempio con pgAdmin)
@@ -58,7 +60,3 @@ LINUX:
 			
 
 Si consiglia di aprire due terminali, uno per eseguire il server e uno per i client.
-
-
-
-MAC:

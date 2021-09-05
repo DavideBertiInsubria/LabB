@@ -91,20 +91,23 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     /**
      *Il metodo <em>registraVaccinato</em> serve a registrare i dati di una persona vaccinata da parte di un operatore sanitario tramite l'apposita applicazione su database.
      * @param v Riferimento ad un oggetto di tipo <i>Vaccinato</i> che contiene i dati di un vaccinato da inserire nel database.
+     * @return Il metodo ritorna true se la registrazione e' avvenuta con successo, false altrimenti.
      * @see common.Vaccinato
      */
     @Override
-    public synchronized void registraVaccinato (Vaccinato v) {
+    public synchronized boolean registraVaccinato (Vaccinato v) {
         System.out.println ("Registrazione Vaccinato");
         
        try {
-            Database.registraVaccinato (v);
-           System.out.println("La registrazione del vaccinato è andata a buon fine");
+            if (Database.registraVaccinato(v)) {
+                System.out.println("La registrazione del vaccinato è andata a buon fine");
+                return true;
+            } else return false;
         }catch (SQLException throwables){
             throwables.printStackTrace ();
             System.out.println("La registrazione del vaccinato non è andata a buon fine riprovare");
+            return false;
         }
-        
     }
 
     /**
@@ -223,6 +226,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
      * @throws Exception
      */
     public static void main(String args[])throws Exception {
+        if (System.getSecurityManager() == null)
+            System.setSecurityManager(new SecurityManager());
         ServerImpl server = new ServerImpl ();
         server.exec();
         server.CheckStrutturaEventi();
@@ -235,4 +240,5 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             System.out.println("Eventi gia' presenti.");
         }
     }
-}
+
+    }

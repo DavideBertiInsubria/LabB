@@ -41,6 +41,8 @@ public class ClientGUI extends Application {
     }
 
     public static void main(String[] args){
+        if (System.getSecurityManager() == null)
+            System.setSecurityManager(new SecurityManager());
         launch(args);
     }
 

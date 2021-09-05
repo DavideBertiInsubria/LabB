@@ -104,15 +104,18 @@ public class DBVaccinazioniManagement extends DBManager{
 		return null;
 	}
 
-
+	/**
+	 * Ricerca di vaccinati tramite Codice Fiscale e IDVaccinazione
+	 * @param CF Il codice fiscale su cui si vuole basare la ricerca
+	 * @param IDVacc L'IDVaccinazione su cui si vuole basare la ricerca
+	 * @return ritorna un valore booleano che sta a indicare se &egrave; stato trovato almeno un record di un vaccinato con codice fiscale e l'IDVaccinazione uguali ai parametri forniti.
+	 * @throws SQLException
+	 */
 	public boolean checkIDVaccCF(String CF, int IDVacc) throws SQLException {
 		ResultSet r = query("SELECT Nome "+
 				"FROM Vaccinati WHERE IDVaccinazione = '"+IDVacc+"' AND CF = '" + CF + "'");
 		return r.next ();
 	}
-
-
-
 
 	/**
 	 * Ricerca di vaccinati tramite chiave e valore dinamici
@@ -159,14 +162,7 @@ public class DBVaccinazioniManagement extends DBManager{
 
 	}
 
-	/**
-	 * Registra un vaccinato nel database
-	 * @param vaccinato {@link common.Vaccinato Vaccinato} che si vuole registrare
-	 * @param datasomm La data in cui &egrave; stato somministrato il vaccino
-	 * @param vaccino Vaccino che &egrave; stato somministrato
-	 * @throws SQLException
-	 */
-	public void registraVaccinato(Vaccinato vaccinato,String datasomm,Vaccino vaccino) throws SQLException {
+	public boolean registraVaccinato(Vaccinato vaccinato,String datasomm,Vaccino vaccino) throws SQLException {
 
 		String nome = vaccinato.getNome ();
 		String cognome = vaccinato.getCognome();
@@ -174,7 +170,11 @@ public class DBVaccinazioniManagement extends DBManager{
 		String nomecentro = vaccinato.getCentro().getNome();
 		int idvaccinazione = vaccinato.getIDVaccino();
 		int idcentro;
-		
+
+		if (checkCampi("cf",cf )){
+			return false;
+		}
+
 		ResultSet id = query("SELECT IDCentro FROM CentriVaccinali WHERE Nome='"+nomecentro+"'");
 		
 		if(DBManager.ResultSetSize(id) == 1) {
@@ -186,6 +186,7 @@ public class DBVaccinazioniManagement extends DBManager{
 					"VALUES("+idcentro+",'"+nomecentro+"',"+idvaccinazione+",'"+nome+"','"+cognome+"','"+cf+"','"+datasomm+"','"+vaccino+"')");
 		
 		}
+		return true;
 	}
 	
 	/**
@@ -193,7 +194,7 @@ public class DBVaccinazioniManagement extends DBManager{
 	 * @param vaccinato {@link common.Vaccinato Vaccinato} che si vuole registrare
 	 * @throws SQLException
 	 */
-	public void registraVaccinato(Vaccinato vaccinato) throws SQLException {
+	public boolean registraVaccinato(Vaccinato vaccinato) throws SQLException {
 
 		String nome = vaccinato.getNome ();
 		String cognome = vaccinato.getCognome();
@@ -201,6 +202,10 @@ public class DBVaccinazioniManagement extends DBManager{
 		String nomecentro = vaccinato.getCentro().getNome();
 		int idvaccinazione = vaccinato.getIDVaccino();
 		int idcentro;
+
+		if (checkCampi("cf",cf )){
+			return false;
+		}
 
 		ResultSet id = query("SELECT IDCentro FROM CentriVaccinali WHERE Nome='"+nomecentro+"'");
 
@@ -213,6 +218,7 @@ public class DBVaccinazioniManagement extends DBManager{
 					"VALUES("+idcentro+",'"+nomecentro+"',"+idvaccinazione+",'"+nome+"','"+cognome+"','"+cf+"','"+vaccinato.getDatasomm()+"','"+vaccinato.getVaccino()+"')");
 
 		}
+		return true;
 	}
 	
 	/**

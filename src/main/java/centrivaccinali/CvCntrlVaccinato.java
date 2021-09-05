@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**
@@ -86,7 +87,10 @@ public class CvCntrlVaccinato {
             Vaccinato vax = new Vaccinato(CV, buf[0], buf[1], buf[2], vaccineType, Integer.parseInt(buf[3]), ddMMyyyy);
             // COLLEGAMENTO A SERVER
             try {
-                ServerConnection.SERVER.registraVaccinato(vax);
+                if (!ServerConnection.SERVER.registraVaccinato(vax)) {
+                    JOptionPane.showMessageDialog(null, "Esiste gia' un vaccinato con questo codice fiscale.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
             } catch (RemoteException e) {
                 JOptionPane.showMessageDialog(null, "Connessione al server fallita.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);

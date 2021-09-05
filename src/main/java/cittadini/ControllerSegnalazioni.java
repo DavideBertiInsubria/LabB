@@ -168,32 +168,32 @@ public class ControllerSegnalazioni {
             if (server.checkSegnalazione(User.getIDVaccino(), "Mal di testa")){
                 comboMalDiTesta.setDisable(true);
                 textMalDiTesta.setEditable(false);
-                textMalDiTesta.setPromptText("E' già stata inviata una segnalazione per questo evento.");
+                textMalDiTesta.setPromptText("E' gia' stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Febbre")){
                 comboFebbre.setDisable(true);
                 textFebbre.setEditable(false);
-                textFebbre.setPromptText("E' già stata inviata una segnalazione per questo evento.");
+                textFebbre.setPromptText("E' gia' stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Dolori muscolari e articolari")){
                 comboDoloriMuscArtic.setDisable(true);
                 textDoloriMuscArtic.setEditable(false);
-                textDoloriMuscArtic.setPromptText("E' già stata inviata una segnalazione per questo evento.");
+                textDoloriMuscArtic.setPromptText("E' gia' stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Linfoadenopatia")){
                 comboLinfo.setDisable(true);
                 textLinfo.setEditable(false);
-                textLinfo.setPromptText("E' già stata inviata una segnalazione per questo evento.");
+                textLinfo.setPromptText("E' gia' stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Tachicardia")){
                 comboTachi.setDisable(true);
                 textTachi.setEditable(false);
-                textTachi.setPromptText("E' già stata inviata una segnalazione per questo evento.");
+                textTachi.setPromptText("E' gia' stata inviata una segnalazione per questo evento.");
             }
             if (server.checkSegnalazione(User.getIDVaccino(), "Crisi ipertensiva")){
                 comboCrisi.setDisable(true);
                 textCrisi.setEditable(false);
-                textCrisi.setPromptText("E' già stata inviata una segnalazione per questo evento.");
+                textCrisi.setPromptText("E' gia' stata inviata una segnalazione per questo evento.");
             }
         } catch (RemoteException e) {
             JOptionPane.showMessageDialog(null, "Errore con il collegamento al server.");

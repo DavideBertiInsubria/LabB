@@ -62,6 +62,9 @@ public class CvCntrlHome {
      * @see ActionEvent
      */
     public void clickConnection(ActionEvent event) throws IOException {
+        // CHIUSURA DELLA VECCHIA FINESTRA
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
         // AVVIO APPLICAZIONE CITTADINI
         Stage schermata = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CvConnection.fxml"));
